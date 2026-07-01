@@ -1,0 +1,161 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Course Title - Announcements</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {error: "#ba1a1a", "surface-container-highest": "#d8e3fb", outline: "#75777d", "on-secondary-fixed-variant": "#004c6e", "on-surface-variant": "#44474c", "primary-fixed-dim": "#b9c7df", "on-secondary": "#ffffff", "on-tertiary-fixed-variant": "#444749", surface: "#f9f9ff", "on-primary-container": "#bbcae1", "on-background": "#111c2d", "tertiary-fixed-dim": "#c4c7c9", "surface-container-low": "#f0f3ff", "error-container": "#ffdad6", background: "#f9f9ff", "surface-tint": "#515f74", tertiary: "#3a3e40", "surface-container-lowest": "#ffffff", "primary-container": "#475569", "surface-dim": "#cfdaf2", "primary-fixed": "#d5e3fc", "on-error-container": "#93000a", secondary: "#006591", "secondary-container": "#39b8fd", "inverse-on-surface": "#ecf1ff", "on-error": "#ffffff", "secondary-fixed-dim": "#89ceff", "outline-variant": "#c4c6cd", "on-tertiary": "#ffffff", "tertiary-container": "#525557", "surface-container": "#e7eeff", "on-tertiary-fixed": "#191c1e", "on-surface": "#111c2d", "inverse-primary": "#b9c7df", "surface-bright": "#f9f9ff", "on-tertiary-container": "#c7c9cb", primary: "#303e51", "surface-container-high": "#dee8ff", "inverse-surface": "#263143", "surface-variant": "#d8e3fb", "on-secondary-container": "#004666", "on-primary-fixed": "#0d1c2e", "tertiary-fixed": "#e0e3e5", "on-primary": "#ffffff", "secondary-fixed": "#c9e6ff", "on-secondary-fixed": "#001e2f", "on-primary-fixed-variant": "#3a485b"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {xl: "64px", xs: "4px", md: "24px", margin: "32px", lg: "40px", base: "8px", "max-width": "1280px", sm: "12px", gutter: "24px"}, fontFamily: {"headline-lg-mobile": ["Manrope"], "label-md": ["Inter"], "body-md": ["Inter"], "body-sm": ["Inter"], "headline-sm": ["Manrope"], "label-sm": ["Inter"], "headline-md": ["Manrope"], "headline-lg": ["Manrope"], "body-lg": ["Inter"], headline: ["Manrope"], display: ["Manrope"], body: ["Inter"], label: ["Inter"]}, fontSize: {"headline-lg-mobile": ["24px", {lineHeight: "32px", fontWeight: "700"}], "label-md": ["14px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "body-sm": ["14px", {lineHeight: "20px", fontWeight: "400"}], "headline-sm": ["20px", {lineHeight: "28px", fontWeight: "600"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "500"}], "headline-md": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}]}}}};</script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md antialiased overflow-x-hidden selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Top App Bar (Hidden on Desktop) -->
+<div class="flex min-h-screen md:min-h-[calc(100vh)]">
+<!-- Side Navigation (Visible on Desktop) -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-surface-container-lowest flex flex-col border-r border-outline-variant z-50">
+<div class="p-lg border-b border-outline-variant flex items-center gap-sm">
+<img alt="User profile picture" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKQ0hAaxMDB-J9uvzOhl9Kzpm39Shs8dZMLbNiDh9pkBs1mE41kQDyVpGxMA_C-byMLIQ4s6H8kK7amhi3DUIEHyUbxmzXo1J7gabAG6NtzWwz-qf3dQnIFj2AV0acJpS84-8t1KqbIUqnRCG1NQEvZsylk5yyQLyBbSh_k_LtpD0YBNwlplGq467xW3gFpgS8s1qKXBwCqPAAzEWeQQ3vOkqKrq0Tig6pT2FWZHqlOvEK3dQRcyNQpx7uxHUWsmvINjrfs7bgFxE">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Alex Mercer</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Instructor</p>
+</div>
+</div>
+<nav class="flex-1 py-md flex flex-col gap-xs">
+<a class="flex items-center gap-sm bg-secondary-container text-on-secondary-container border-l-4 border-secondary px-4 py-3 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="font-label-md text-label-md">Courses</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-colors hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-md text-label-md">Tasks</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-colors hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-md text-label-md">Notifications</span>
+</a>
+</nav>
+<div class="p-4 border-t border-outline-variant mt-auto">
+<button class="flex items-center gap-sm text-on-surface-variant px-4 py-3 w-full rounded-lg hover:bg-surface-container-low transition-colors group">
+<span class="material-symbols-outlined text-[24px]">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</button>
+</div></aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-[280px] flex flex-col h-full relative">
+<div class="flex-1 p-lg overflow-y-auto w-full max-w-max-width mx-auto">
+<!-- Course Header Top Bar (Desktop) -->
+<div class="flex flex-col h-full"><!-- Page Header & Action -->
+<div class="flex justify-between items-start mb-xl">
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<span class="px-2 py-1 bg-surface-variant text-primary rounded-full font-label-sm text-label-sm">CS-401</span>
+<span class="px-2 py-1 bg-[#e8f5e9] text-[#2e7d32] rounded-full font-label-sm text-label-sm">Active</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Advanced Calculus 101</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Advanced Calculus 101 - Fall Semester</p>
+</div>
+<button class="bg-primary-container text-on-primary-container font-label-md text-label-md px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-primary hover:text-on-primary transition-colors shadow-sm">
+<span class="material-symbols-outlined">add</span>
+                    Create
+                </button>
+</div>
+<!-- Content Tabs -->
+<div class="flex border-b border-outline-variant mb-lg">
+<button class="px-6 py-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors">Announcements</button>
+<button class="px-6 py-3 font-label-md text-label-md text-secondary border-b-2 border-secondary bg-surface-container-low">Course Materials</button>
+<button class="px-6 py-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors">Members</button>
+</div>
+<!-- Announcements List -->
+<div class="flex flex-col gap-4 max-w-4xl">
+<!-- Announcement Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:shadow-[0px_4px_20px_rgba(0,0,0,0.03)] transition-shadow group relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-transparent group-hover:bg-secondary transition-colors"></div>
+<div class="flex justify-between items-start mb-3 gap-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors line-clamp-1">Upcoming Midterm Exam Logistics</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap bg-surface-container px-2 py-1 rounded">Oct 24, 2023</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-4">
+                                Please review the updated syllabus for the midterm exam schedule and room assignments. The exam will cover chapters 1 through 5. Calculators are permitted, but phones must be turned off and put away. Arrive 15 minutes early.
+                            </p>
+<div class="flex items-center justify-between mt-4 pt-4 border-t border-outline-variant border-dashed">
+<div class="flex items-center gap-2">
+<img alt="Instructor avatar" class="w-6 h-6 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD64G1xr_8831LOM2rDcqsuaTzscRJtL0fFonqvvr-JtroXlEmS4v-Se8OGyxxHMk4rJhAVusIP9SNLFdJF-m4Bw2hshnFiyCyVF1gpK3XsvzcRC17bpS71KdsuIzOPW120C_E6EM38J2Uh86FyPusx0gR92ELMLaelRuikquvD392dY6TS1BhzBIRGr7kiqCnWc-_ouKz-1m-Cy5HOy7i73WvIZ8hmWnOQUehutovMVAhPKzkivbwr5kWC8LtUO-tjft-0bVajlV0">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Posted by Eleanor Vance</span>
+</div>
+<a class="font-label-sm text-label-sm text-secondary hover:text-primary transition-colors flex items-center gap-1" href="#">
+                                    Read full post
+                                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Announcement Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:shadow-[0px_4px_20px_rgba(0,0,0,0.03)] transition-shadow group relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-transparent group-hover:bg-secondary transition-colors"></div>
+<div class="flex justify-between items-start mb-3 gap-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors line-clamp-1">New Study Resources Available</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap bg-surface-container px-2 py-1 rounded">Oct 20, 2023</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-4">
+                                I've uploaded a new set of practice problems and a study guide to the Course Materials section. These are highly recommended for midterm preparation. We will go over some of these in the next review session.
+                            </p>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">attach_file</span>
+                                    StudyGuide_Ch1-5.pdf
+                                </span>
+</div>
+<div class="flex items-center justify-between mt-4 pt-4 border-t border-outline-variant border-dashed">
+<div class="flex items-center gap-2">
+<img alt="Instructor avatar" class="w-6 h-6 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp3EbSPyfGHKbwrmO0HvIaB-RptIpuhplcNQTrd8j2LcesjFhblQfNUJolVtFopLB4QDWLeVhHPgluqaQ3Bu7ZzdAG5G1PyX1TwNtrzbDhU8ADu8j6m6uIX7GTASMjryKTpPGSmKcQuJhcX5gzwNr0Z86iN0MWIrqhuS--rUjK8hb5J4iF-tK2aDzdXbwQ3Z3oVfojfQIXAczwOv9V_z17U-nBy28boUhTXvhpL7HDRoyTxGjWxmJ_UQxRtdUZMY1wijEp5mH-h04">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Posted by Eleanor Vance</span>
+</div>
+<a class="font-label-sm text-label-sm text-secondary hover:text-primary transition-colors flex items-center gap-1" href="#">
+                                    Read full post
+                                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Announcement Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:shadow-[0px_4px_20px_rgba(0,0,0,0.03)] transition-shadow group relative overflow-hidden opacity-80">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-transparent group-hover:bg-secondary transition-colors"></div>
+<div class="flex justify-between items-start mb-3 gap-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors line-clamp-1">Guest Lecture Canceled</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant whitespace-nowrap bg-surface-container px-2 py-1 rounded">Oct 15, 2023</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-4">
+                                Unfortunately, Dr. Smith is unable to make it for tomorrow's guest lecture. We will proceed with the regular lecture schedule covering Chapter 4 instead.
+                            </p>
+<div class="flex items-center justify-between mt-4 pt-4 border-t border-outline-variant border-dashed">
+<div class="flex items-center gap-2">
+<img alt="Instructor avatar" class="w-6 h-6 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUPgzKNvkd4kXos4GHB9rm2gI6dC2bNdfw37-iocgSnV2Sz8p3yA5_tsQ7JT459vBijZPyrO8KfER2DOLNVl5HNbTMZ6LBjDgiI0grQA29NNRnATTkVsywYszxA-kT-1TfIyGWjH35v3gwe0H6QanCRDdIgBgHAFYSu4-ERIUedKTyUh7VzFHN-zMYZ5RCFP1WnrdKKibQTAToB-8TZcFtGerbcnHuvZ8rz4cRbAsqgyDrecx-Qf4-M-Y-uabxUk4S6_ovYy4lWGQ">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Posted by Eleanor Vance</span>
+</div>
+<a class="font-label-sm text-label-sm text-secondary hover:text-primary transition-colors flex items-center gap-1" href="#">
+                                    Read full post
+                                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Load More -->
+<div class="flex justify-center mt-6 mb-12">
+<button class="bg-transparent text-primary border border-outline-variant font-label-md text-label-md px-6 py-2 rounded hover:bg-surface-container-low transition-colors duration-200">
+                                Load Older Announcements
+                            </button>
+</div>
+</div></div>
+</div>
+</main>
+</div>
+<!-- Bottom Navigation Bar (Visible only on Mobile) -->
+</body></html>

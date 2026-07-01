@@ -1,0 +1,215 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Course Dashboard - LMS Portal</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"tertiary-fixed": "#e0e3e5", "surface-container-low": "#f0f3ff", secondary: "#006591", error: "#ba1a1a", "inverse-on-surface": "#ecf1ff", "secondary-container": "#39b8fd", "surface-bright": "#f9f9ff", "on-tertiary-container": "#c7c9cb", "secondary-fixed-dim": "#89ceff", "outline-variant": "#c4c6cd", "on-secondary-fixed-variant": "#004c6e", "on-tertiary-fixed-variant": "#444749", "on-primary-fixed": "#0d1c2e", tertiary: "#3a3e40", "surface-container-high": "#dee8ff", "on-surface-variant": "#44474c", "surface-container": "#e7eeff", "primary-container": "#475569", "surface-variant": "#d8e3fb", "tertiary-fixed-dim": "#c4c7c9", "on-secondary-fixed": "#001e2f", "surface-container-highest": "#d8e3fb", primary: "#303e51", surface: "#f9f9ff", outline: "#75777d", "on-primary-container": "#bbcae1", "surface-dim": "#cfdaf2", "on-secondary": "#ffffff", "on-error": "#ffffff", "primary-fixed-dim": "#b9c7df", "on-surface": "#111c2d", "on-primary-fixed-variant": "#3a485b", "on-tertiary-fixed": "#191c1e", "on-secondary-container": "#004666", "on-tertiary": "#ffffff", background: "#f9f9ff", "error-container": "#ffdad6", "on-primary": "#ffffff", "on-error-container": "#93000a", "tertiary-container": "#525557", "secondary-fixed": "#c9e6ff", "surface-container-lowest": "#ffffff", "on-background": "#111c2d", "inverse-surface": "#263143", "inverse-primary": "#b9c7df", "primary-fixed": "#d5e3fc", "surface-tint": "#515f74"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {gutter: "24px", margin: "32px", "max-width": "1280px", base: "8px", lg: "40px", xs: "4px", xl: "64px", md: "24px", sm: "12px"}, fontFamily: {"headline-sm": ["Manrope", "sans-serif"], "body-md": ["Inter", "sans-serif"], "label-md": ["Inter", "sans-serif"], "headline-md": ["Manrope", "sans-serif"], "body-lg": ["Inter", "sans-serif"], "label-sm": ["Inter", "sans-serif"], "headline-lg": ["Manrope", "sans-serif"], "headline-lg-mobile": ["Manrope", "sans-serif"], "body-sm": ["Inter", "sans-serif"], headline: ["Manrope"], display: ["Manrope"], body: ["Inter"], label: ["Inter"]}, fontSize: {"headline-sm": ["20px", {lineHeight: "28px", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "label-md": ["14px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}], "headline-md": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "500"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700"}], "headline-lg-mobile": ["24px", {lineHeight: "32px", fontWeight: "700"}], "body-sm": ["14px", {lineHeight: "20px", fontWeight: "400"}]}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Glassmorphism utility */
+        .glass-card {
+            background: rgba(248, 250, 252, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        /* Subtle hover transition */
+        .card-hover {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen antialiased selection:bg-secondary-container selection:text-on-secondary-container flex">
+<!-- Shared Component: SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[280px] bg-surface-container-lowest border-r border-outline-variant flex flex-col z-50 transition-transform duration-300 md:translate-x-0 -translate-x-full" id="sideNav"><div class="p-margin border-b border-outline-variant/30 mb-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Alex Mercer</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Lead Instructor</span>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto py-4 flex flex-col gap-xs px-2">
+<a class="flex items-center gap-3 bg-secondary-container/10 text-secondary px-4 py-3 rounded-lg group transition-all" href="#">
+<span class="material-symbols-outlined filled text-[24px]">school</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Courses</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 rounded-lg hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">assignment</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Tasks</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 rounded-lg hover:bg-surface-container-low transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Notifications</span>
+</a>
+</div>
+<div class="p-4 border-t border-outline-variant/30">
+<button class="flex items-center gap-3 text-on-surface-variant px-4 py-3 w-full rounded-lg hover:bg-error-container/10 hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[24px]">logout</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Logout</span>
+</button>
+</div></nav>
+<!-- Overlay for mobile sidebar -->
+<div class="fixed inset-0 bg-on-background/20 backdrop-blur-sm z-40 hidden md:hidden" id="navOverlay"></div>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-0 md:ml-[280px] flex flex-col min-h-screen">
+<!-- Shared Component: TopAppBar -->
+<!-- Canvas / Main Content Area -->
+<main class="flex-1 p-margin md:p-lg w-full max-w-[1280px] mx-auto overflow-x-hidden">
+<!-- Page Header -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-lg gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-1">Courses</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage and view all your enrolled classes.</p>
+</div>
+</div>
+<!-- Bento Grid Layout for Courses -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter">
+<!-- Course Card 1 -->
+<a class="glass-card rounded-xl p-md flex flex-col gap-4 card-hover relative overflow-hidden group" href="#">
+<div class="absolute top-0 right-0 w-24 h-24 bg-secondary-container/20 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+<div class="flex justify-between items-start">
+<div class="p-3 bg-primary-container text-on-primary-container rounded-lg">
+<span class="material-symbols-outlined text-[28px]">code</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Active
+                        </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1 group-hover:text-secondary transition-colors line-clamp-2">Advanced Web Development</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">person</span> Prof. Alan Turing
+                        </p>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex justify-between items-center">
+<p class="font-label-sm text-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span> Mon, Wed 10:00 AM
+                        </p>
+</div>
+</a>
+<!-- Course Card 2 -->
+<a class="glass-card rounded-xl p-md flex flex-col gap-4 card-hover relative overflow-hidden group" href="#">
+<div class="absolute top-0 right-0 w-24 h-24 bg-surface-variant/30 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+<div class="flex justify-between items-start">
+<div class="p-3 bg-surface-variant text-on-surface rounded-lg">
+<span class="material-symbols-outlined text-[28px]">calculate</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Active
+                        </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1 group-hover:text-secondary transition-colors line-clamp-2">Calculus II: Integrals &amp; Series</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">person</span> Dr. Katherine Johnson
+                        </p>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex justify-between items-center">
+<p class="font-label-sm text-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span> Tue, Thu 1:30 PM
+                        </p>
+</div>
+</a>
+<!-- Course Card 3 -->
+<a class="glass-card rounded-xl p-md flex flex-col gap-4 card-hover relative overflow-hidden group" href="#">
+<div class="absolute top-0 right-0 w-24 h-24 bg-secondary-container/10 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+<div class="flex justify-between items-start">
+<div class="p-3 bg-tertiary text-on-tertiary rounded-lg">
+<span class="material-symbols-outlined text-[28px]">psychology</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span> Draft
+                        </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1 group-hover:text-secondary transition-colors line-clamp-2">Introduction to Psychology</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">person</span> Prof. Sigmund Freud
+                        </p>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex justify-between items-center">
+<p class="font-label-sm text-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span> Fri 9:00 AM
+                        </p>
+</div>
+</a>
+<!-- Course Card 4 -->
+<a class="glass-card rounded-xl p-md flex flex-col gap-4 card-hover relative overflow-hidden group" href="#">
+<div class="absolute top-0 right-0 w-24 h-24 bg-error-container/20 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
+<div class="flex justify-between items-start">
+<div class="p-3 bg-surface-container-high text-on-surface rounded-lg">
+<span class="material-symbols-outlined text-[28px]">history_edu</span>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Active
+                        </span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1 group-hover:text-secondary transition-colors line-clamp-2">World History: 19th Century</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">person</span> Dr. Mary Beard
+                        </p>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex justify-between items-center">
+<p class="font-label-sm text-label-sm text-outline flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span> Mon, Wed 3:00 PM
+                        </p>
+</div>
+</a>
+<!-- Add New Course Action Card -->
+<button class="rounded-xl p-md flex flex-col justify-center items-center gap-3 border-2 border-dashed border-outline-variant hover:border-secondary hover:bg-secondary-container/10 transition-all text-on-surface-variant hover:text-secondary min-h-[220px]">
+<div class="p-4 rounded-full bg-surface-container-highest">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</div>
+<span class="font-label-md text-label-md">Add New Course</span>
+</button>
+</div>
+</main>
+</div>
+<!-- Script for mobile menu toggle -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('menuBtn');
+            const sideNav = document.getElementById('sideNav');
+            const navOverlay = document.getElementById('navOverlay');
+
+            function toggleMenu() {
+                const isClosed = sideNav.classList.contains('-translate-x-full');
+                if (isClosed) {
+                    sideNav.classList.remove('-translate-x-full');
+                    navOverlay.classList.remove('hidden');
+                } else {
+                    sideNav.classList.add('-translate-x-full');
+                    navOverlay.classList.add('hidden');
+                }
+            }
+
+            menuBtn.addEventListener('click', toggleMenu);
+            navOverlay.addEventListener('click', toggleMenu);
+        });
+    </script>
+</body></html>

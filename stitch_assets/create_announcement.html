@@ -1,0 +1,128 @@
+<!DOCTYPE html><html class="h-full" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Lumina - Announcement Composer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {outline: "#75777d", "inverse-primary": "#b9c7df", "primary-fixed": "#d5e3fc", "primary-container": "#475569", "inverse-surface": "#263143", "on-surface": "#111c2d", "surface-variant": "#d8e3fb", "on-primary-fixed": "#0d1c2e", "primary-fixed-dim": "#b9c7df", "on-tertiary-fixed-variant": "#444749", "on-background": "#111c2d", "on-tertiary-container": "#c7c9cb", "tertiary-fixed": "#e0e3e5", "surface-container-high": "#dee8ff", "on-error": "#ffffff", "on-secondary-fixed-variant": "#004c6e", "secondary-container": "#39b8fd", "surface-container-lowest": "#ffffff", "on-tertiary-fixed": "#191c1e", "on-secondary-fixed": "#001e2f", "on-error-container": "#93000a", background: "#f9f9ff", "on-primary": "#ffffff", primary: "#303e51", error: "#ba1a1a", "surface-container-highest": "#d8e3fb", "surface-container-low": "#f0f3ff", "surface-bright": "#f9f9ff", surface: "#f9f9ff", secondary: "#006591", "on-secondary": "#ffffff", "surface-container": "#e7eeff", "inverse-on-surface": "#ecf1ff", "surface-dim": "#cfdaf2", "surface-tint": "#515f74", "on-tertiary": "#ffffff", "error-container": "#ffdad6", "secondary-fixed": "#c9e6ff", "outline-variant": "#c4c6cd", "tertiary-fixed-dim": "#c4c7c9", "on-secondary-container": "#004666", "secondary-fixed-dim": "#89ceff", "on-primary-fixed-variant": "#3a485b", "on-primary-container": "#bbcae1", "tertiary-container": "#525557", tertiary: "#3a3e40", "on-surface-variant": "#44474c"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {md: "24px", margin: "32px", gutter: "24px", "max-width": "1280px", xl: "64px", xs: "4px", lg: "40px", base: "8px", sm: "12px"}, fontFamily: {"headline-sm": ["Manrope"], "body-md": ["Inter"], "label-md": ["Inter"], "body-sm": ["Inter"], "body-lg": ["Inter"], "label-sm": ["Inter"], "headline-md": ["Manrope"], "headline-lg": ["Manrope"], "headline-lg-mobile": ["Manrope"], headline: ["Manrope"], display: ["Manrope"], body: ["Inter"], label: ["Inter"]}, fontSize: {"headline-sm": ["20px", {lineHeight: "28px", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "label-md": ["14px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}], "body-sm": ["14px", {lineHeight: "20px", fontWeight: "400"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "500"}], "headline-md": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700"}], "headline-lg-mobile": ["24px", {lineHeight: "32px", fontWeight: "700"}]}}}};</script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background h-full font-body-md overflow-hidden antialiased">
+<div class="flex h-full w-full">
+<!-- SideNav -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-surface-container-lowest flex flex-col border-r border-outline-variant z-50">
+<div class="p-lg border-b border-outline-variant flex items-center gap-sm">
+<img alt="User profile picture" class="w-12 h-12 rounded-full object-cover" data-alt="A professional headshot of an educator in a bright, modern academic setting. Minimalist background, high-key lighting, communicating reliability and focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKQ0hAaxMDB-J9uvzOhl9Kzpm39Shs8dZMLbNiDh9pkBs1mE41kQDyVpGxMA_C-byMLIQ4s6H8kK7amhi3DUIEHyUbxmzXo1J7gabAG6NtzWwz-qf3dQnIFj2AV0acJpS84-8t1KqbIUqnRCG1NQEvZsylk5yyQLyBbSh_k_LtpD0YBNwlplGq467xW3gFpgS8s1qKXBwCqPAAzEWeQQ3vOkqKrq0Tig6pT2FWZHqlOvEK3dQRcyNQpx7uxHUWsmvINjrfs7bgFxE">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Alex Mercer</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Instructor</p>
+</div>
+</div>
+<nav class="flex-1 py-md flex flex-col gap-xs">
+<a class="flex items-center gap-sm bg-secondary-container text-on-secondary-container border-l-4 border-secondary px-4 py-3 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="font-label-md text-label-md">Courses</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-colors hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-md text-label-md">Tasks</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-colors hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-md text-label-md">Notifications</span>
+</a>
+</nav>
+<div class="p-4 border-t border-outline-variant mt-auto">
+<button class="flex items-center gap-sm text-on-surface-variant px-4 py-3 w-full rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[24px]">logout</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Logout</span>
+</button>
+</div></aside>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col min-w-0 overflow-hidden ml-[280px] relative">
+<!-- TopAppBar -->
+<header class="w-full sticky top-0 bg-surface h-16 px-margin flex items-center justify-between border-b border-surface-container-highest z-10 md:hidden">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined md:hidden">menu</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Lumina</h1>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<img alt="Admin avatar" class="w-8 h-8 rounded-full object-cover" data-alt="A small, circular avatar portrait of a young professional wearing a light blue shirt against a solid light gray background, conveying a clean and professional academic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-eFtVvHpbh7jhmGHZ0YYcYMHqu7JvD4N9DXDNmzcthYeTb_d3_eClGxsJ6Gdze-ED2Fdqb1SfijNIxbGy7Js4Utas69WVzCHIy4cOP_gPRGeI-jUNUv0uYxgtYOBwZPDTE_PU9QFJQ6V82yvygzBTkqhI8_NFBChKHUfHlWzdtQAMLtYb0qckP8bDYhrp1hMG3t1rJ2ok4QIy1a2HpsVY92Drb25jWhvEkrRvrZxNPygIdx6Mj4H58cEcAljgdNSHQRalNU-yWO4">
+</div>
+</header>
+<main class="flex-1 overflow-y-auto p-margin md:p-xl max-w-max-width mx-auto w-full">
+<!-- Page Header -->
+<div class="mb-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-xs">Make an Announcement</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Create and publish an announcement to your course students.</p>
+</div>
+</div>
+<!-- Composer Form Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md md:p-lg shadow-sm">
+<form class="space-y-lg flex flex-col h-full">
+<!-- Title Field -->
+<div class="space-y-xs">
+<label class="block font-label-md text-label-md text-on-surface" for="announcement-title">Announcement Title</label>
+<input class="w-full bg-surface-bright border border-outline-variant rounded-DEFAULT px-md py-sm font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all placeholder:text-outline" id="announcement-title" placeholder="Enter a descriptive title..." type="text">
+</div>
+<!-- Rich Text Editor area -->
+<div class="space-y-xs flex-1 flex flex-col">
+<label class="block font-label-md text-label-md text-on-surface">Content</label>
+<div class="border border-outline-variant rounded-DEFAULT bg-surface-bright flex flex-col min-h-[300px]">
+<!-- Editor Toolbar -->
+<div class="border-b border-outline-variant bg-surface-container-low p-sm flex flex-wrap items-center gap-xs rounded-t-DEFAULT">
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Bold" type="button">
+<span class="material-symbols-outlined text-[20px]">format_bold</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Italic" type="button">
+<span class="material-symbols-outlined text-[20px]">format_italic</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Underline" type="button">
+<span class="material-symbols-outlined text-[20px]">format_underlined</span>
+</button>
+<div class="w-px h-6 bg-outline-variant mx-sm"></div>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Bullet List" type="button">
+<span class="material-symbols-outlined text-[20px]">format_list_bulleted</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Numbered List" type="button">
+<span class="material-symbols-outlined text-[20px]">format_list_numbered</span>
+</button>
+<div class="w-px h-6 bg-outline-variant mx-sm"></div>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Link" type="button">
+<span class="material-symbols-outlined text-[20px]">link</span>
+</button>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors" title="Attach File" type="button">
+<span class="material-symbols-outlined text-[20px]">attach_file</span>
+</button>
+</div>
+<!-- Editor Content Area -->
+<textarea class="w-full flex-1 resize-none bg-transparent border-none p-md font-body-md text-body-md text-on-surface focus:outline-none focus:ring-0 placeholder:text-outline" placeholder="Write your announcement content here..."></textarea>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row justify-end gap-md pt-md border-t border-surface-container-highest">
+<button class="px-md py-sm rounded-DEFAULT border border-outline-variant bg-transparent text-primary font-label-md hover:bg-surface-container-low transition-colors text-center" type="button">
+                                Cancel
+                            </button>
+<button class="px-md py-sm rounded-DEFAULT bg-primary text-on-primary font-label-md hover:bg-opacity-90 transition-opacity text-center flex items-center justify-center gap-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">send</span>
+                                Post Announcement
+                            </button>
+</div>
+</form>
+</div>
+</main>
+</div>
+</div>
+</body></html>

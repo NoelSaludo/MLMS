@@ -1,0 +1,180 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Upload an Assignment - LMS Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"surface-container-low": "#f0f3ff", error: "#ba1a1a", "tertiary-container": "#525557", "surface-container-high": "#dee8ff", "on-background": "#111c2d", "surface-dim": "#cfdaf2", tertiary: "#3a3e40", outline: "#75777d", "secondary-fixed-dim": "#89ceff", "surface-variant": "#d8e3fb", "on-error-container": "#93000a", "outline-variant": "#c4c6cd", surface: "#f9f9ff", "on-primary": "#ffffff", "on-tertiary-fixed-variant": "#444749", "on-secondary-container": "#004666", "secondary-container": "#39b8fd", "on-surface-variant": "#44474c", "surface-container-lowest": "#ffffff", "surface-container-highest": "#d8e3fb", "surface-container": "#e7eeff", "primary-fixed": "#d5e3fc", "error-container": "#ffdad6", "on-tertiary": "#ffffff", "inverse-surface": "#263143", "surface-bright": "#f9f9ff", "inverse-on-surface": "#ecf1ff", "tertiary-fixed": "#e0e3e5", "on-secondary-fixed": "#001e2f", background: "#f9f9ff", "on-secondary-fixed-variant": "#004c6e", "on-tertiary-fixed": "#191c1e", "primary-container": "#475569", "on-surface": "#111c2d", "primary-fixed-dim": "#b9c7df", primary: "#303e51", secondary: "#006591", "tertiary-fixed-dim": "#c4c7c9", "secondary-fixed": "#c9e6ff", "on-error": "#ffffff", "on-tertiary-container": "#c7c9cb", "on-primary-fixed-variant": "#3a485b", "surface-tint": "#515f74", "on-secondary": "#ffffff", "on-primary-fixed": "#0d1c2e", "on-primary-container": "#bbcae1", "inverse-primary": "#b9c7df"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {xl: "64px", "max-width": "1280px", lg: "40px", margin: "32px", base: "8px", sm: "12px", md: "24px", gutter: "24px", xs: "4px"}, fontFamily: {"headline-md": ["Manrope"], "headline-sm": ["Manrope"], "label-sm": ["Inter"], "headline-lg-mobile": ["Manrope"], "body-sm": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Manrope"], "body-lg": ["Inter"], "label-md": ["Inter"], headline: ["Manrope"], display: ["Manrope"], body: ["Inter"], label: ["Inter"]}, fontSize: {"headline-md": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600"}], "headline-sm": ["20px", {lineHeight: "28px", fontWeight: "600"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "500"}], "headline-lg-mobile": ["24px", {lineHeight: "32px", fontWeight: "700"}], "body-sm": ["14px", {lineHeight: "20px", fontWeight: "400"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "label-md": ["14px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}]}}}};</script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- SideNavBar Component -->
+<nav class="fixed left-0 top-0 h-full w-[280px] bg-surface-container-lowest border-r border-outline-variant flex flex-col z-50">
+<!-- Header/Profile -->
+<div class="p-6 border-b border-outline-variant flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 bg-surface-variant flex justify-center items-center">
+<span class="material-symbols-outlined text-outline">person</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Full name</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Role</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 py-4 flex flex-col gap-2 px-2">
+<!-- Courses (Active) -->
+<a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container border-l-4 border-secondary px-4 py-3 rounded-r-lg font-label-md text-label-md hover:bg-surface-container-high transition-all scale-[0.98]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+                    Courses
+                </a>
+<!-- Tasks (Inactive) -->
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-colors rounded-r-lg font-label-md text-label-md hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">assignment</span>
+                    Tasks
+                </a>
+<!-- Notifications (Inactive) -->
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-colors rounded-r-lg font-label-md text-label-md hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">notifications</span>
+                    Notifications
+                </a>
+</div>
+<div class="p-6">
+</div>
+<div class="p-6 border-t border-outline-variant">
+<button class="flex items-center gap-3 text-on-surface-variant px-4 py-3 w-full rounded-lg hover:bg-surface-container-high transition-all font-label-md text-label-md uppercase tracking-wider">
+<span class="material-symbols-outlined">logout</span>
+Logout
+</button>
+</div></nav>
+<!-- Main Content Canvas -->
+<main class="ml-[280px] flex-1 flex flex-col h-full overflow-y-auto w-full">
+<!-- Top App Bar - Mobile/Tablet Fallback (Hidden on Desktop per fluid grid rules, but structure kept for reference if needed) -->
+<!-- <header class="hidden md:flex justify-between items-center h-16 px-8 bg-surface border-b border-outline-variant fixed top-0 right-0 w-[calc(100%-280px)] z-40">...</header> -->
+<div class="max-w-[1280px] w-full mx-auto px-lg py-lg flex flex-col gap-lg mt-8">
+<!-- Page Header: Assignment Info -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-end gap-md pb-md border-b border-outline-variant">
+<div class="flex flex-col gap-sm">
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="material-symbols-outlined">arrow_back</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline">Course Name</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary">UI Pattern Case Study</h1>
+</div>
+<div class="flex gap-lg items-center">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Due Date</span>
+<span class="font-body-md text-body-md text-on-surface">Oct 24, 11:59 PM</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Maximum Score</span>
+<span class="font-body-md text-body-md text-on-surface">100 Points</span>
+</div>
+<!-- Status Chip -->
+<div class="bg-surface-container-high text-primary px-sm py-xs rounded-full border border-outline-variant flex items-center gap-xs">
+<span class="font-label-sm text-label-sm">Not Submitted</span>
+</div>
+</div>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<!-- Main Content Area -->
+<div class="lg:col-span-8 flex flex-col gap-lg">
+<!-- Assignment Description -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md flex flex-col gap-md">
+<h2 class="font-headline-sm text-headline-sm text-primary">Instructions</h2>
+<div class="font-body-md text-body-md text-on-surface-variant flex flex-col gap-sm">
+<p class="">Analyze a chosen digital product's user interface. Focus on how it employs established UI patterns (e.g., Navigation, Forms, Search). Document your findings detailing:</p>
+<ul class="list-disc pl-6">
+<li class="">The specific patterns identified.</li>
+<li class="">The user problem they solve.</li>
+<li class="">An evaluation of their effectiveness based on heuristic principles.</li>
+</ul>
+<p class="">Submit your findings as a PDF report (Max 5 pages). Include screenshots annotated with your analysis.</p>
+</div>
+</section>
+<aside class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md flex flex-col gap-md">
+<h3 class="font-headline-sm text-headline-sm text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">info</span>
+                                 Resources
+                             </h3>
+<ul class="flex flex-col gap-2">
+<li class="">
+<a class="flex items-center gap-2 font-body-sm text-body-sm text-secondary hover:underline" href="#">
+<span class="material-symbols-outlined text-[16px]">link</span>
+                                         Nielsen's 10 Heuristics
+                                     </a>
+</li>
+<li class="">
+<a class="flex items-center gap-2 font-body-sm text-body-sm text-secondary hover:underline" href="#">
+<span class="material-symbols-outlined text-[16px]">link</span>
+                                         Common UI Patterns Guide
+                                     </a>
+</li>
+</ul>
+</aside>
+</div>
+<!-- Sidebar Content (Grading & Feedback) -->
+<div class="lg:col-span-4 flex flex-col gap-lg">
+<!-- File Upload Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md flex flex-col gap-md">
+<h2 class="font-headline-sm text-headline-sm text-primary">Your Work</h2>
+<!-- Upload Dropzone -->
+<div class="border-2 border-dashed border-outline-variant rounded-lg p-lg flex flex-col items-center justify-center gap-sm bg-surface hover:bg-surface-container-low transition-colors cursor-pointer group">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-[32px] text-primary group-hover:text-on-primary">upload_file</span>
+</div>
+<div class="text-center">
+<p class="font-headline-sm text-headline-sm text-primary">Click to upload or drag and drop</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">SVG, PNG, JPG or PDF (max. 10MB)</p>
+</div>
+</div>
+<!-- Attached Files List (Empty State for now, but structure is here) -->
+<!--
+                            <div class="flex flex-col gap-2 mt-4">
+                                <div class="flex items-center justify-between p-sm border border-outline-variant rounded bg-surface">
+                                    <div class="flex items-center gap-sm">
+                                        <span class="material-symbols-outlined text-outline">description</span>
+                                        <span class="font-body-sm text-body-sm text-on-surface">my_case_study.pdf</span>
+                                    </div>
+                                    <button class="text-error hover:bg-error-container p-1 rounded-full transition-colors flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-[20px]">close</span>
+                                    </button>
+                                </div>
+                            </div>
+                            -->
+<!-- Submit Action -->
+<div class="flex justify-end mt-4">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded hover:bg-primary-container transition-colors shadow-sm">
+                                    Submit Assignment
+                                </button>
+</div>
+</section>
+<!-- Grading Section (Hidden by default, shown when graded) -->
+<aside class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md flex flex-col gap-md opacity-50 pointer-events-none relative overflow-hidden">
+<!-- Overlay to indicate inactive state -->
+<div class="absolute inset-0 bg-surface/50 z-10 flex items-center justify-center backdrop-blur-[1px]">
+<span class="bg-surface-container-high text-on-surface px-4 py-2 rounded-full font-label-sm text-label-sm shadow-sm border border-outline-variant">Awaiting Submission</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary border-b border-outline-variant pb-2">Evaluation</h3>
+<div class="flex justify-between items-center py-2">
+<span class="font-body-md text-body-md text-on-surface-variant">Grade</span>
+<div class="flex items-end gap-1">
+<span class="font-headline-md text-headline-md text-primary">--</span>
+<span class="font-body-sm text-body-sm text-outline mb-1">/ 100</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Instructor Feedback</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">Feedback will appear here once the assignment is graded.</p>
+</div>
+</aside>
+<!-- Additional Info/Resources Card -->
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

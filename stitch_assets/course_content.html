@@ -1,0 +1,148 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Course Content - LMS Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"tertiary-fixed": "#e0e3e5", "surface-container-low": "#f0f3ff", secondary: "#006591", error: "#ba1a1a", "inverse-on-surface": "#ecf1ff", "secondary-container": "#39b8fd", "surface-bright": "#f9f9ff", "on-tertiary-container": "#c7c9cb", "secondary-fixed-dim": "#89ceff", "outline-variant": "#c4c6cd", "on-secondary-fixed-variant": "#004c6e", "on-tertiary-fixed-variant": "#444749", "on-primary-fixed": "#0d1c2e", tertiary: "#3a3e40", "surface-container-high": "#dee8ff", "on-surface-variant": "#44474c", "surface-container": "#e7eeff", "primary-container": "#475569", "surface-variant": "#d8e3fb", "tertiary-fixed-dim": "#c4c7c9", "on-secondary-fixed": "#001e2f", "surface-container-highest": "#d8e3fb", primary: "#303e51", surface: "#f9f9ff", outline: "#75777d", "on-primary-container": "#bbcae1", "surface-dim": "#cfdaf2", "on-secondary": "#ffffff", "on-error": "#ffffff", "primary-fixed-dim": "#b9c7df", "on-surface": "#111c2d", "on-primary-fixed-variant": "#3a485b", "on-tertiary-fixed": "#191c1e", "on-secondary-container": "#004666", "on-tertiary": "#ffffff", background: "#f9f9ff", "error-container": "#ffdad6", "on-primary": "#ffffff", "on-error-container": "#93000a", "tertiary-container": "#525557", "secondary-fixed": "#c9e6ff", "surface-container-lowest": "#ffffff", "on-background": "#111c2d", "inverse-surface": "#263143", "inverse-primary": "#b9c7df", "primary-fixed": "#d5e3fc", "surface-tint": "#515f74"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {gutter: "24px", margin: "32px", "max-width": "1280px", base: "8px", lg: "40px", xs: "4px", xl: "64px", md: "24px", sm: "12px"}, fontFamily: {"headline-sm": ["Manrope"], "body-md": ["Inter"], "label-md": ["Inter"], "headline-md": ["Manrope"], "body-lg": ["Inter"], "label-sm": ["Inter"], "headline-lg": ["Manrope"], "headline-lg-mobile": ["Manrope"], "body-sm": ["Inter"], headline: ["Manrope"], display: ["Manrope"], body: ["Inter"], label: ["Inter"]}, fontSize: {"headline-sm": ["20px", {lineHeight: "28px", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "label-md": ["14px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}], "headline-md": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "500"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700"}], "headline-lg-mobile": ["24px", {lineHeight: "32px", fontWeight: "700"}], "body-sm": ["14px", {lineHeight: "20px", fontWeight: "400"}]}}}};</script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9ff; }
+        h1, h2, h3, h4, h5, h6, .font-headline-sm, .font-headline-md, .font-headline-lg, .font-headline-lg-mobile { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased flex h-screen overflow-hidden">
+<!-- SideNavBar (Shared Component) -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-surface-container-lowest flex flex-col border-r border-outline-variant z-50">
+<!-- Header / Profile -->
+<div class="p-lg border-b border-outline-variant flex items-center gap-sm">
+<img alt="User profile picture" class="w-12 h-12 rounded-full object-cover" data-alt="A professional headshot of an educator in a bright, modern academic setting. Minimalist background, high-key lighting, communicating reliability and focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKQ0hAaxMDB-J9uvzOhl9Kzpm39Shs8dZMLbNiDh9pkBs1mE41kQDyVpGxMA_C-byMLIQ4s6H8kK7amhi3DUIEHyUbxmzXo1J7gabAG6NtzWwz-qf3dQnIFj2AV0acJpS84-8t1KqbIUqnRCG1NQEvZsylk5yyQLyBbSh_k_LtpD0YBNwlplGq467xW3gFpgS8s1qKXBwCqPAAzEWeQQ3vOkqKrq0Tig6pT2FWZHqlOvEK3dQRcyNQpx7uxHUWsmvINjrfs7bgFxE">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Alex Mercer</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Instructor</p>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<nav class="flex-1 py-md flex flex-col gap-xs">
+<a class="flex items-center gap-sm bg-secondary-container text-on-secondary-container border-l-4 border-secondary px-4 py-3 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="font-label-md text-label-md">Courses</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-colors hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-md text-label-md">Tasks</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-colors hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-md text-label-md">Notifications</span>
+</a>
+</nav>
+<div class="p-4 border-t border-outline-variant mt-auto">
+<button class="flex items-center gap-sm text-on-surface-variant px-4 py-3 w-full rounded-lg hover:bg-surface-container-low transition-colors group">
+<span class="material-symbols-outlined text-on-surface-variant">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</button>
+</div></aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-[280px] flex flex-col h-full relative">
+<!-- TopAppBar (Shared Component) -->
+<!-- Page Content Canvas -->
+<main class="flex-1 p-lg overflow-y-auto w-full max-w-max-width mx-auto">
+<!-- Course Header Section -->
+<div class="flex justify-between items-start mb-xl">
+<div>
+<div class="flex items-center gap-sm mb-xs">
+<span class="px-2 py-1 bg-surface-variant text-primary rounded-full font-label-sm text-label-sm">CS-401</span>
+<span class="px-2 py-1 bg-[#e8f5e9] text-[#2e7d32] rounded-full font-label-sm text-label-sm">Active</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Advanced UI Design</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Explore modern principles of user interface design, focusing on usability, accessibility, and high-fidelity prototyping using industry-standard tools.</p>
+</div>
+<button class="bg-primary-container text-on-primary-container font-label-md text-label-md px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-primary hover:text-on-primary transition-colors shadow-sm">
+<span class="material-symbols-outlined">add</span>
+                    Create
+                </button>
+</div>
+<!-- Content Tabs -->
+<div class="flex border-b border-outline-variant mb-lg">
+<button class="px-6 py-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors">Announcements</button>
+<button class="px-6 py-3 font-label-md text-label-md text-secondary border-b-2 border-secondary bg-surface-container-low">Course Materials</button>
+<button class="px-6 py-3 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors">Members</button>
+</div>
+<!-- Material List (Bento-style Grid layout instead of standard list) -->
+<div class="flex flex-col gap-md"><!-- Material Card 1 (Oct 12) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex items-center gap-md hover:shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-shadow group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
+<div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors truncate">Week 1: Design Systems Overview</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Posted Oct 12 • Lecture Slides</p>
+</div>
+<button class="text-outline hover:text-primary transition-colors ml-4"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-1">Introduction to the core concepts of building scalable design systems, covering visual tokens, component libraries, and documentation strategies.</p>
+</div>
+<div class="border-l border-outline-variant pl-md ml-md shrink-0">
+<a class="flex items-center gap-2 p-2 rounded-md hover:bg-surface-container-low transition-colors group/file" href="#">
+<span class="material-symbols-outlined text-outline">picture_as_pdf</span>
+<span class="font-label-md text-label-md text-on-surface">Lec1_DesignSystems.pdf</span>
+<span class="material-symbols-outlined text-outline group-hover/file:text-primary opacity-0 group-hover/file:opacity-100 transition-all">download</span>
+</a>
+</div>
+</div>
+<!-- Material Card 2 (Oct 15) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex items-center gap-md hover:shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-shadow group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
+<div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">movie</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors truncate">Figma Prototyping Workshop</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Posted Oct 15 • Video Recording</p>
+</div>
+<button class="text-outline hover:text-primary transition-colors ml-4"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-1">A recorded workshop session demonstrating advanced interactive prototyping techniques within Figma, including variables and conditional logic.</p>
+</div>
+<div class="border-l border-outline-variant pl-md ml-md shrink-0">
+<a class="flex items-center gap-2 p-2 rounded-md hover:bg-surface-container-low transition-colors group/file" href="#">
+<span class="material-symbols-outlined text-outline">link</span>
+<span class="font-label-md text-label-md text-on-surface">Watch Recording (1h 12m)</span>
+<span class="material-symbols-outlined text-outline group-hover/file:text-primary opacity-0 group-hover/file:opacity-100 transition-all">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Material Card 3 (Oct 20) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md flex items-center gap-md hover:shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-shadow group relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary"></div>
+<div class="w-12 h-12 rounded-lg bg-surface-variant flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">folder_zip</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors truncate">Project 1 Asset Bundle</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Posted Oct 20 • Resources</p>
+</div>
+<button class="text-outline hover:text-primary transition-colors ml-4"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-1">Download the required UI kits, icon sets, and typography files needed to complete the first major assignment.</p>
+</div>
+<div class="border-l border-outline-variant pl-md ml-md shrink-0">
+<a class="flex items-center gap-2 p-2 rounded-md hover:bg-surface-container-low transition-colors group/file" href="#">
+<span class="material-symbols-outlined text-outline">folder</span>
+<span class="font-label-md text-label-md text-on-surface">Project1_Assets.zip</span>
+<span class="material-symbols-outlined text-outline group-hover/file:text-primary opacity-0 group-hover/file:opacity-100 transition-all">download</span>
+</a>
+</div>
+</div></div>
+</main>
+</div>
+</body></html>

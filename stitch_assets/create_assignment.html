@@ -1,0 +1,161 @@
+<!DOCTYPE html><html class="h-full" lang="en" style="width: 1280px; height: 1024px; overflow: hidden; position: relative;"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Assignment Creation - Lumina</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {outline: "#75777d", "inverse-primary": "#b9c7df", "primary-fixed": "#d5e3fc", "primary-container": "#475569", "inverse-surface": "#263143", "on-surface": "#111c2d", "surface-variant": "#d8e3fb", "on-primary-fixed": "#0d1c2e", "primary-fixed-dim": "#b9c7df", "on-tertiary-fixed-variant": "#444749", "on-background": "#111c2d", "on-tertiary-container": "#c7c9cb", "tertiary-fixed": "#e0e3e5", "surface-container-high": "#dee8ff", "on-error": "#ffffff", "on-secondary-fixed-variant": "#004c6e", "secondary-container": "#39b8fd", "surface-container-lowest": "#ffffff", "on-tertiary-fixed": "#191c1e", "on-secondary-fixed": "#001e2f", "on-error-container": "#93000a", background: "#f9f9ff", "on-primary": "#ffffff", primary: "#303e51", error: "#ba1a1a", "surface-container-highest": "#d8e3fb", "surface-container-low": "#f0f3ff", "surface-bright": "#f9f9ff", surface: "#f9f9ff", secondary: "#006591", "on-secondary": "#ffffff", "surface-container": "#e7eeff", "inverse-on-surface": "#ecf1ff", "surface-dim": "#cfdaf2", "surface-tint": "#515f74", "on-tertiary": "#ffffff", "error-container": "#ffdad6", "secondary-fixed": "#c9e6ff", "outline-variant": "#c4c6cd", "tertiary-fixed-dim": "#c4c7c9", "on-secondary-container": "#004666", "secondary-fixed-dim": "#89ceff", "on-primary-fixed-variant": "#3a485b", "on-primary-container": "#bbcae1", "tertiary-container": "#525557", tertiary: "#3a3e40", "on-surface-variant": "#44474c"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {md: "24px", margin: "32px", gutter: "24px", "max-width": "1280px", xl: "64px", xs: "4px", lg: "40px", base: "8px", sm: "12px"}, fontFamily: {"headline-sm": ["Manrope"], "body-md": ["Inter"], "label-md": ["Inter"], "body-sm": ["Inter"], "body-lg": ["Inter"], "label-sm": ["Inter"], "headline-md": ["Manrope"], "headline-lg": ["Manrope"], "headline-lg-mobile": ["Manrope"], headline: ["Manrope"], display: ["Manrope"], body: ["Inter"], label: ["Inter"]}, fontSize: {"headline-sm": ["20px", {lineHeight: "28px", fontWeight: "600"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "label-md": ["14px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}], "body-sm": ["14px", {lineHeight: "20px", fontWeight: "400"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "label-sm": ["12px", {lineHeight: "16px", fontWeight: "500"}], "headline-md": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700"}], "headline-lg-mobile": ["24px", {lineHeight: "32px", fontWeight: "700"}]}}}};</script>
+<style>
+        .custom-file-upload:hover { border-color: theme('colors.secondary'); }
+        .input-focus:focus { border-color: theme('colors.secondary'); box-shadow: 0 0 0 2px theme('colors.surface-container-highest'); }
+    </style>
+</head>
+<body class="bg-background text-on-background h-full font-body-md antialiased flex">
+<!-- Sidebar -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-surface-container-lowest flex flex-col border-r border-outline-variant z-50">
+<div class="p-lg border-b border-outline-variant flex items-center gap-sm">
+<img alt="User profile picture" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKQ0hAaxMDB-J9uvzOhl9Kzpm39Shs8dZMLbNiDh9pkBs1mE41kQDyVpGxMA_C-byMLIQ4s6H8kK7amhi3DUIEHyUbxmzXo1J7gabAG6NtzWwz-qf3dQnIFj2AV0acJpS84-8t1KqbIUqnRCG1NQEvZsylk5yyQLyBbSh_k_LtpD0YBNwlplGq467xW3gFpgS8s1qKXBwCqPAAzEWeQQ3vOkqKrq0Tig6pT2FWZHqlOvEK3dQRcyNQpx7uxHUWsmvINjrfs7bgFxE">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Alex Mercer</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Instructor</p>
+</div>
+</div>
+<nav class="flex-1 py-md flex flex-col gap-xs">
+<a class="flex items-center gap-sm bg-secondary-container text-on-secondary-container border-l-4 border-secondary px-4 py-3 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+<span class="font-label-md text-label-md">Courses</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-colors hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-label-md text-label-md">Tasks</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-colors hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-md text-label-md">Notifications</span>
+</a>
+</nav>
+<div class="p-4 border-t border-outline-variant mt-auto">
+<button class="flex items-center gap-sm text-on-surface-variant px-4 py-3 w-full rounded-lg hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Logout</span>
+</button>
+</div></aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col min-w-0 h-screen overflow-hidden ml-[280px]">
+<!-- Top App Bar (Mobile Only for Sidebar nav items, but keeping it per wireframe/JSON for consistency on mobile) -->
+<header class="md:hidden flex justify-between items-center w-full h-16 px-margin max-w-max-width mx-auto bg-surface dark:bg-on-surface border-b border-outline-variant shrink-0">
+<div class="flex items-center gap-sm">
+<button class="text-on-surface-variant"><span class="material-symbols-outlined">menu</span></button>
+<span class="font-headline-md text-headline-md text-primary dark:text-inverse-primary">Lumina</span>
+</div>
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="material-symbols-outlined">search</span>
+<span class="material-symbols-outlined">help</span>
+<span class="material-symbols-outlined">settings</span>
+<img alt="Admin avatar" class="w-8 h-8 rounded-full object-cover" data-alt="A detailed headshot of a professional educator in their late 30s, smiling warmly, well-lit against a neutral grey background, high resolution, soft corporate lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF5sghT3_2Ko5qsCuUjpjy7YTLi-8kciUQTjkCKEYQQHGilOpjCwAkSOyCXtnU_n_eXH3U1cfvdQzhlby8puS6LjbgR2_16Y9AZsW1cr222Z5SEhzH6nHxE6xNgV68gOxe6mFJuEJb2ft2Zg_m0BVzh-Uc8S2_4sDlI9ponI97OSs_CebyQEaEmyr6jIInXNnROxfeYwJCj7th_pygoGe8Ew_Sh6jgTO9TgZd9UNkYQEz6loOwHIzlyDUz8sig1gatRQMhUd9k3no">
+</div>
+</header>
+<!-- Content Area -->
+<div class="flex-1 overflow-y-auto bg-surface-bright p-margin max-w-max-width mx-auto w-full">
+<div class="mb-lg flex items-center justify-between">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Create New Assignment</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Set up details, instructions, and grading for your students.</p>
+</div>
+<div class="hidden sm:flex gap-sm">
+<button class="px-md py-sm border border-outline-variant text-primary font-label-md text-label-md rounded hover:bg-surface-container-low transition-colors">Save Draft</button>
+<button class="px-md py-sm bg-primary text-on-primary font-label-md text-label-md rounded hover:bg-primary-container transition-colors shadow-sm">Post Assignment</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Left Column (Main Details) -->
+<div class="lg:col-span-2 space-y-md">
+<!-- Title Card -->
+<div class="bg-slate-50 border border-slate-200 rounded-lg p-md">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs" for="assignment-title">Assignment Title</label>
+<input class="w-full bg-white border border-slate-200 rounded px-sm py-sm font-body-md text-body-md text-on-surface input-focus transition-all" id="assignment-title" placeholder="e.g. Midterm Essay: The Industrial Revolution" type="text">
+</div>
+<!-- Instructions Card -->
+<div class="bg-slate-50 border border-slate-200 rounded-lg p-md">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs" for="assignment-desc">Instructions / Description</label>
+<!-- Basic Rich Text Toolbar Mockup -->
+<div class="flex items-center gap-xs mb-sm pb-sm border-b border-slate-200 text-on-surface-variant">
+<button class="p-xs hover:bg-surface-container-low rounded"><span class="material-symbols-outlined text-[20px]">format_bold</span></button>
+<button class="p-xs hover:bg-surface-container-low rounded"><span class="material-symbols-outlined text-[20px]">format_italic</span></button>
+<button class="p-xs hover:bg-surface-container-low rounded"><span class="material-symbols-outlined text-[20px]">format_list_bulleted</span></button>
+<div class="w-px h-4 bg-slate-300 mx-xs"></div>
+<button class="p-xs hover:bg-surface-container-low rounded"><span class="material-symbols-outlined text-[20px]">link</span></button>
+</div>
+<textarea class="w-full bg-white border border-slate-200 rounded px-sm py-sm font-body-md text-body-md text-on-surface input-focus transition-all resize-y" id="assignment-desc" placeholder="Provide detailed instructions for the assignment..." rows="6"></textarea>
+</div>
+<!-- Attachments Card -->
+<div class="bg-slate-50 border border-slate-200 rounded-lg p-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-sm">Attachments</h3>
+<div class="custom-file-upload border-2 border-dashed border-slate-300 rounded-lg p-lg text-center bg-white transition-colors cursor-pointer flex flex-col items-center justify-center gap-sm">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[28px]">upload_file</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-medium">Click to upload or drag and drop</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">SVG, PNG, JPG, PDF or DOC (max. 10MB)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (Settings) -->
+<div class="space-y-md">
+<!-- Dates Card -->
+<div class="bg-slate-50 border border-slate-200 rounded-lg p-md space-y-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface border-b border-slate-200 pb-sm">Schedule</h3>
+<div>
+
+<div class="relative">
+
+
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Due Date</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">event</span>
+<input class="w-full bg-white border border-slate-200 rounded pl-lg pr-sm py-sm font-body-md text-body-md text-on-surface input-focus transition-all" type="date">
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Due Time</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">schedule</span>
+<input class="w-full bg-white border border-slate-200 rounded pl-lg pr-sm py-sm font-body-md text-body-md text-on-surface input-focus transition-all" type="time" value="23:59">
+</div>
+</div>
+</div>
+<!-- Grading Card -->
+<div class="bg-slate-50 border border-slate-200 rounded-lg p-md space-y-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface border-b border-slate-200 pb-sm">Grading</h3>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">Maximum Score</label>
+<input class="w-full bg-white border border-slate-200 rounded px-sm py-sm font-body-md text-body-md text-on-surface input-focus transition-all" min="0" type="number" value="100">
+</div>
+<div class="pt-sm">
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="w-5 h-5 rounded border-slate-300 text-secondary focus:ring-secondary/50" type="checkbox">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-secondary transition-colors">Sync to Gradebook</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Mobile Actions (Sticky Bottom) -->
+<div class="sm:hidden fixed bottom-0 left-0 right-0 p-md bg-surface border-t border-outline-variant flex gap-sm shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+<button class="flex-1 px-md py-sm border border-outline-variant text-primary font-label-md text-label-md rounded hover:bg-surface-container-low transition-colors text-center">Save</button>
+<button class="flex-1 px-md py-sm bg-primary text-on-primary font-label-md text-label-md rounded hover:bg-primary-container transition-colors shadow-sm text-center">Post</button>
+</div>
+<!-- Spacer for mobile sticky footer -->
+<div class="sm:hidden h-24"></div>
+</div>
+</main>
+
+
+<div id="snapdom-sandbox" data-snapdom-sandbox="true" aria-hidden="true" style="position: absolute; left: -9999px; top: -9999px; width: 0px; height: 0px; overflow: hidden;"></div></body></html>

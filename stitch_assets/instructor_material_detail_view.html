@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Course Material Detail - Lumina Learning System</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-tertiary-container": "#c7c9cb", error: "#ba1a1a", "primary-container": "#475569", "on-error": "#ffffff", "surface-container-low": "#f0f3ff", "primary-fixed": "#d5e3fc", "on-tertiary-fixed-variant": "#444749", "surface-container-high": "#dee8ff", "surface-container-highest": "#d8e3fb", "surface-container": "#e7eeff", "tertiary-fixed-dim": "#c4c7c9", surface: "#f9f9ff", "on-secondary": "#ffffff", "secondary-container": "#39b8fd", "on-background": "#111c2d", "tertiary-container": "#525557", "outline-variant": "#c4c6cd", "surface-container-lowest": "#ffffff", "on-primary-fixed": "#0d1c2e", "on-tertiary-fixed": "#191c1e", "inverse-surface": "#263143", tertiary: "#3a3e40", "on-primary-container": "#bbcae1", "tertiary-fixed": "#e0e3e5", "on-surface": "#111c2d", background: "#f9f9ff", "primary-fixed-dim": "#b9c7df", secondary: "#006591", "surface-bright": "#f9f9ff", "inverse-on-surface": "#ecf1ff", "surface-dim": "#cfdaf2", "surface-variant": "#d8e3fb", "on-primary-fixed-variant": "#3a485b", "on-tertiary": "#ffffff", primary: "#303e51", "secondary-fixed": "#c9e6ff", "on-secondary-container": "#004666", "on-secondary-fixed-variant": "#004c6e", "on-secondary-fixed": "#001e2f", "secondary-fixed-dim": "#89ceff", "error-container": "#ffdad6", "inverse-primary": "#b9c7df", "on-error-container": "#93000a", "surface-tint": "#515f74", "on-primary": "#ffffff", outline: "#75777d", "on-surface-variant": "#44474c"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {xl: "64px", "max-width": "1280px", sm: "12px", xs: "4px", lg: "40px", margin: "32px", md: "24px", base: "8px", gutter: "24px"}, fontFamily: {"label-sm": ["Inter"], "headline-lg": ["Manrope"], "body-sm": ["Inter"], "body-md": ["Inter"], "headline-lg-mobile": ["Manrope"], "body-lg": ["Inter"], "headline-sm": ["Manrope"], "headline-md": ["Manrope"], "label-md": ["Inter"], headline: ["Manrope"], display: ["Manrope"], body: ["Inter"], label: ["Inter"]}, fontSize: {"label-sm": ["12px", {lineHeight: "16px", fontWeight: "500"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700"}], "body-sm": ["14px", {lineHeight: "20px", fontWeight: "400"}], "body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], "headline-lg-mobile": ["24px", {lineHeight: "32px", fontWeight: "700"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "headline-sm": ["20px", {lineHeight: "28px", fontWeight: "600"}], "headline-md": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600"}], "label-md": ["14px", {lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "600"}]}}}};</script>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col h-full border-r border-outline-variant bg-surface-container-lowest fixed left-0 top-0 w-[280px] z-50">
+<div class="px-8 py-md border-b border-outline-variant flex items-center gap-sm">
+<img alt="User profile picture" class="w-10 h-10 rounded-full object-cover" data-alt="A small, professional headshot of an academic instructor or student with a neutral background. The lighting is soft and natural, emphasizing a calm and focused demeanor suitable for an educational context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCZOtfelMVAKiqNC_1HV_nGV3VSRmJAdgE4SEyoWx_Gncaonm0-RB6qs7OX9iftAfHmeu2pAN_w-aIMPgTUAFocClhZC40JtceHdLhtRvCMDD0rBi5MRL9ctO8-UBW00BB21lgj2VEiIdcjSCs1gkeTbiKO8eU81ExZlLPaepy9omnzq2UUYYuAVawSFyT0noo9GxwAqpwd9WQvC4wZMW6akp0EIfnlmtNTGgak7cfjNKC6r3FI306_nfYi_Fsmv3P_6tFt3hpvKE">
+<div>
+<p class="text-label-md font-label-md font-semibold text-primary">Full name</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Role</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto py-md">
+<ul class="flex flex-col space-y-2">
+<li class="">
+<a class="flex items-center gap-3 bg-secondary-container text-on-secondary-container border-l-4 border-secondary px-4 py-3 hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">school</span>
+<span class="font-label-md text-label-md">Courses</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-colors hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">assignment</span>
+<span class="font-label-md text-label-md">Tasks</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-colors hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">notifications</span>
+<span class="font-label-md text-label-md">Notifications</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="p-4 border-t border-outline-variant mt-auto">
+<button class="flex items-center gap-3 text-on-surface-variant px-4 py-3 w-full rounded-lg hover:bg-error-container hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[24px]">logout</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">Logout</span>
+</button>
+</div></nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-[280px] h-full overflow-y-auto w-full">
+<div class="max-w-max-width mx-auto px-4 md:px-8 py-lg md:py-xl flex flex-col gap-lg">
+<!-- Navigation Context -->
+<div><div class="flex items-center justify-between w-full"><a class="inline-flex items-center gap-sm text-on-surface-variant hover:text-primary transition-colors text-label-md font-label-md group" href="#"><span class="material-symbols-outlined text-[18px] group-hover:-translate-x-1 transition-transform">arrow_back</span>Back to Course</a><div class="flex gap-sm"><button class="inline-flex items-center gap-xs px-4 py-2 rounded border border-outline-variant text-primary hover:bg-surface-container-low transition-colors text-label-md font-label-md"><span class="material-symbols-outlined text-[18px]">edit</span>Edit</button><button class="inline-flex items-center gap-xs px-4 py-2 rounded border border-error text-error hover:bg-error-container transition-colors text-label-md font-label-md"><span class="material-symbols-outlined text-[18px]">delete</span>Delete</button></div></div></div>
+<!-- Material Header & Description -->
+<header class="flex flex-col gap-md">
+<h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg-mobile md:font-headline-lg text-primary">Introduction to UI Patterns</h1>
+<div class="flex flex-wrap items-center gap-sm">
+<span class="inline-flex items-center gap-xs px-2 py-1 rounded-sm bg-surface-container-high text-primary-container text-label-sm font-label-sm">
+<span class="material-symbols-outlined text-[16px]">article</span>
+                        Reading Material
+                    </span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Posted Oct 24, 2023</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">•</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant">Estimated time: 15 min</span>
+</div>
+<div class="text-body-md font-body-md text-on-surface-variant max-w-3xl leading-relaxed mt-sm">
+<p class="">This introductory document covers the fundamental principles of modern user interface patterns. We will explore common structural conventions, navigation models, and how to effectively utilize white space to reduce cognitive load. Please read through the attached PDF carefully before proceeding to the practical assignment.</p>
+</div>
+</header>
+<!-- Attachment Card (Bento Style) -->
+<section class="grid grid-cols-1 gap-md">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md hover:shadow-[0px_4px_20px_rgba(0,0,0,0.05)] transition-shadow group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-md">
+<div class="flex items-start gap-md">
+<div class="w-12 h-12 bg-error-container text-on-error-container rounded flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">picture_as_pdf</span>
+</div>
+<div>
+<h3 class="text-headline-sm font-headline-sm text-primary group-hover:text-secondary transition-colors">Lesson_01_Basics.pdf</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">PDF Document • 2.4 MB</p>
+</div>
+</div>
+<div class="flex gap-sm w-full sm:w-auto"><button class="flex-1 sm:flex-none inline-flex items-center justify-center gap-xs px-4 py-2 rounded border border-outline-variant text-primary hover:bg-surface-container-low transition-colors text-label-md font-label-md"><span class="material-symbols-outlined text-[18px]">upload_file</span>Replace File</button>
+<button class="flex-1 sm:flex-none inline-flex items-center justify-center gap-xs px-4 py-2 rounded text-primary border border-outline-variant hover:bg-surface-container-low transition-colors text-label-md font-label-md">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+                            Preview
+                        </button>
+<button class="flex-1 sm:flex-none inline-flex items-center justify-center gap-xs px-4 py-2 rounded bg-primary text-on-primary hover:bg-primary/90 transition-colors text-label-md font-label-md">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                            Download
+                        </button>
+</div>
+</div>
+<!-- Wireframe Image Reference Area -->
+</section>
+<!-- Divider -->
+<!-- Comments Section -->
+</div>
+</main>
+</body></html>
