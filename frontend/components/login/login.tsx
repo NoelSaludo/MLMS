@@ -1,13 +1,22 @@
+'use client';
+
+import { useActionState } from "react";
 import { login } from "@/lib/auth";
-import Form from "next/form";
-export default function Login() {
+
+const initialState = {
+    message: "",
+}
+export default function LoginForm() {
+    const [state, formAction, pending] = useActionState(login, initialState);
     return (
         <div className="flex flex-col items-center justify-center w-full max-w-md mt-6">
-            <form action={login}>
+            <form action={formAction} className="w-full max-w-md">
+                <p aria-live="polite">{state?.message}</p>
                 <input
                     required
                     className="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="schoolEmail"
+                    name="schoolEmail"
                     type="email"
                     placeholder="School Email"
                 />
@@ -15,6 +24,7 @@ export default function Login() {
                     required
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="password"
+                    name="password"
                     type="password"
                     placeholder="Password"
                 />

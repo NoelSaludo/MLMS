@@ -5,7 +5,7 @@ from services.user_service import get_user
 
 router = APIRouter(prefix="/user")
 
-@router.post("/{email}")
+@router.get("/{email}")
 def get_user_by_email(email: str, db: Session = Depends(get_db)):
     user = get_user(db, email)
 

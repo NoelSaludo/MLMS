@@ -1,16 +1,23 @@
+'use server'
 import { getUser } from "@/services/login_services";
+import { createSession } from "@/lib/session";
+import { redirect } from "next/navigation";
 
-export async function login(formData: FormData) {
+export async function login(initialState: any,formData: FormData) {
     const email = formData.get("schoolEmail") as string;
     const password = formData.get("password") as string;
 
     const bcrypt = require("bcrypt");
 
     const user = await getUser(email);
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-        throw new Error("Invalid email or password");
+
+    if (!user || !bcrypt.compare(password, user.Password)) {
+        return {
+            message: "Invalid email or password",
+        }
     }
 
-    return user;
+    await createSession(email, user.Role);
+    
+    redirect("/");
 };
