@@ -1,6 +1,6 @@
 'use server'
 import { getUser } from "@/services/login_services";
-import { createSession } from "@/lib/session";
+import { createSession, deleteSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 
 export async function login(initialState: any,formData: FormData) {
@@ -21,3 +21,8 @@ export async function login(initialState: any,formData: FormData) {
     
     redirect("/");
 };
+
+export async function logout() {
+    await deleteSession();
+    redirect("/login");
+}

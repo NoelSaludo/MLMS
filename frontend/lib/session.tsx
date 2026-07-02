@@ -30,7 +30,7 @@ export async function decrypt(session: string | undefined = '') {
 }
 
 export async function createSession(email: string, role: string) {
-  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // 7 days
+  const expiresAt = new Date(Date.now() + 15 * 60 * 1000) // TODO: Change to 7 days on production 
   const session = await encrypt({ email, expiresAt, role })
   
   const cookieStore = await cookies()
