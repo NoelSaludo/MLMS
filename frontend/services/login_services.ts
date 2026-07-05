@@ -1,4 +1,4 @@
-var serverUrl = "http://localhost:8000";
+var serverUrl = process.env.BACKEND_URL;
 
 export async function getUser(email: string) {
     const response = await fetch(`${serverUrl}/user/${email}`, {
