@@ -3,7 +3,6 @@
 import CourseCatalogue from '@/components/main/course_catalogue'
 import Sidebar from '@/components/shared/sidebar'
 import useSession from '@/hooks/useSession'
-import useUserCourses from '@/hooks/useUserCourses'
 
 export default function Home() {
   const { session, loading: sessionLoading } = useSession()
@@ -13,7 +12,7 @@ export default function Home() {
       {/* Sidebar */}
       <Sidebar />
       {/* Main Content */}
-      <CourseCatalogue  role={session?.role} id={session?.id} />
+      <CourseCatalogue  role={session?.role}/>
     </div>
   )
 }

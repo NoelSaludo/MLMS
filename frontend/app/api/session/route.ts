@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
-import { decrypt } from '@/lib/session'
+import { verifySession } from '@/lib/dal'
+
 
 export async function GET() {
-  const cookie = (await cookies()).get('session')?.value
-  const session = await decrypt(cookie)
+  const session = await verifySession()
 
-  if (!session?.email) {
+  if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
