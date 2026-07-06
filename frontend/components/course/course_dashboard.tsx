@@ -7,6 +7,7 @@
 import { useState, useEffect } from 'react';
 import CourseAnnouncement from './course_announcement';
 import CourseMaterialView from './course_materials';
+import CourseMembers from './course_members';
 
 export default function CourseDashboard({ courseId }: { courseId: number }) {
     const [activeTab, setActiveTab] = useState<'announcements' | 'materials' | 'members'>('announcements');
@@ -55,7 +56,7 @@ export default function CourseDashboard({ courseId }: { courseId: number }) {
                 {activeTab === 'members' && (
                     <div>
                         <h2>Members</h2>
-                        {/* Display members here */}
+                        <CourseMembers courseId={courseId} />
                     </div>
                 )}
             </div>

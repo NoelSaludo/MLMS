@@ -48,3 +48,19 @@ export async function getCourseMaterials(courseId: number) {
     const data = await response.json();
     return data;
 }   
+
+export async function getCourseMembers(courseId: number) {
+    let url = `${serverURL}/course/${courseId}/members`;
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+    
+    if (!response.ok) {
+        return {"Message": "Failed to fetch course members"}
+    }
+    const data = await response.json();
+    return data;
+}

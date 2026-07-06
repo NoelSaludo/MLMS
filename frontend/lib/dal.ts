@@ -4,7 +4,7 @@ import { cookies } from 'next/headers'
 import { decrypt } from '@/lib/session'
 import { cache } from 'react'
 import { getUser as getUserByEmail } from '@/services/login_services'
-import { getCourseAnnouncements as getCourseContents, getCourseMaterials, getCourses } from '@/services/course_services'
+import { getCourseAnnouncements as getCourseContents, getCourseMaterials, getCourseMembers, getCourses } from '@/services/course_services'
 
 export const verifySession = cache(async () => {
     const cookie = (await cookies()).get('session')?.value
@@ -67,6 +67,20 @@ export const getCourseMaterialsById = cache(async (courseId: number) => {
         return res.materials || null
     } catch (error) {
         console.log('Failed to fetch course materials')
+        return null
+    }
+    
+})
+
+export const getCourseMembersById = cache(async (courseId: number) => {
+    const session = await verifySession()
+    if (!session) return null
+
+    try {
+        const res = await getCourseMembers(courseId)
+        return res.members || null
+    } catch (error) {
+        console.log('Failed to fetch course members')
         return null
     }
     
