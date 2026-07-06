@@ -2,7 +2,6 @@ import 'server-only'
 
 import { cookies } from 'next/headers'
 import { decrypt } from '@/lib/session'
-import { redirect } from 'next/navigation'
 import { cache } from 'react'
 import { getUser as getUserByEmail } from '@/services/login_services'
 import { getCourses } from '@/services/course_services'
@@ -12,10 +11,10 @@ export const verifySession = cache(async () => {
     const session = await decrypt(cookie)
 
     if (!session?.email) {
-        redirect('/login')
+        return null
     }
 
-    return { isAuth: true, id: session.id, email: session.email, role: session.role}
+    return { isAuth: true, id: session.id, email: session.email, role: session.role }
 })
 
 export const getUser = cache(async () => {

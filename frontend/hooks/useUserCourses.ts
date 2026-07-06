@@ -18,7 +18,8 @@ export default function useUserCourses() {
       }
       if (!res.ok) throw new Error(`Status ${res.status}`)
       const data = await res.json()
-      setCourses(data.courses || [])
+      console.log('Fetched courses data:', data)
+      setCourses(data)
     } catch (err: any) {
       setError(err.message ?? 'Failed to fetch courses')
       setCourses([])

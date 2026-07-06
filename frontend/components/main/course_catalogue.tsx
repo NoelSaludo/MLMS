@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { getCourses } from '@/services/course_services'
+import useUserCourses from '@/hooks/useUserCourses'
 
 type Course = {
     CourseID: number
@@ -9,35 +9,12 @@ type Course = {
     Description?: string
 }
 
-export default function CourseCatalogue({ role, id }: { role: any, id?: any }) {
-    const [courses, setCourses] = useState<Course[] | null>(null)
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState<string | null>(null)
+export default function CourseCatalogue({ role }: { role: any }) {
+    const { courses, loading, error, refresh } = useUserCourses()
 
-    useEffect(() => {
-        if (!id) return
-
-        const controller = new AbortController()
-
-        async function fetchCourses() {
-            setLoading(true)
-            setError(null)
-            try {
-                        const data = await getCourses(id)
-                        if (data && data.courses) setCourses(data.courses)
-                        else setCourses([])
-            } catch (err: any) {
-                if (err.name === 'AbortError') return
-                setError(err.message ?? 'Unknown error')
-            } finally {
-                setLoading(false)
-            }
-        }
-
-        fetchCourses()
-
-        return () => controller.abort()
-    }, [id])
+    console.log('loading status:', loading)
+    console.log('error status:', error)
+    console.log('courses data:', courses)
 
     return (
         <div className="col-span-3 p-4">
