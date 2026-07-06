@@ -6,6 +6,7 @@ export default function MakeAnAnnouncementForm() {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
 
+    // TODO: change this to use next js api routes
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         // Handle form submission logic here

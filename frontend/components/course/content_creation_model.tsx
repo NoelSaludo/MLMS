@@ -1,4 +1,5 @@
 import MakeAnAnnouncementForm from "./make_an_announcement_form"
+import UploadCourseContentForm from "./upload_course_content_form"
 
 export default function ContentCreationModal({
     onClose, type
@@ -13,10 +14,10 @@ export default function ContentCreationModal({
                 <h2 className="text-xl font-semibold mb-4">Create New Course Content</h2>
                 <p className="text-gray-600 mb-4">You are creating a new {type}.</p>
                 {type === 'announcement' && (
-                    <MakeAnAnnouncementForm />
+                    <MakeAnAnnouncementForm/>
                 )}
                 {type === 'material' && (
-                    <p>Material form content goes here.</p>
+                    <UploadCourseContentForm/>
                 )}
                 {type === 'assignment' && (
                     <p>Assignment form content goes here.</p>
