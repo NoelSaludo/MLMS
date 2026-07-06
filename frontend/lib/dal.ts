@@ -4,7 +4,7 @@ import { cookies } from 'next/headers'
 import { decrypt } from '@/lib/session'
 import { cache } from 'react'
 import { getUser as getUserByEmail } from '@/services/login_services'
-import { getCourseAnnouncements, getCourses } from '@/services/course_services'
+import { getCourseAnnouncements as getCourseContents, getCourses } from '@/services/course_services'
 
 export const verifySession = cache(async () => {
     const cookie = (await cookies()).get('session')?.value
@@ -44,15 +44,15 @@ export const getUserCourses = cache(async () => {
     }
 })
 
-export const getCourseAnnouncementsById = cache(async (courseId: number) => {
+export const getCourseContentsById = cache(async (courseId: number) => {
     const session = await verifySession()
     if (!session) return null
 
     try {
-        const res = await getCourseAnnouncements(courseId)
-        return res.announcements || null
+        const res = await getCourseContents(courseId)
+        return res.contents || null
     } catch (error) {
-        console.log('Failed to fetch course announcements')
+        console.log('Failed to fetch course contents')
         return null
     }
 

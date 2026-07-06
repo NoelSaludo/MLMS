@@ -18,7 +18,7 @@ export async function getCourses(id?: any) {
 }
 
 export async function getCourseAnnouncements(courseId: number) {
-    let url = `${serverURL}/courses/${courseId}/announcements`;
+    let url = `${serverURL}/course/${courseId}/contents`;
     const response = await fetch(url, {
         method: "GET",
         headers: {

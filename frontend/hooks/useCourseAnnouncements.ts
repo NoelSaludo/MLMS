@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function useCourseAnnouncements(courseId: number) {
-    const [announcements, setAnnouncements] = useState<any[]>([]);
+    const [contents, setContents] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -16,7 +16,7 @@ export default function useCourseAnnouncements(courseId: number) {
                 }
                 const data = await response.json();
                 // Ensure we always set an array (API may return null)
-                setAnnouncements(Array.isArray(data) ? data : (data ? [data] : []));
+                setContents(Array.isArray(data) ? data : (data ? [data] : []));
             } catch (err: any) {
                 setError(err.message);
             } finally {
@@ -27,5 +27,5 @@ export default function useCourseAnnouncements(courseId: number) {
         fetchAnnouncements();
     }, [courseId]);
 
-    return { announcements, loading, error };
+    return { announcements: contents, loading, error };
 }

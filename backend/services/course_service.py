@@ -17,6 +17,5 @@ def get_course_by_id(db: Session, course_id: int):
 
 def get_course_announcements(db: Session, course_id: int):
     course_announcements = db.query(CourseContent).filter(
-        CourseContent.CourseID == course_id,
-        CourseContent.Type == "announcement").all()
+        CourseContent.CourseID == course_id).all()
     return course_announcements
