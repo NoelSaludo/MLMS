@@ -1,7 +1,9 @@
-from fastapi import APIRouter, Depends
+from typing import Annotated
+
+from fastapi import APIRouter, Depends, Form
+from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from database.dependency import get_db
-
 
 router = APIRouter(prefix="/course")
 
@@ -36,3 +38,17 @@ def get_course_members(course_id: int, db: Session = Depends(get_db)):
     if not members:
         return {"message": "No members found for the course."}
     return {"members": members}
+
+class CourseContentCreateRequest(BaseModel):
+    Title: str
+    Description: str
+    Type: str  # e.g., 'announcement', 'material', 'assignment'
+    FilepathAttachment: str = None  # URL to the content if applicable
+    Score: int  = None # Score for quizzes or assessments
+    DueDate: str = None # Due date for assignments or quizzes in 'YYYY-MM-DD' format
+
+@router.post("/{course_id}/contents/")
+async def create_course_content(course_id: int, data: Annotated[CourseContentCreateRequest, Form()], db: Session = Depends(get_db)):
+    from services.course_service import create_course_content
+    content = create_course_content(db, course_id, data)
+    return content 

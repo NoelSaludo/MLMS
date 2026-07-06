@@ -32,3 +32,18 @@ def get_course_members(db: Session, course_id: int):
         CourseMember.CourseID == course_id
     ).all()
     return members
+
+def create_course_content(db: Session, course_id: int, content_data: dict):
+    new_content = CourseContent(
+        CourseID=course_id,
+        Title=content_data.get('Title'),
+        Description=content_data.get('Description'),
+        Type=content_data.get('Type'),
+        FilepathAttachment=content_data.get('FilepathAttachment'),
+        Score=content_data.get('Score'),
+        DueDate=content_data.get('DueDate')
+    )
+    db.add(new_content)
+    db.commit()
+    db.refresh(new_content)
+    return new_content
