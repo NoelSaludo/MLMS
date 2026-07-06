@@ -14,7 +14,7 @@ export const verifySession = cache(async () => {
         redirect('/login')
     }
 
-    return { isAuth: true, email: session.email, role: session.role}
+    return { isAuth: true, id: session.id, email: session.email, role: session.role}
 })
 
 export const getUser = cache(async () => {

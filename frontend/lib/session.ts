@@ -2,6 +2,7 @@ import 'server-only'
 import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
 type SessionPayload = {
+    id: string
     email: string
     role: string
     expiresAt: Date
@@ -29,9 +30,9 @@ export async function decrypt(session: string | undefined = '') {
   }
 }
 
-export async function createSession(email: string, role: string) {
+export async function createSession(id: string, email: string, role: string) {
   const expiresAt = new Date(Date.now() + 15 * 60 * 1000) // TODO: Change to 7 days on production 
-  const session = await encrypt({ email, expiresAt, role })
+  const session = await encrypt({ id, email, expiresAt, role })
   
   const cookieStore = await cookies()
   cookieStore.set('session', session, {

@@ -17,7 +17,7 @@ export async function login(initialState: any,formData: FormData) {
         }
     }
 
-    await createSession(email, user.Role);
+    await createSession(user.ID, email, user.Role);
     
     redirect("/");
 };
