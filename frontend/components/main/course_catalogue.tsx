@@ -11,11 +11,6 @@ type Course = {
 
 export default function CourseCatalogue({ role }: { role: any }) {
     const { courses, loading, error, refresh } = useUserCourses()
-
-    console.log('loading status:', loading)
-    console.log('error status:', error)
-    console.log('courses data:', courses)
-
     return (
         <div className="col-span-3 p-4">
             {role === 'Teacher' && (

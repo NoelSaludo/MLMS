@@ -16,8 +16,6 @@ export default function CourseDashboard({ courseId }: { courseId: number }) {
         setActiveTab(tab);
     };
 
-    console.log(`CourseDashboard: courseId = ${courseId}`);
-
     return (
         <div className="mt-4">
             <div className="flex border-b border-gray-300">  {/* Tabs */}

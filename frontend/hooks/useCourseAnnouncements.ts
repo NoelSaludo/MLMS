@@ -4,8 +4,6 @@ export default function useCourseAnnouncements(courseId: number) {
     const [contents, setContents] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
-
-    console.log(`useCourseAnnouncements: courseId = ${courseId}`);
     
     useEffect(() => {
         const fetchAnnouncements = async () => {
