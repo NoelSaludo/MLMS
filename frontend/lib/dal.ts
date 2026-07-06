@@ -37,6 +37,7 @@ export const getUserCourses = cache(async (userId?: number) => {
         if (!id) {
             const session = await verifySession()
             if (!session) return null
+            if (typeof session.id !== 'number') return null
             id = session.id
         }
 

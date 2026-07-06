@@ -6,6 +6,10 @@ export async function GET() {
   if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   try {
+    if (typeof session.id !== 'number') {
+      return NextResponse.json({ error: 'Invalid session id' }, { status: 400 })
+    }
+
     const data = await getUserCourses(session.id)
     return NextResponse.json(data)
   } catch (err) {
