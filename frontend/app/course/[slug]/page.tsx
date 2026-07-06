@@ -14,6 +14,7 @@ export default function CoursePage({
 
     // given the ID of the course, fetch the course data from the backend and display it
 
+    console.log(`CoursePage: slug = ${slug}`)
 
     return (
         <div className="grid grid-cols-4 h-screen w-full overflow-hidden justify-center">

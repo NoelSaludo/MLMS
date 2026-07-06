@@ -5,18 +5,16 @@
 'use client'
 
 import { useState, useEffect } from 'react';
+import CourseAnnouncement from './course_announcement';
 
 export default function CourseDashboard({ courseId }: { courseId: number }) {
     const [activeTab, setActiveTab] = useState<'announcements' | 'materials' | 'members'>('announcements');
 
-    useEffect(() => {
-        // fetch course data from backend using courseId
-        // and set the state accordingly
-    }, [courseId]);
-
     const handleTabClick = (tab: 'announcements' | 'materials' | 'members') => {
         setActiveTab(tab);
     };
+
+    console.log(`CourseDashboard: courseId = ${courseId}`);
 
     return (
         <div className="mt-4">
@@ -44,7 +42,7 @@ export default function CourseDashboard({ courseId }: { courseId: number }) {
                 {activeTab === 'announcements' && (
                     <div>
                         <h2>Announcements</h2>
-                        {/* Display announcements here */}
+                        <CourseAnnouncement courseId={courseId} />
                     </div>
                 )}
                 {activeTab === 'materials' && (

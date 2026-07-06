@@ -16,3 +16,19 @@ export async function getCourses(id?: any) {
     const data = await response.json();
     return data;
 }
+
+export async function getCourseAnnouncements(courseId: number) {
+    let url = `${serverURL}/courses/${courseId}/announcements`;
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+    
+    if (!response.ok) {
+        return {"Message": "Failed to fetch course announcements"}
+    }
+    const data = await response.json();
+    return data;
+}
