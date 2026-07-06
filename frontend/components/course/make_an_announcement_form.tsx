@@ -6,19 +6,8 @@ export default function MakeAnAnnouncementForm() {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
 
-    // TODO: change this to use next js api routes
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        // Handle form submission logic here
-        console.log('Announcement Title:', title)
-        console.log('Announcement Content:', content)
-        // Reset form fields after submission
-        setTitle('')
-        setContent('')
-    }
-    
     return (
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form action="/api/upload/announcement" className="space-y-4">
             <div>
                 <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
                 <input

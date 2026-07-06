@@ -7,21 +7,8 @@ export default function UploadCourseContentForm() {
     const [content, setContent] = useState('');
     const [file, setFile] = useState<File | null>(null);
 
-    // TODO: change this to use next js api routes
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Handle form submission logic here
-        console.log('Title:', title);
-        console.log('Content:', content);
-        console.log('File:', file);
-        // Reset form fields after submission
-        setTitle('');
-        setContent('');
-        setFile(null);
-    }
-
     return (
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form action="/api/upload/material" className="space-y-4">
             <div>
                 <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
                 <input

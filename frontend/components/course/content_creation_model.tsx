@@ -1,3 +1,4 @@
+import AssignAnAssignmentForm from "./assign_an_assignment_form"
 import MakeAnAnnouncementForm from "./make_an_announcement_form"
 import UploadCourseContentForm from "./upload_course_content_form"
 
@@ -20,7 +21,7 @@ export default function ContentCreationModal({
                     <UploadCourseContentForm/>
                 )}
                 {type === 'assignment' && (
-                    <p>Assignment form content goes here.</p>
+                    <AssignAnAssignmentForm/>
                 )}
                 <button onClick={onClose} className="bg-gray-500 text-white px-4 py-2 rounded">
                     Close
