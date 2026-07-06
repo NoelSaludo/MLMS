@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from database.dependency import get_db
-from services.course_service import get_users_courses
 
 
 router = APIRouter(prefix="/course")
@@ -21,3 +20,11 @@ def get_course_contents(course_id: int, db: Session = Depends(get_db)):
     if not announcements:
         return {"message": "No contents found for the course."}
     return {"contents": announcements}
+
+@router.get("/{course_id}/materials")
+def get_course_materials(course_id: int, db: Session = Depends(get_db)):
+    from services.course_service import get_course_materials_by_id
+    materials = get_course_materials_by_id(db, course_id)
+    if not materials:
+        return {"message": "No materials found for the course."}
+    return {"materials": materials}

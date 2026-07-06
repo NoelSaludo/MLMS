@@ -15,7 +15,14 @@ def get_course_by_id(db: Session, course_id: int):
     course = db.query(Course).filter(Course.CourseID == course_id).first()
     return course
 
-def get_course_announcements(db: Session, course_id: int):
-    course_announcements = db.query(CourseContent).filter(
+def get_course_contents(db: Session, course_id: int):
+    course_contents = db.query(CourseContent).filter(
         CourseContent.CourseID == course_id).all()
-    return course_announcements
+    return course_contents
+
+def get_course_materials_by_id(db: Session, course_id: int):
+    course_materials = db.query(CourseContent).filter(
+        CourseContent.CourseID == course_id,
+        CourseContent.Type == 'material'
+    ).all()
+    return course_materials
