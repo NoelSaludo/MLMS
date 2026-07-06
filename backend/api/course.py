@@ -6,7 +6,7 @@ from services.course_service import get_users_courses
 
 router = APIRouter(prefix="/course")
 
-@router.get("{course_id}")
+@router.get("/{course_id}")
 def get_course(course_id: int, db: Session = Depends(get_db)):
     from services.course_service import get_course_by_id
     course = get_course_by_id(db, course_id)
