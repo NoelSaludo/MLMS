@@ -17,6 +17,7 @@ export default function CoursePage({
     const { slug } = use(params);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
+    const [contentType, setContentType] = useState<'announcement' | 'material' | 'assignment' | null>(null);
 
     return (
         <div className="grid grid-cols-4 h-screen w-full overflow-hidden justify-center">
@@ -29,10 +30,17 @@ export default function CoursePage({
                             Create new course content
                         </button>
                         {dropdownOpen && (
-                            <CourseDropdownAction onCreateContent={() => setModalOpen(true)} setDropdownOpen={setDropdownOpen} />
+                            <CourseDropdownAction onCreateContent={
+                                (type) => {
+                                    setContentType(type);
+                                    setModalOpen(true);
+                                }}
+                                setDropdownOpen={setDropdownOpen} />
                         )}
                         {modalOpen && (
-                            <ContentCreationModal onClose={() => setModalOpen(false)} onCreateContent={() => { /* handle content creation */ }} />
+                            <ContentCreationModal
+                                onClose={() => setModalOpen(false)}
+                                type={contentType!} />
                         )}
                     </div>
                 )}
