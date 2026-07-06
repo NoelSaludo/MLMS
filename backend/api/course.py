@@ -15,11 +15,11 @@ def get_course(course_id: int, db: Session = Depends(get_db)):
 
 @router.get("/{course_id}/contents")
 def get_course_contents(course_id: int, db: Session = Depends(get_db)):
-    from services.course_service import get_course_announcements
-    announcements = get_course_announcements(db, course_id)
-    if not announcements:
+    from services.course_service import get_course_contents
+    contents = get_course_contents(db, course_id)
+    if not contents:
         return {"message": "No contents found for the course."}
-    return {"contents": announcements}
+    return {"contents": contents}
 
 @router.get("/{course_id}/materials")
 def get_course_materials(course_id: int, db: Session = Depends(get_db)):

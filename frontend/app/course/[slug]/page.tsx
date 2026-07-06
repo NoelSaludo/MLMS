@@ -2,6 +2,7 @@
 
 import { use } from "react";
 import Sidebar from "@/components/shared/sidebar";
+import useSession from "@/hooks/useSession";
 import CourseTitleCard from "@/components/course/course_title_card";
 import CourseDashboard from "@/components/course/course_dashboard";
 
@@ -10,6 +11,7 @@ export default function CoursePage({
 }: {
     params: Promise<{ slug: string }>
 }) {
+    const {session, loading: sessionLoading} = useSession();
     const { slug } = use(params);
 
     // given the ID of the course, fetch the course data from the backend and display it
