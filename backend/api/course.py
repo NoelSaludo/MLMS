@@ -13,3 +13,11 @@ def get_course(course_id: int, db: Session = Depends(get_db)):
     if course is None:
         return {"message": "Course not found."}
     return {"course": course}
+
+@router.get("/{course_id}/announcements")
+def get_course_announcements(course_id: int, db: Session = Depends(get_db)):
+    from services.course_service import get_course_announcements
+    announcements = get_course_announcements(db, course_id)
+    if not announcements:
+        return {"message": "No announcements found for the course."}
+    return {"announcements": announcements}

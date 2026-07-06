@@ -1,14 +1,16 @@
-from sqlalchemy import Column, Integer, String
-from database.base import Base
+from typing import Optional
+from sqlmodel import SQLModel, Field
+from sqlalchemy import Column, String
 
-class User(Base):
+
+class User(SQLModel, table=True):
     __tablename__ = 'UserAccount'
 
-    UserID = Column(Integer, primary_key=True)
-    FullName = Column(String, nullable=False)
-    Email = Column(String, nullable=False, unique=True)
-    password = Column(String, nullable=False)
-    Role = Column(String, nullable=False)
+    UserID: Optional[int] = Field(default=None, primary_key=True)
+    FullName: str = Field(sa_column=Column(String, nullable=False))
+    Email: str = Field(sa_column=Column(String, nullable=False, unique=True))
+    password: str = Field(sa_column=Column(String, nullable=False))
+    Role: str = Field(sa_column=Column(String, nullable=False))
 
     def __repr__(self):
-        return f"<User(UserID={self.UserID}, Fullname='{self.Fullname}', Email='{self.Email}', Role='{self.Role}')>"
+        return f"<User(UserID={self.UserID}, FullName='{self.FullName}', Email='{self.Email}', Role='{self.Role}')>"

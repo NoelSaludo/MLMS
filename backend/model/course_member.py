@@ -1,9 +1,11 @@
+from typing import Optional
+from sqlmodel import SQLModel, Field
 from sqlalchemy import Column, Integer
-from database.base import Base
 
-class CourseMember(Base):
+
+class CourseMember(SQLModel, table=True):
     __tablename__ = 'CourseMember'
 
-    MemberID = Column(Integer, primary_key=True)
-    CourseID = Column(Integer, nullable=False)
-    UserID = Column(Integer, nullable=False)
+    MemberID: Optional[int] = Field(default=None, primary_key=True)
+    CourseID: int = Field(sa_column=Column(Integer, nullable=False))
+    UserID: int = Field(sa_column=Column(Integer, nullable=False))
