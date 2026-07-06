@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getCourseContentsById } from "@/lib/dal";
+import { getCourseContentsById, verifySession } from "@/lib/dal";
 
 export async function GET(request: Request, { params }: { params: any }) {
     // `params` may be a Promise in some Next.js contexts — await it first
@@ -9,6 +9,11 @@ export async function GET(request: Request, { params }: { params: any }) {
 
     if (Number.isNaN(courseId)) {
         return NextResponse.json({ error: 'Invalid course id' }, { status: 400 });
+    }
+
+    const session = await verifySession();
+    if (!session) {
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
     try {

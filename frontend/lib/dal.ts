@@ -31,12 +31,16 @@ export const getUser = cache(async () => {
     }
 })
 
-export const getUserCourses = cache(async () => {
-    const session = await verifySession()
-    if (!session) return null
-
+export const getUserCourses = cache(async (userId?: number) => {
     try {
-        const res = await getCourses(session.id)
+        let id = userId
+        if (!id) {
+            const session = await verifySession()
+            if (!session) return null
+            id = session.id
+        }
+
+        const res = await getCourses(id)
         return res.courses || null
     } catch (error) {
         console.log('Failed to fetch user courses')
@@ -45,9 +49,6 @@ export const getUserCourses = cache(async () => {
 })
 
 export const getCourseContentsById = cache(async (courseId: number) => {
-    const session = await verifySession()
-    if (!session) return null
-
     try {
         const res = await getCourseContents(courseId)
         return res.contents || null
@@ -59,9 +60,6 @@ export const getCourseContentsById = cache(async (courseId: number) => {
 })
 
 export const getCourseMaterialsById = cache(async (courseId: number) => {
-    const session = await verifySession()
-    if (!session) return null
-
     try {
         const res = await getCourseMaterials(courseId)
         return res.materials || null
@@ -73,9 +71,6 @@ export const getCourseMaterialsById = cache(async (courseId: number) => {
 })
 
 export const getCourseMembersById = cache(async (courseId: number) => {
-    const session = await verifySession()
-    if (!session) return null
-
     try {
         const res = await getCourseMembers(courseId)
         return res.members || null
