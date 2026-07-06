@@ -1,27 +1,41 @@
 'use client'
 
-import { use } from "react";
+import { use, useState } from "react";
 import Sidebar from "@/components/shared/sidebar";
 import useSession from "@/hooks/useSession";
 import CourseTitleCard from "@/components/course/course_title_card";
 import CourseDashboard from "@/components/course/course_dashboard";
+import CourseDropdownAction from "@/components/course/course_dropdown_action";
+import ContentCreationModal from "@/components/course/content_creation_model";
 
 export default function CoursePage({
     params,
 }: {
     params: Promise<{ slug: string }>
 }) {
-    const {session, loading: sessionLoading} = useSession();
+    const session = useSession().session;
     const { slug } = use(params);
-
-    // given the ID of the course, fetch the course data from the backend and display it
-
-    console.log(`CoursePage: slug = ${slug}`)
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
 
     return (
         <div className="grid grid-cols-4 h-screen w-full overflow-hidden justify-center">
             <Sidebar />
             <div className="col-span-3 p-4">
+                {session?.role === 'Teacher' && (
+                    // dropdown menu for uploading and creating new course content
+                    <div className="flex gap-4 mb-4">
+                        <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={() => setDropdownOpen(true)}>
+                            Create new course content
+                        </button>
+                        {dropdownOpen && (
+                            <CourseDropdownAction onCreateContent={() => setModalOpen(true)} setDropdownOpen={setDropdownOpen} />
+                        )}
+                        {modalOpen && (
+                            <ContentCreationModal onClose={() => setModalOpen(false)} onCreateContent={() => { /* handle content creation */ }} />
+                        )}
+                    </div>
+                )}
                 <CourseTitleCard title={`Course ${slug}`} description={`Description for course ${slug}`} />
                 <CourseDashboard courseId={parseInt(slug)} />
             </div>
