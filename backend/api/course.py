@@ -28,3 +28,11 @@ def get_course_materials(course_id: int, db: Session = Depends(get_db)):
     if not materials:
         return {"message": "No materials found for the course."}
     return {"materials": materials}
+
+@router.get("/{course_id}/members")
+def get_course_members(course_id: int, db: Session = Depends(get_db)):
+    from services.course_service import get_course_members
+    members = get_course_members(db, course_id)
+    if not members:
+        return {"message": "No members found for the course."}
+    return {"members": members}

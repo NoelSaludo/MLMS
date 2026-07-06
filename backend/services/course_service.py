@@ -4,7 +4,7 @@ from model.user import User
 from model.course_member import CourseMember
 from model.course_content import CourseContent
 
-def get_users_courses(db: Session, user_id: int):
+def get_courses_members(db: Session, user_id: int):
     courses = db.query(Course).filter(
         Course.CourseID.in_(
             db.query(CourseMember.CourseID).filter(CourseMember.UserID == user_id)
@@ -26,3 +26,9 @@ def get_course_materials_by_id(db: Session, course_id: int):
         CourseContent.Type == 'material'
     ).all()
     return course_materials
+
+def get_course_members(db: Session, course_id: int):
+    members = db.query(User).select_from(CourseMember).join(User, CourseMember.UserID == User.UserID).filter(
+        CourseMember.CourseID == course_id
+    ).all()
+    return members
