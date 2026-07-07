@@ -1,5 +1,13 @@
 const serverURL = process.env.BACKEND_URL;
 
+export type PostCourseData = 
+{
+    title: string;
+    description: string;
+    fileattachment: File | null;
+    startDate?: string;
+    endDate?: string;
+}
 export async function getCourses(id?: any) {
     let url = `${serverURL}/user/${id}/courses`;
     const response = await fetch(url, {
@@ -93,4 +101,25 @@ export async function postCourseContent(courseId: number, contentType: string, p
     }
 
     return response.json();
+}
+
+export function postCourse(courseData: PostCourseData) {
+    let url = `${serverURL}/courses/create`;
+    return fetch(url, {
+        method: "POST",
+        body: JSON.stringify(courseData),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(response => {
+            if (!response.ok) {
+                return null;
+            }
+            return response.json();
+        })
+        .catch(error => {
+            console.error(error);
+            return null;
+        });
 }

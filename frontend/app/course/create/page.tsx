@@ -1,6 +1,28 @@
+'use client'
 import Sidebar from "@/components/shared/sidebar"
+import useSession from "@/hooks/useSession";
+
+import {SyntheticEvent} from "react";
 
 export default function CreateCoursePage() {
+    useSession();    
+
+    async function handleCourseCreationSubmit(event: SyntheticEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        const formData = new FormData(event.currentTarget);
+        const response = await fetch('/api/courses/create', {
+            method: 'POST',
+            body: formData 
+        });
+
+        if (response.ok) {
+            alert('Course created successfully!');
+            window.location.href = '/';
+        } else {
+            alert('Error creating course.');
+        }
+    }
     return (
         <div className="grid grid-cols-4 h-screen w-full overflow-hidden justify-center">
             <Sidebar />
@@ -9,7 +31,7 @@ export default function CreateCoursePage() {
                     Go Back
                 </a>
                 <h1>Create New Course</h1>
-                <form>
+                <form onSubmit={handleCourseCreationSubmit}>
                     <div className="mb-4">
                         <label htmlFor="title" className="block text-sm font-medium text-gray-700">
                             Course Title
@@ -17,6 +39,7 @@ export default function CreateCoursePage() {
                         <input
                             type="text"
                             id="title"
+                            name="title"
                             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                             required
                         />
@@ -27,6 +50,7 @@ export default function CreateCoursePage() {
                         </label>
                         <textarea
                             id="description"
+                            name="description"
                             rows={4}
                             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                             required
@@ -39,6 +63,7 @@ export default function CreateCoursePage() {
                         <input
                             type="file"
                             id="file"
+                            name="fileattachment"
                             className="mt-1 block w-full"
                             required
                         />

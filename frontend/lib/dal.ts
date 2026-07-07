@@ -4,7 +4,7 @@ import { cookies } from 'next/headers'
 import { decrypt } from '@/lib/session'
 import { cache } from 'react'
 import { getUser as getUserByEmail } from '@/services/login_services'
-import { getCourseAnnouncements as getCourseContents, getCourseMaterials, getCourseMembers, getCourses, postCourseContent } from '@/services/course_services'
+import { getCourseAnnouncements as getCourseContents, getCourseMaterials, getCourseMembers, getCourses, postCourse, postCourseContent, PostCourseData } from '@/services/course_services'
 
 export const verifySession = cache(async () => {
     const cookie = (await cookies()).get('session')?.value
@@ -92,4 +92,14 @@ export const uploadCourseContent = cache(
         return null
     }
 
+})
+
+export const createCourse = cache(async (courseData: PostCourseData) => {
+    try {
+        const res = await postCourse(courseData)
+        return res || null
+    } catch (error) {
+        console.log('Failed to create course')
+        return null
+    }
 })
