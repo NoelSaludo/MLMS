@@ -1,12 +1,13 @@
 'use client'
 
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 import Sidebar from "@/components/shared/sidebar";
 import useSession from "@/hooks/useSession";
 import CourseTitleCard from "@/components/course/course_title_card";
 import CourseDashboard from "@/components/course/course_dashboard";
 import CourseDropdownAction from "@/components/course/course_dropdown_action";
 import ContentCreationModal from "@/components/course/content_creation_model";
+import { getCourseById } from "@/lib/dal";
 
 export default function CoursePage({
     params,
@@ -18,6 +19,22 @@ export default function CoursePage({
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [contentType, setContentType] = useState<'announcement' | 'material' | 'assignment' | null>(null);
+    const [courseData, setCourseData] = useState<any>(null);
+
+    useEffect(() => {
+        const fetchCourseData = async () => {
+            const res = await fetch(`/api/courses/${slug}`);
+            const data = await res.json();
+            setCourseData(data.course);
+        };
+        fetchCourseData();
+    }, [slug]);
+    
+    if (!courseData) {
+        return <div>Loading...</div>;
+    }
+
+    console.log('Course Data:', courseData);
 
     return (
         <div className="grid grid-cols-4 h-screen w-full overflow-hidden justify-center">
@@ -51,7 +68,7 @@ export default function CoursePage({
                         )}
                     </div>
                 )}
-                <CourseTitleCard title={`Course ${slug}`} description={`Description for course ${slug}`} />
+                <CourseTitleCard title={courseData.Title} description={courseData.Description} />
                 <CourseDashboard courseId={parseInt(slug)} />
             </div>
         </div>

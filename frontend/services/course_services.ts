@@ -123,3 +123,19 @@ export function postCourse(courseData: PostCourseData) {
             return null;
         });
 }
+
+export async function findCourseById(courseId: number) {
+    let url = `${serverURL}/course/${courseId}`;
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+
+    if (!response.ok) {
+        return { "Message": "Failed to fetch course by id" }
+    }
+    const data = await response.json();
+    return data;
+}
