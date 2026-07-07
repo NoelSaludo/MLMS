@@ -20,8 +20,8 @@ export default function MakeAnAnnouncementForm() {
 
         if (response.ok) {
             alert('Announcement submitted successfully!');
-            setTitle('');
-            setContent('');
+            // refresh page 
+            window.location.reload();
         } else {
             alert('Error submitting announcement.');
         }

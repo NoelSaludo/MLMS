@@ -39,31 +39,15 @@ def create_course_content(db: Session, course_id: int, content_data):
     elif hasattr(content_data, "dict"):
         content_data = content_data.dict()
 
-    new_content = None
-    if content_data.get('type') is 'announcement':
-        new_content = CourseContent(
-            CourseID=course_id,
-            Title=content_data.get('title'),
-            Description=content_data.get('description'),
-            Type=content_data.get('type')
-        )
-    elif content_data.get('type') is 'material':
-        new_content = CourseContent(
-            CourseID=course_id,
-            Title=content_data.get('title'),
-            Description=content_data.get('description'),
-            Type=content_data.get('type'),
-            FilepathAttachment=content_data.get('filepathAttachment')
-        )
-    elif content_data.get('type') is 'assignment':
-        new_content = CourseContent(
-            CourseID=course_id,
-            Title=content_data.get('title'),
-            Description=content_data.get('description'),
-            Type=content_data.get('type'),
-            Score=content_data.get('score'),
-            DueDate=content_data.get('dueDate')
-        )
+    new_content = CourseContent(
+        CourseID=course_id,
+        Title=content_data.get('title'),
+        Description=content_data.get('description'),
+        Type=content_data.get('type'),
+        FilepathAttachment=content_data.get('filepathAttachment'),
+        Score=content_data.get('score'),
+        DueDate=content_data.get('dueDate')
+    )
     db.add(new_content)
     db.commit()
     db.refresh(new_content)

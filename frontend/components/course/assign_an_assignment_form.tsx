@@ -30,11 +30,7 @@ export default function AssignAnAssignmentForm() {
 
         if (response.ok) {
             alert('Assignment submitted successfully!')
-            setAssignmentTitle('')
-            setAssignmentDescription('')
-            setFile(null)
-            setScore(null)
-            setDueDate('')
+            window.location.reload()
         } else {
             alert('Error submitting assignment.')
         }

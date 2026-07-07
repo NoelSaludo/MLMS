@@ -21,12 +21,10 @@ export default function UploadCourseContentForm() {
             method: 'POST',
             body: formData
         });
-        
+
         if (response.ok) {
             alert('Material submitted successfully!');
-            setTitle('');
-            setContent('');
-            setFile(null);
+            window.location.reload();
         } else {
             alert('Error submitting material.');
         }
