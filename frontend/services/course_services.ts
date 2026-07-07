@@ -73,7 +73,7 @@ export async function postCourseContent(courseId: number, contentType: string, p
     formData.append('title', payload.title);
     formData.append('description', payload.description);
     formData.append('type', contentType);
-    formData.append('filepathAttachment', payload.fileattachment);
+    formData.append('filepathAttachment', payload.fileattachment || null);
     if (payload.score !== undefined && payload.score !== null) {
         formData.append('score', payload.score);
     }

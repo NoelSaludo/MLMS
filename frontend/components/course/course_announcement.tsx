@@ -19,7 +19,7 @@ export default function CourseAnnouncement({ courseId }: { courseId: number }) {
     }
     
     return (
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-4 mt-4 overflow-y-auto max-h-[calc(100vh-300px)]">
             {contents.map((announcement) => (
                 <CourseContentCards
                     key={announcement.ContentID}

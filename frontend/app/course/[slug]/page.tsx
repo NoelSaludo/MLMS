@@ -22,7 +22,7 @@ export default function CoursePage({
     return (
         <div className="grid grid-cols-4 h-screen w-full overflow-hidden justify-center">
             <Sidebar />
-            <div className="col-span-3 p-4">
+            <div className="col-span-3 p-4 flex flex-col min-h-0">
                 {session?.role === 'Teacher' && (
                     // dropdown menu for uploading and creating new course content
                     <div className="flex gap-4 mb-4">
