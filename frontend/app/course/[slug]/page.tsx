@@ -26,9 +26,16 @@ export default function CoursePage({
                 {session?.role === 'Teacher' && (
                     // dropdown menu for uploading and creating new course content
                     <div className="flex gap-4 mb-4">
-                        <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={() => setDropdownOpen(true)}>
-                            Create new course content
-                        </button>
+                        <div className="flex flex-row items-center gap-2">
+                            <a href="/" className="bg-gray-500 text-white px-4 py-2 rounded">
+                                Go Back
+                            </a>
+                            <button
+                                className="bg-blue-500 text-white px-4 py-2 rounded"
+                                onClick={() => setDropdownOpen(true)}>
+                                Create new course content
+                            </button>
+                        </div>
                         {dropdownOpen && (
                             <CourseDropdownAction onCreateContent={
                                 (type) => {
