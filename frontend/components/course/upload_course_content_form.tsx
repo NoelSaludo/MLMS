@@ -7,8 +7,27 @@ export default function UploadCourseContentForm() {
     const [content, setContent] = useState('');
     const [file, setFile] = useState<File | null>(null);
 
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        const formData = new FormData(event.currentTarget);
+        const response = await fetch('/api/upload/material', {
+            method: 'POST',
+            body: formData
+        });
+        
+        if (response.ok) {
+            alert('Material submitted successfully!');
+            setTitle('');
+            setContent('');
+            setFile(null);
+        } else {
+            alert('Error submitting material.');
+        }
+    }
+
     return (
-        <form action="/api/upload/material" className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
             <div>
                 <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
                 <input

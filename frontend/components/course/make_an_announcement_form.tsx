@@ -1,13 +1,30 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, FormEvent } from 'react'
 
 export default function MakeAnAnnouncementForm() {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
 
+    async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        const formData = new FormData(event.currentTarget);
+        const response = await fetch('/api/upload/announcement', {
+            method: 'POST',
+            body: formData
+        })
+
+        if (response.ok) {
+            alert('Announcement submitted successfully!');
+            setTitle('');
+            setContent('');
+        } else {
+            alert('Error submitting announcement.');
+        }
+    }
     return (
-        <form action="/api/upload/announcement" className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
             <div>
                 <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
                 <input

@@ -9,8 +9,29 @@ export default function AssignAnAssignmentForm() {
     const [score, setScore] = useState<number | null>(null)
     const [dueDate, setDueDate] = useState<string>('')
 
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+
+        const formData = new FormData(event.currentTarget)
+        const response = await fetch('/api/upload/assignment', {
+            method: 'POST',
+            body: formData
+        })
+
+        if (response.ok) {
+            alert('Assignment submitted successfully!')
+            setAssignmentTitle('')
+            setAssignmentDescription('')
+            setFile(null)
+            setScore(null)
+            setDueDate('')
+        } else {
+            alert('Error submitting assignment.')
+        }
+    }
+
     return (
-        <form action="/api/upload/assignment" className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
             <div>
                 <label htmlFor="assignmentTitle" className="block text-sm font-medium text-gray-700">Assignment Title</label>
                 <input
