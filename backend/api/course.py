@@ -3,6 +3,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, Form
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
+from services.course_service import add_course_member
 from database.dependency import get_db
 
 router = APIRouter(prefix="/course")
@@ -61,9 +62,11 @@ class CourseCreateRequest(BaseModel):
     startDate: str
     endDate: str
     status: str
+    instructorId: int
 
 @router.post("/create/")
 async def create_course(course_data: CourseCreateRequest, db: Session = Depends(get_db)):
     from services.course_service import create_course
     course = create_course(db, course_data)
+    add_course_member(db, course.CourseID, course_data.instructorId)
     return course

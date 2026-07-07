@@ -24,6 +24,7 @@ export async function POST(request: NextRequest) {
         startDate: formData.get('startDate') as string,
         endDate: formData.get('endDate') as string,
         status: 'draft',
+        instructorId: session.id
     };
 
     const res = await createCourse(courseData);

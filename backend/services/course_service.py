@@ -71,3 +71,10 @@ def create_course(db: Session, course_data):
     db.commit()
     db.refresh(new_course)
     return new_course
+
+def add_course_member(db: Session, course_id: int, user_id: int):
+    new_member = CourseMember(CourseID=course_id, UserID=user_id)
+    db.add(new_member)
+    db.commit()
+    db.refresh(new_member)
+    return new_member
