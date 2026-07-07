@@ -33,15 +33,20 @@ def get_course_members(db: Session, course_id: int):
     ).all()
     return members
 
-def create_course_content(db: Session, course_id: int, content_data: dict):
+def create_course_content(db: Session, course_id: int, content_data):
+    if hasattr(content_data, "model_dump"):
+        content_data = content_data.model_dump()
+    elif hasattr(content_data, "dict"):
+        content_data = content_data.dict()
+
     new_content = CourseContent(
         CourseID=course_id,
-        Title=content_data.get('Title'),
-        Description=content_data.get('Description'),
-        Type=content_data.get('Type'),
-        FilepathAttachment=content_data.get('FilepathAttachment'),
-        Score=content_data.get('Score'),
-        DueDate=content_data.get('DueDate')
+        Title=content_data.get('title'),
+        Description=content_data.get('description'),
+        Type=content_data.get('type'),
+        FilepathAttachment=content_data.get('filepathAttachment'),
+        Score=content_data.get('score'),
+        DueDate=content_data.get('dueDate')
     )
     db.add(new_content)
     db.commit()

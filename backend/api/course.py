@@ -40,15 +40,16 @@ def get_course_members(course_id: int, db: Session = Depends(get_db)):
     return {"members": members}
 
 class CourseContentCreateRequest(BaseModel):
-    Title: str
-    Description: str
-    Type: str  # e.g., 'announcement', 'material', 'assignment'
-    FilepathAttachment: str = None  # URL to the content if applicable
-    Score: int  = None # Score for quizzes or assessments
-    DueDate: str = None # Due date for assignments or quizzes in 'YYYY-MM-DD' format
+    title: str
+    description: str
+    type: str  # e.g., 'announcement', 'material', 'assignment'
+    filepathAttachment: str = None  # URL to the content if applicable
+    score: int  = None # Score for quizzes or assessments
+    dueDate: str = None # Due date for assignments or quizzes in 'YYYY-MM-DD' format
 
 @router.post("/{course_id}/contents/")
 async def create_course_content(course_id: int, data: Annotated[CourseContentCreateRequest, Form()], db: Session = Depends(get_db)):
     from services.course_service import create_course_content
+    print(f"Received data: {data}")
     content = create_course_content(db, course_id, data)
     return content 
