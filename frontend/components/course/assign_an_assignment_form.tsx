@@ -12,7 +12,17 @@ export default function AssignAnAssignmentForm() {
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
 
-        const formData = new FormData(event.currentTarget)
+        const formData = new FormData()
+        formData.append('title', assignmentTitle)
+        formData.append('description', assignmentDescription)
+        if (file) {
+            formData.append('fileattachment', file)
+        }
+        if (score !== null) {
+            formData.append('score', score.toString())
+        }
+        formData.append('duedate', dueDate)
+
         const response = await fetch('/api/upload/assignment', {
             method: 'POST',
             body: formData

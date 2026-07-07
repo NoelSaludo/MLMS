@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifySession } from "@/lib/dal";
+import { verifySession, uploadCourseContent } from "@/lib/dal";
 
 export async function POST(request: NextRequest, { params }: { params: { slug: string } }) {
     const verifiedslug = await params;
@@ -46,7 +46,13 @@ export async function POST(request: NextRequest, { params }: { params: { slug: s
 async function handleAnnouncementSubmission(payload: { title: string; content: string }) {
     const { title, content } = payload;
 
-    console.log("Announcement submitted:", { title, content });
+    // TODO: change the 1 to the course id 
+    console.log("Submitting announcement:", { title, content });
+    const res = await uploadCourseContent(1, 'announcement', { title, description: content });
+    
+    if (!res?.ok) {
+        return NextResponse.json({ error: "Failed to submit announcement" }, { status: 500 });
+    }
 
     return NextResponse.json({ message: "Announcement submitted successfully!" });
 }
@@ -58,7 +64,11 @@ async function handleMaterialSubmission(payload: {
 }) {
     const { title, description, fileattachment } = payload;
 
-    console.log("Material submitted:", { title, description, fileattachment });
+    const res = await uploadCourseContent(1, 'material', { title, description, fileattachment });
+    
+    if (!res?.ok) {
+        return NextResponse.json({ error: "Failed to submit material" }, { status: 500 });
+    }
 
     return NextResponse.json({ message: "Material submitted successfully!" });
 }
@@ -72,7 +82,11 @@ async function handleAssignmentSubmission(payload: {
 }) {
     const { title, description, fileattachment, score, duedate } = payload;
 
-    console.log("Assignment submitted:", { title, description, fileattachment, score, duedate });
+    const res = await uploadCourseContent(1, 'assignment', { title, description, fileattachment, score, duedate });
 
-    return NextResponse.json({ message: "Assignment submitted successfully!" });
+    if (!res?.ok) {
+        return NextResponse.json({ error: "Failed to submit assignment" }, { status: 500 });
+    }
+
+    return NextResponse.json(res);
 }

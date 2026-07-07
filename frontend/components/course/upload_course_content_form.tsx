@@ -10,7 +10,13 @@ export default function UploadCourseContentForm() {
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        const formData = new FormData(event.currentTarget);
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('description', content);
+        if (file) {
+            formData.append('fileattachment', file);
+        }
+
         const response = await fetch('/api/upload/material', {
             method: 'POST',
             body: formData

@@ -4,7 +4,7 @@ import { cookies } from 'next/headers'
 import { decrypt } from '@/lib/session'
 import { cache } from 'react'
 import { getUser as getUserByEmail } from '@/services/login_services'
-import { getCourseAnnouncements as getCourseContents, getCourseMaterials, getCourseMembers, getCourses } from '@/services/course_services'
+import { getCourseAnnouncements as getCourseContents, getCourseMaterials, getCourseMembers, getCourses, postCourseContent } from '@/services/course_services'
 
 export const verifySession = cache(async () => {
     const cookie = (await cookies()).get('session')?.value
@@ -68,7 +68,7 @@ export const getCourseMaterialsById = cache(async (courseId: number) => {
         console.log('Failed to fetch course materials')
         return null
     }
-    
+
 })
 
 export const getCourseMembersById = cache(async (courseId: number) => {
@@ -79,5 +79,17 @@ export const getCourseMembersById = cache(async (courseId: number) => {
         console.log('Failed to fetch course members')
         return null
     }
-    
+
+})
+
+export const uploadCourseContent = cache(
+    async (courseId: number, contentType: string, payload: any): Promise<Response | null> => {
+    try {
+        const res = await postCourseContent(courseId, contentType, payload)
+        return res || null
+    } catch (error) {
+        console.log('Failed to upload course content')
+        return null
+    }
+
 })
