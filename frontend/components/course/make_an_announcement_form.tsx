@@ -6,6 +6,7 @@ export default function MakeAnAnnouncementForm() {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
 
+    // TODO: Refactor this to use the action method of the form tag
     async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 

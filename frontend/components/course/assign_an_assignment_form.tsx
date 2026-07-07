@@ -9,6 +9,7 @@ export default function AssignAnAssignmentForm() {
     const [score, setScore] = useState<number | null>(null)
     const [dueDate, setDueDate] = useState<string>('')
 
+    // TODO: Refactor this to use the action method of the form tag
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
 

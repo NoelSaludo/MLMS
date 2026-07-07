@@ -7,6 +7,7 @@ export default function UploadCourseContentForm() {
     const [content, setContent] = useState('');
     const [file, setFile] = useState<File | null>(null);
 
+    // TODO: Refactor this to use the action method of the form tag
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
