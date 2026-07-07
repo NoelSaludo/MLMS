@@ -52,3 +52,22 @@ def create_course_content(db: Session, course_id: int, content_data):
     db.commit()
     db.refresh(new_content)
     return new_content
+
+def create_course(db: Session, course_data):
+    if hasattr(course_data, "model_dump"):
+        course_data = course_data.model_dump()
+    elif hasattr(course_data, "dict"):
+        course_data = course_data.dict()
+
+    new_course = Course(
+        Title=course_data.get('title'),
+        Description=course_data.get('description'),
+        SyllabusFilePath=course_data.get('fileattachment'),
+        StartDate=course_data.get('startDate'),
+        EndDate=course_data.get('endDate'),
+        Status=course_data.get('status')
+    )
+    db.add(new_course)
+    db.commit()
+    db.refresh(new_course)
+    return new_course

@@ -104,7 +104,7 @@ export async function postCourseContent(courseId: number, contentType: string, p
 }
 
 export function postCourse(courseData: PostCourseData) {
-    let url = `${serverURL}/courses/create`;
+    let url = `${serverURL}/course/create/`;
     return fetch(url, {
         method: "POST",
         body: JSON.stringify(courseData),

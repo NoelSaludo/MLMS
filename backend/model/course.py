@@ -10,6 +10,7 @@ class Course(SQLModel, table=True):
     CourseID: Optional[int] = Field(default=None, primary_key=True)
     Title: str = Field(sa_column=Column(String, nullable=False))
     Description: Optional[str] = Field(default=None, sa_column=Column(String, nullable=True))
+    SyllabusFilePath: Optional[str] = Field(default=None, sa_column=Column(String, nullable=True))
     StartDate: date = Field(sa_column=Column(Date, nullable=False))
     EndDate: date = Field(sa_column=Column(Date, nullable=False))
     Status: str = Field(sa_column=Column(String, nullable=False))

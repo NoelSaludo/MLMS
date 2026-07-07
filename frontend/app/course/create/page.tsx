@@ -68,6 +68,30 @@ export default function CreateCoursePage() {
                             required
                         />
                     </div>
+                    <div>
+                        <label htmlFor="startDate" className="block text-sm font-medium text-gray-700">
+                            Start Date
+                        </label>
+                        <input
+                            type="date"
+                            id="startDate"
+                            name="startDate"
+                            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            required
+                        />  
+                    </div>
+                    <div>
+                        <label htmlFor="endDate" className="block text-sm font-medium text-gray-700">
+                            End Date
+                        </label>
+                        <input
+                            type="date"
+                            id="endDate"
+                            name="endDate"
+                            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            required
+                        />  
+                    </div>
                     <button
                         type="submit"
                         className="bg-blue-500 text-white px-4 py-2 rounded"

@@ -53,3 +53,17 @@ async def create_course_content(course_id: int, data: Annotated[CourseContentCre
     print(f"Received data: {data}")
     content = create_course_content(db, course_id, data)
     return content 
+
+class CourseCreateRequest(BaseModel):
+    title: str
+    description: str
+    fileattachment: str
+    startDate: str
+    endDate: str
+    status: str
+
+@router.post("/create/")
+async def create_course(course_data: CourseCreateRequest, db: Session = Depends(get_db)):
+    from services.course_service import create_course
+    course = create_course(db, course_data)
+    return course

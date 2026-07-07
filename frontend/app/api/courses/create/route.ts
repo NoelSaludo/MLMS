@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createCourse, verifySession } from "@/lib/dal";
-import { PostCourseData } from '@/services/course_services';
+import { uploadFile } from '@/services/file_services';
 
 export async function POST(request: NextRequest) {
     const session = await verifySession();
@@ -9,23 +9,26 @@ export async function POST(request: NextRequest) {
     }
 
     const formData = await request.formData();
-    const title = formData.get('title') as string;
-    const description = formData.get('description') as string;
     const fileattachment = formData.get('fileattachment') as File | null;
-    const startDate = formData.get('startDate') as string | undefined;
-    const endDate = formData.get('endDate') as string | undefined;
+    
+    const fileUploadres = await uploadFile(fileattachment, formData.get('title') as string);
 
-    // Here you would typically save the material to your database
-    const courseData: PostCourseData = {
-        title,
-        description,
-        fileattachment,
-        startDate,
-        endDate
+    if (fileUploadres.Message) {
+        return new NextResponse(JSON.stringify({ error: fileUploadres.Message }), { status: 400 });
+    }
+
+    const courseData = {
+        title: formData.get('title') as string,
+        description: formData.get('description') as string,
+        fileattachment: fileUploadres.file_path || null,
+        startDate: formData.get('startDate') as string,
+        endDate: formData.get('endDate') as string,
+        status: 'draft',
     };
+
     const res = await createCourse(courseData);
 
-    if (!res?.ok) {
+    if (!res) {
         return new NextResponse(JSON.stringify({ error: "Failed to create course" }), { status: 500 });
     }
 
