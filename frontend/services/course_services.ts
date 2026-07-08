@@ -77,11 +77,13 @@ export async function postCourseContent(courseId: number, contentType: string, p
     : Promise<Response | null> {
     let url = `${serverURL}/course/${courseId}/contents/`;
 
+    console.log("Posting course content:", { courseId, contentType, payload });
+
     const formData = new FormData();
     formData.append('title', payload.title);
     formData.append('description', payload.description);
     formData.append('type', contentType);
-    formData.append('filepathAttachment', payload.fileattachment || null);
+    formData.append('filepathAttachment', payload.fileAttachmentUrl);
     if (payload.score !== undefined && payload.score !== null) {
         formData.append('score', payload.score);
     }

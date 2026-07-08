@@ -27,7 +27,7 @@ export async function POST(request: NextRequest, { params }: { params: { slug: s
                 courseId: payload.get('courseId') as string,
                 title: payload.get('title') as string,
                 description: payload.get('description') as string,
-                fileattachment: payload.get('fileattachment') as File | null
+                fileattachment: payload.get('fileattachment') as File
             });
             return NextResponse.json({ message: "Material submitted successfully!" });
 
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest, { params }: { params: { slug: s
                 courseId: payload.get('courseId') as string,
                 title: payload.get('title') as string,
                 description: payload.get('description') as string,
-                fileattachment: payload.get('fileattachment') as File | null,
+                fileattachment: payload.get('fileattachment') as File,
                 score: payload.get('score') ? Number(payload.get('score')) : undefined,
                 duedate: payload.get('duedate') as string | undefined
             });
@@ -72,7 +72,7 @@ async function handleMaterialSubmission(payload: {
 
     console.log("Submitting material:", { title, description, fileattachment: fileAttachmentUrl });
 
-    const res = await uploadCourseContent(parseInt(courseId), 'material', { title, description, fileattachment: fileAttachmentUrl });
+    const res = await uploadCourseContent(parseInt(courseId), 'material', { title, description, fileAttachmentUrl});
     
     if (!res?.ok) {
         return NextResponse.json({ error: "Failed to submit material" }, { status: 500 });
@@ -94,7 +94,7 @@ async function handleAssignmentSubmission(payload: {
     const fileAttachmentUrl = await uploadFile(fileattachment, courseId);
 
     console.log("Submitting assignment:", { title, description, fileattachment: fileAttachmentUrl, score, duedate });
-    const res = await uploadCourseContent(parseInt(courseId), 'assignment', { title, description, fileattachment: fileAttachmentUrl, score, duedate });
+    const res = await uploadCourseContent(parseInt(courseId), 'assignment', { title, description, fileAttachmentUrl, score, duedate });
 
     if (!res?.ok) {
         return NextResponse.json({ error: "Failed to submit assignment" }, { status: 500 });

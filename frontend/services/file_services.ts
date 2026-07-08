@@ -18,7 +18,7 @@ export async function uploadFile(file: File | null, courseTitle: string) {
     }
     
     const data = await response.json();
-    return data;
+    return data.file_path;
 }
 
 export async function downloadFile(filePath: string) {
