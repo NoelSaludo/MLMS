@@ -113,3 +113,13 @@ export const getCourseById = cache(async (courseId: number) => {
         return null
     }
 })
+
+export const getCourseContentDetails = cache(async (courseId: number, contentId: number) => {
+    try {
+        const content = null
+        return content || null
+    } catch (error) {
+        console.log('Failed to fetch course content details')
+        return null
+    }
+})

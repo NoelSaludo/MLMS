@@ -35,7 +35,10 @@ export default function CourseMaterialView({ courseId }: { courseId: number }) {
                 <CourseContentCards key={material.ContentID}
                     title={material.Title}
                     content={material.Description
-                        || 'No description available.'} />
+                        || 'No description available.'}
+                    courseId={courseId}
+                    contentId={material.ContentID}
+                    type={(material.Type || 'material').toLowerCase()} />
             ))}
         </div>
     )

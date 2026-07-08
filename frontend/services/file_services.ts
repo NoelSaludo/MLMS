@@ -20,3 +20,16 @@ export async function uploadFile(file: File | null, courseTitle: string) {
     const data = await response.json();
     return data;
 }
+
+export async function downloadFile(filePath: string) {
+    const response = await fetch(`${serverURL}/file/download/?file_path=${encodeURIComponent(filePath)}`, {
+        method: 'GET',
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to download file');
+    }
+
+    const blob = await response.blob();
+    return blob;
+}
