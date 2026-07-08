@@ -5,9 +5,9 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import CourseAnnouncement from './course_announcement';
-import CourseMaterialView from './course_materials';
-import CourseMembers from './course_members';
+import CourseAnnouncement from './CourseAnnouncement';
+import CourseMaterialView from './CourseMaterials';
+import CourseMembers from './CourseMembers';
 
 export default function CourseDashboard({ courseId }: { courseId: number }) {
     const [activeTab, setActiveTab] = useState<'announcements' | 'materials' | 'members'>('announcements');

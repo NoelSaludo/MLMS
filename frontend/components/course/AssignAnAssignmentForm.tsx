@@ -3,11 +3,11 @@
 import { useState } from 'react'
 
 export default function AssignAnAssignmentForm({courseId}: {courseId: string}) {
-    const [assignmentTitle, setAssignmentTitle] = useState('')
-    const [assignmentDescription, setAssignmentDescription] = useState('')
+    const [assignmenttitle, setAssignmenttitle] = useState('')
+    const [assignmentdescription, setAssignmentdescription] = useState('')
     const [file, setFile] = useState<File | null>(null)
-    const [score, setScore] = useState<number | null>(null)
-    const [dueDate, setDueDate] = useState<string>('')
+    const [score, setscore] = useState<number | null>(null)
+    const [dueDate, setdue_date] = useState<string>('')
 
     // TODO: Refactor this to use the action method of the form tag
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -15,8 +15,8 @@ export default function AssignAnAssignmentForm({courseId}: {courseId: string}) {
 
         const formData = new FormData()
         formData.append('courseId', courseId)
-        formData.append('title', assignmentTitle)
-        formData.append('description', assignmentDescription)
+        formData.append('title', assignmenttitle)
+        formData.append('description', assignmentdescription)
         if (file) {
             formData.append('fileattachment', file)
         }
@@ -41,22 +41,22 @@ export default function AssignAnAssignmentForm({courseId}: {courseId: string}) {
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-                <label htmlFor="assignmentTitle" className="block text-sm font-medium text-gray-700">Assignment Title</label>
+                <label htmlFor="assignmenttitle" className="block text-sm font-medium text-gray-700">Assignment title</label>
                 <input
                     type="text"
-                    id="assignmentTitle"
-                    value={assignmentTitle}
-                    onChange={(e) => setAssignmentTitle(e.target.value)}
+                    id="assignmenttitle"
+                    value={assignmenttitle}
+                    onChange={(e) => setAssignmenttitle(e.target.value)}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     required
                 />
             </div>
             <div>
-                <label htmlFor="assignmentDescription" className="block text-sm font-medium text-gray-700">Assignment Description</label>
+                <label htmlFor="assignmentdescription" className="block text-sm font-medium text-gray-700">Assignment description</label>
                 <textarea
-                    id="assignmentDescription"
-                    value={assignmentDescription}
-                    onChange={(e) => setAssignmentDescription(e.target.value)}
+                    id="assignmentdescription"
+                    value={assignmentdescription}
+                    onChange={(e) => setAssignmentdescription(e.target.value)}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     required
                 />
@@ -71,12 +71,12 @@ export default function AssignAnAssignmentForm({courseId}: {courseId: string}) {
                 />
             </div>
             <div>
-                <label htmlFor="score" className="block text-sm font-medium text-gray-700">Score</label>
+                <label htmlFor="score" className="block text-sm font-medium text-gray-700">score</label>
                 <input
                     type="number"
                     id="score"
                     value={score ?? ''}
-                    onChange={(e) => setScore(e.target.value ? parseInt(e.target.value) : null)}
+                    onChange={(e) => setscore(e.target.value ? parseInt(e.target.value) : null)}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     required
                 />
@@ -87,7 +87,7 @@ export default function AssignAnAssignmentForm({courseId}: {courseId: string}) {
                     type="date"
                     id="dueDate"
                     value={dueDate}
-                    onChange={(e) => setDueDate(e.target.value)}
+                    onChange={(e) => setdue_date(e.target.value)}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     required
                 />

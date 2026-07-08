@@ -1,15 +1,17 @@
-const serverURL = process.env.BACKEND_URL;
+const serverUrl = process.env.BACKEND_URL;
 
 export type PostCourseData = 
 {
     title: string;
     description: string;
-    fileattachment: File | null;
-    startDate?: string;
-    endDate?: string;
+    syllabus_file_path: string;
+    start_date?: string;
+    end_date?: string;
+    instructor_id: number;
 }
+
 export async function getCourses(id?: any) {
-    let url = `${serverURL}/user/${id}/courses`;
+    let url = `${serverUrl}/user/${id}/courses`;
     const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -26,7 +28,7 @@ export async function getCourses(id?: any) {
 }
 
 export async function getCourseAnnouncements(courseId: number) {
-    let url = `${serverURL}/course/${courseId}/contents`;
+    let url = `${serverUrl}/course/${courseId}/contents`;
     const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -42,7 +44,7 @@ export async function getCourseAnnouncements(courseId: number) {
 }
 
 export async function getCourseMaterials(courseId: number) {
-    let url = `${serverURL}/course/${courseId}/materials`;
+    let url = `${serverUrl}/course/${courseId}/materials`;
     const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -58,7 +60,7 @@ export async function getCourseMaterials(courseId: number) {
 }
 
 export async function getCourseMembers(courseId: number) {
-    let url = `${serverURL}/course/${courseId}/members`;
+    let url = `${serverUrl}/course/${courseId}/members`;
     const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -75,21 +77,19 @@ export async function getCourseMembers(courseId: number) {
 
 export async function postCourseContent(courseId: number, contentType: string, payload: any)
     : Promise<Response | null> {
-    let url = `${serverURL}/course/${courseId}/contents/`;
-
-    console.log("Posting course content:", { courseId, contentType, payload });
+    let url = `${serverUrl}/course/${courseId}/contents/`;
 
     const formData = new FormData();
     formData.append('title', payload.title);
     formData.append('description', payload.description);
     formData.append('type', contentType);
-    formData.append('filepathAttachment', payload.fileAttachmentUrl);
+    formData.append('filepath_attachment', payload.fileAttachmentUrl);
     if (payload.score !== undefined && payload.score !== null) {
         formData.append('score', payload.score);
     }
 
     if (payload.duedate != null) {
-        formData.append('dueDate', payload.duedate);
+        formData.append('due_date', payload.duedate);
     }
 
 
@@ -105,11 +105,22 @@ export async function postCourseContent(courseId: number, contentType: string, p
     return response.json();
 }
 
-export function postCourse(courseData: PostCourseData) {
-    let url = `${serverURL}/course/create/`;
+export function postCourse(courseData: any) {
+    let url = `${serverUrl}/course/create/`;
+
+    const payload = {
+        title: courseData.title,
+        description: courseData.description,
+        syllabus_file_path: courseData.syllabus_file_path,
+        start_date: courseData.start_date || courseData.startDate,
+        end_date: courseData.end_date || courseData.endDate,
+        status: "active",
+        instructor_id: courseData.instructor_id || courseData.instructorId
+    }
+
     return fetch(url, {
         method: "POST",
-        body: JSON.stringify(courseData),
+        body: JSON.stringify(payload),
         headers: {
             "Content-Type": "application/json"
         }
@@ -127,7 +138,7 @@ export function postCourse(courseData: PostCourseData) {
 }
 
 export async function findCourseById(courseId: number) {
-    let url = `${serverURL}/course/${courseId}`;
+    let url = `${serverUrl}/course/${courseId}`;
     const response = await fetch(url, {
         method: "GET",
         headers: {
@@ -147,7 +158,7 @@ export async function getCourseContentById(courseId: number, contentId: number) 
     searchParams.append('courseId', courseId.toString());
     searchParams.append('contentId', contentId.toString());
     
-    let url = `${serverURL}/course/content/?${searchParams.toString()}`;
+    let url = `${serverUrl}/course/content/?${searchParams.toString()}`;
     const response = await fetch(url, {
         method: "GET",
         headers: {

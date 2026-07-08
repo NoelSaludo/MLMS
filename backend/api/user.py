@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database.dependency import get_db
 from services.user_service import get_user
+from services.course_service import get_courses_members
 
 router = APIRouter(prefix="/user")
 
@@ -15,7 +16,6 @@ def get_user_by_email(email: str, db: Session = Depends(get_db)):
 
 @router.get("/{user_id}/courses")
 def get_user_courses(user_id: int, db: Session = Depends(get_db)):
-    from services.course_service import get_courses_members
     courses = get_courses_members(db, user_id)
     if not courses:
         return {"message": "No courses found for the user."}

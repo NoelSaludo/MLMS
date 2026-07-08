@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react'
 
-type Course = { CourseID: number; Title?: string; Description?: string }
+type Course = { course_id: number; title?: string; description?: string }
 
 export default function useUserCourses() {
   const [courses, setCourses] = useState<Course[] | null>(null)
@@ -16,7 +16,7 @@ export default function useUserCourses() {
         setCourses([])
         return
       }
-      if (!res.ok) throw new Error(`Status ${res.status}`)
+      if (!res.ok) throw new Error(`status ${res.status}`)
       const data = await res.json()
       console.log('Fetched courses data:', data)
       setCourses(data)

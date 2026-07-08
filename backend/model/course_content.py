@@ -5,16 +5,16 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Date
 
 
 class CourseContent(SQLModel, table=True):
-    __tablename__ = 'CourseContent'
+    __tablename__ = 'course_content'
 
-    ContentID: Optional[int] = Field(default=None, primary_key=True)
-    CourseID: int = Field(sa_column=Column(Integer, ForeignKey('Course.CourseID'), nullable=False))
-    Title: str = Field(sa_column=Column(String, nullable=False))
-    Description: Optional[str] = Field(default=None, sa_column=Column(String, nullable=True))
-    Type: str = Field(sa_column=Column(String, nullable=False))  # e.g., 'announcement', 'material', 'assignment'
-    FilepathAttachment: Optional[str] = Field(default=None, sa_column=Column(String, nullable=True))  # URL to the content if applicable
-    Score: Optional[int] = Field(default=None, sa_column=Column(Integer, nullable=True))  # Score for quizzes or assessments
-    DueDate: Optional[date] = Field(default=None, sa_column=Column(Date, nullable=True))  # Due date for assignments or quizzes
+    content_id: Optional[int] = Field(default=None, primary_key=True)
+    course_id: int = Field(sa_column=Column(Integer, ForeignKey('course.course_id'), nullable=False))
+    title: str = Field(sa_column=Column(String, nullable=False))
+    description: Optional[str] = Field(default=None, sa_column=Column(String, nullable=True))
+    type: str = Field(sa_column=Column(String, nullable=False))  # e.g., 'announcement', 'material', 'assignment'
+    filepath_attachment: Optional[str] = Field(default=None, sa_column=Column(String, nullable=True))  # URL to the content if applicable
+    score: Optional[int] = Field(default=None, sa_column=Column(Integer, nullable=True))  # Score for quizzes or assessments
+    due_date: Optional[date] = Field(default=None, sa_column=Column(Date, nullable=True))  # Due date for assignments or quizzes
 
     def __repr__(self):
-        return f"<CourseContent(ContentID={self.ContentID}, CourseID={self.CourseID}, Title='{self.Title}', Type='{self.Type}')>"
+        return f"<CourseContent(content_id={self.content_id}, course_id={self.course_id}, title='{self.title}', type='{self.type}')>"

@@ -4,13 +4,13 @@ from sqlalchemy import Column, String
 
 
 class User(SQLModel, table=True):
-    __tablename__ = 'UserAccount'
+    __tablename__ = 'user_account'
 
-    UserID: Optional[int] = Field(default=None, primary_key=True)
-    FullName: str = Field(sa_column=Column(String, nullable=False))
-    Email: str = Field(sa_column=Column(String, nullable=False, unique=True))
+    user_id: Optional[int] = Field(default=None, primary_key=True)
+    full_name: str = Field(sa_column=Column(String, nullable=False))
+    email: str = Field(sa_column=Column(String, nullable=False, unique=True))
     password: str = Field(sa_column=Column(String, nullable=False))
-    Role: str = Field(sa_column=Column(String, nullable=False))
+    role: str = Field(sa_column=Column(String, nullable=False))
 
     def __repr__(self):
-        return f"<User(UserID={self.UserID}, FullName='{self.FullName}', Email='{self.Email}', Role='{self.Role}')>"
+        return f"<User(user_id={self.user_id}, full_name='{self.full_name}', email='{self.email}', role='{self.role}')>"

@@ -1,7 +1,7 @@
 'use client'
 
 import useCourseContents from '@/hooks/useCourseAnnouncements'
-import CourseContentCards from './course_content_card'
+import CourseContentCards from './CourseContentCard'
 
 export default function CourseAnnouncement({ courseId }: { courseId: number }) {
     const { announcements: contents, loading, error } = useCourseContents(courseId)
@@ -22,11 +22,11 @@ export default function CourseAnnouncement({ courseId }: { courseId: number }) {
         <div className="grid grid-cols-1 gap-4 mt-4 overflow-y-auto max-h-[calc(100vh-300px)]">
             {contents.map((announcement) => (
                 <CourseContentCards
-                    key={announcement.ContentID}
-                    title={announcement.Title}
-                    content={announcement.Description || 'No description available.'}
+                    key={announcement.content_id}
+                    title={announcement.title}
+                    content={announcement.description || 'No description available.'}
                     courseId={courseId}
-                    contentId={announcement.ContentID}
+                    contentId={announcement.content_id}
                 />
             ))}
         </div>

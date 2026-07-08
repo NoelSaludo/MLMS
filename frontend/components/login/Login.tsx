@@ -15,10 +15,10 @@ export default function LoginForm() {
                 <input
                     required
                     className="shadow appearance-none border rounded w-full mb-2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="schoolEmail"
-                    name="schoolEmail"
+                    id="school_email"
+                    name="school_email"
                     type="email"
-                    placeholder="School Email"
+                    placeholder="School email"
                 />
                 <input
                     required

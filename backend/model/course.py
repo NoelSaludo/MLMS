@@ -5,15 +5,15 @@ from sqlalchemy import Column, String, Date
 
 
 class Course(SQLModel, table=True):
-    __tablename__ = 'Course'
+    __tablename__ = 'course'
 
-    CourseID: Optional[int] = Field(default=None, primary_key=True)
-    Title: str = Field(sa_column=Column(String, nullable=False))
-    Description: Optional[str] = Field(default=None, sa_column=Column(String, nullable=True))
-    SyllabusFilePath: Optional[str] = Field(default=None, sa_column=Column(String, nullable=True))
-    StartDate: date = Field(sa_column=Column(Date, nullable=False))
-    EndDate: date = Field(sa_column=Column(Date, nullable=False))
-    Status: str = Field(sa_column=Column(String, nullable=False))
+    course_id: Optional[int] = Field(default=None, primary_key=True)
+    title: str = Field(sa_column=Column(String, nullable=False))
+    description: Optional[str] = Field(default=None, sa_column=Column(String, nullable=True))
+    syllabus_file_path: Optional[str] = Field(default=None, sa_column=Column(String, nullable=True))
+    start_date: date = Field(sa_column=Column(Date, nullable=False))
+    end_date: date = Field(sa_column=Column(Date, nullable=False))
+    status: str = Field(sa_column=Column(String, nullable=False))
 
     def __repr__(self):
-        return f"<Course(CourseID={self.CourseID}, Title='{self.Title}', Description='{self.Description}', StartDate='{self.StartDate}', EndDate='{self.EndDate}', Status='{self.Status}')>"
+        return f"<Course(course_id={self.course_id}, title='{self.title}', description='{self.description}', start_date='{self.start_date}', end_date='{self.end_date}', status='{self.status}')>"

@@ -1,4 +1,4 @@
-import LoginForm from "@/components/login/login";
+import LoginForm from "@/components/login/Login";
 export default function Page() {
     return <div className="grid grid-cols-2 justify-items-end min-h-screen items-stretch">
         <div className="flex flex-col items-center justify-center w-full max-w-md p-6">

@@ -32,9 +32,9 @@ export default function CourseCatalogue({ role }: { role: any }) {
                 )}
 
                 {!loading && !error && courses && courses.map((c) => (
-                    <a href={`/course/${c.CourseID}`} className="bg-gray-300 p-4 rounded w-1/4" key={c.CourseID}>
-                        <h2>{c.Title ?? `Course ${c.CourseID}`}</h2>
-                        <p>{c.Description ?? 'No description.'}</p>
+                    <a href={`/course/${c.course_id}`} className="bg-gray-300 p-4 rounded w-1/4" key={c.course_id}>
+                        <h2>{c.title ?? `Course ${c.course_id}`}</h2>
+                        <p>{c.description ?? 'No description.'}</p>
                     </a>
                 ))}
             </div>
