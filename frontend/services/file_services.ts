@@ -22,7 +22,7 @@ export async function uploadFile(file: File | null, courseTitle: string) {
 }
 
 export async function downloadFile(filePath: string) {
-    const response = await fetch(`${serverURL}/file/download/?file_path=${encodeURIComponent(filePath)}`, {
+    const response = await fetch(`http://localhost:8000/file/download/?file_path=${encodeURIComponent(filePath)}`, {
         method: 'GET',
     });
 
