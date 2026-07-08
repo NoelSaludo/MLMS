@@ -1,54 +1,42 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import useUserCourses from '@/hooks/useUserCourses'
-
-type Course = {
-    CourseID: number
-    Title?: string
-    Description?: string
-}
 
 export default function CourseCatalogue({ role }: { role: any }) {
     const { courses, loading, error, refresh } = useUserCourses()
     return (
         <div className="col-span-3 p-4">
             {role === 'Teacher' && (
-                <button className="bg-blue-500 text-white px-4 py-2 rounded"
-                    onClick={() => {
-                        // redirect to create course page
-                        window.location.href = '/course/create'
-                    }}
-                >
-                    Create new Course
-                </button>
+                <a
+                    href="/course/create"
+                    className="mb-4 inline-block rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
+                    Create New Course
+                </a>
+            )}
+
+            {role === 'Student' && (
+                <a
+                    href="/course/enroll"
+                    className="mb-4 inline-block rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600">
+                    Enroll in a Course
+                </a>
             )}
 
             <div className="flex flex-wrap align-items justify-content gap-4 mt-4">
                 {loading && <div>Loading courses...</div>}
+
                 {error && <div className="text-red-600">{error}</div>}
+
                 {!loading && !error && courses && courses.length === 0 && (
                     <div>No courses found.</div>
                 )}
 
                 {!loading && !error && courses && courses.map((c) => (
-                    <div key={c.CourseID} className="bg-gray-300 p-4 rounded w-1/4">
-                        <a href={`/course/${c.CourseID}`}>
-                            <h2>{c.Title ?? `Course ${c.CourseID}`}</h2>
-                            <p>{c.Description ?? 'No description.'}</p>
-                        </a>
-                    </div>
+                    <a href={`/course/${c.CourseID}`} className="bg-gray-300 p-4 rounded w-1/4" key={c.CourseID}>
+                        <h2>{c.Title ?? `Course ${c.CourseID}`}</h2>
+                        <p>{c.Description ?? 'No description.'}</p>
+                    </a>
                 ))}
-
-                {/* Fallback placeholder when session not available */}
-                {!loading && !error && courses === null && (
-                    Array.from({ length: 4 }).map((_, i) => (
-                        <div key={i} className="bg-gray-300 p-4 rounded w-1/4">
-                            <h2>Course {i + 1}</h2>
-                            <p>Course description goes here.</p>
-                        </div>
-                    ))
-                )}
             </div>
         </div>
     )
