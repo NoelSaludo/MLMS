@@ -3,10 +3,11 @@ import MakeAnAnnouncementForm from "./make_an_announcement_form"
 import UploadCourseContentForm from "./upload_course_content_form"
 
 export default function ContentCreationModal({
-    onClose, type
+    onClose, type, courseId
 }: {
     onClose: () => void,
-    type: 'announcement' | 'material' | 'assignment'
+    type: 'announcement' | 'material' | 'assignment',
+    courseId: string
 }) {
 
     return (
@@ -15,13 +16,13 @@ export default function ContentCreationModal({
                 <h2 className="text-xl font-semibold mb-4">Create New Course Content</h2>
                 <p className="text-gray-600 mb-4">You are creating a new {type}.</p>
                 {type === 'announcement' && (
-                    <MakeAnAnnouncementForm/>
+                    <MakeAnAnnouncementForm courseId={courseId} />
                 )}
                 {type === 'material' && (
-                    <UploadCourseContentForm/>
+                    <UploadCourseContentForm courseId={courseId} />
                 )}
                 {type === 'assignment' && (
-                    <AssignAnAssignmentForm/>
+                    <AssignAnAssignmentForm courseId={courseId} />
                 )}
                 <button onClick={onClose} className="bg-gray-500 text-white px-4 py-2 rounded">
                     Close

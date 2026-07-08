@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-export default function UploadCourseContentForm() {
+export default function UploadCourseContentForm({courseId}: {courseId: string}) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [file, setFile] = useState<File | null>(null);
@@ -12,6 +12,7 @@ export default function UploadCourseContentForm() {
         event.preventDefault();
 
         const formData = new FormData();
+        formData.append('courseId', courseId);
         formData.append('title', title);
         formData.append('description', content);
         if (file) {

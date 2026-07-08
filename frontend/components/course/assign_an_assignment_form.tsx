@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-export default function AssignAnAssignmentForm() {
+export default function AssignAnAssignmentForm({courseId}: {courseId: string}) {
     const [assignmentTitle, setAssignmentTitle] = useState('')
     const [assignmentDescription, setAssignmentDescription] = useState('')
     const [file, setFile] = useState<File | null>(null)
@@ -14,6 +14,7 @@ export default function AssignAnAssignmentForm() {
         event.preventDefault()
 
         const formData = new FormData()
+        formData.append('courseId', courseId)
         formData.append('title', assignmentTitle)
         formData.append('description', assignmentDescription)
         if (file) {

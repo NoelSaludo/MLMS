@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from 'react'
 
-export default function MakeAnAnnouncementForm() {
+export default function MakeAnAnnouncementForm({courseId}: {courseId: string}) {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
 
@@ -13,7 +13,8 @@ export default function MakeAnAnnouncementForm() {
         const formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
-        
+        formData.append('courseId', courseId);
+
         const response = await fetch('/api/upload/announcement', {
             method: 'POST',
             body: formData

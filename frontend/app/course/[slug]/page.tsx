@@ -64,7 +64,8 @@ export default function CoursePage({
                         {modalOpen && (
                             <ContentCreationModal
                                 onClose={() => setModalOpen(false)}
-                                type={contentType!} />
+                                type={contentType!}
+                                courseId={slug} />
                         )}
                     </div>
                 )}
