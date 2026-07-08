@@ -37,10 +37,10 @@ export default function CourseMembers({ courseId }: { courseId: number }) {
         <div className="grid grid-cols-1 gap-4">
             {members.map((member) => (
                 // TODO: sorting by role, then by name
-                <div key={member.UserID} className="p-4 border rounded shadow">
-                    <h3 className="text-lg font-semibold">{member.FullName}</h3>
-                    <p className="text-sm text-gray-600">{member.Email}</p>
-                    <p className="text-sm text-gray-600">Role: {member.Role}</p>
+                <div key={member.user_id} className="p-4 border rounded shadow">
+                    <h3 className="text-lg font-semibold">{member.full_name}</h3>
+                    <p className="text-sm text-gray-600">{member.email}</p>
+                    <p className="text-sm text-gray-600">role: {member.role}</p>
                 </div>
             ))}
         </div>

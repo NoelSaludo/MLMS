@@ -1,12 +1,12 @@
 'use client'
 
 import { use, useEffect, useState } from "react";
-import Sidebar from "@/components/shared/sidebar";
+import Sidebar from "@/components/shared/Sidebar";
 import useSession from "@/hooks/useSession";
-import CourseTitleCard from "@/components/course/course_title_card";
-import CourseDashboard from "@/components/course/course_dashboard";
-import CourseDropdownAction from "@/components/course/course_dropdown_action";
-import ContentCreationModal from "@/components/course/content_creation_model";
+import CourseTitleCard from "@/components/course/CourseTitleCard";
+import CourseDashboard from "@/components/course/CourseDashboard";
+import CourseDropdownAction from "@/components/course/CourseDropdownAction";
+import ContentCreationModal from "@/components/course/ContentCreationModel";
 import { getCourseById } from "@/lib/dal";
 
 export default function CoursePage({
@@ -69,7 +69,7 @@ export default function CoursePage({
                         )}
                     </div>
                 )}
-                <CourseTitleCard title={courseData.Title} description={courseData.Description} />
+                <CourseTitleCard title={courseData.title} description={courseData.description} />
                 <CourseDashboard courseId={parseInt(slug)} />
             </div>
         </div>

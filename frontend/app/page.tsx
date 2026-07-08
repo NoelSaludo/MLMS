@@ -1,7 +1,7 @@
 'use client'
 
-import CourseCatalogue from '@/components/main/course_catalogue'
-import Sidebar from '@/components/shared/sidebar'
+import CourseCatalogue from '@/components/main/CourseCatalogue'
+import Sidebar from '@/components/shared/Sidebar'
 import useSession from '@/hooks/useSession'
 
 export default function Home() {

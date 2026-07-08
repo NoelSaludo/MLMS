@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import CourseContentCards from './course_content_card'
+import CourseContentCards from './CourseContentCard'
 
 export default function CourseMaterialView({ courseId }: { courseId: number }) {
     const [materials, setMaterials] = useState<any[]>([])
@@ -32,12 +32,12 @@ export default function CourseMaterialView({ courseId }: { courseId: number }) {
     return (
         <div className="grid grid-cols-1 gap-4">
             {materials.map((material, index) => (
-                <CourseContentCards key={material.ContentID}
-                    title={material.Title}
-                    content={material.Description
+                <CourseContentCards key={material.content_id}
+                    title={material.title}
+                    content={material.description
                         || 'No description available.'}
                     courseId={courseId}
-                    contentId={material.ContentID} />
+                    contentId={material.content_id} />
             ))}
         </div>
     )

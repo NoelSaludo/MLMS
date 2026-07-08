@@ -1,40 +1,45 @@
-from typing import Annotated
+from typing import Annotated, Optional
 
 from fastapi import APIRouter, Depends, Form, HTTPException, Query
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-from services.course_service import add_course_member
 from database.dependency import get_db
+from services.course_service import (
+    get_course_by_id,
+    get_course_contents,
+    get_course_materials_by_id,
+    get_course_members,
+    create_course_content,
+    create_course,
+    add_course_member,
+    get_content_detail_by_id
+)
 
 router = APIRouter(prefix="/course")
 
 @router.get("/{course_id}")
 def get_course(course_id: int, db: Session = Depends(get_db)):
-    from services.course_service import get_course_by_id
     course = get_course_by_id(db, course_id)
     if course is None:
         return {"message": "Course not found."}
     return {"course": course}
 
 @router.get("/{course_id}/contents")
-def get_course_contents(course_id: int, db: Session = Depends(get_db)):
-    from services.course_service import get_course_contents
+def get_course_contents_route(course_id: int, db: Session = Depends(get_db)):
     contents = get_course_contents(db, course_id)
     if not contents:
         return {"message": "No contents found for the course."}
     return {"contents": contents}
 
 @router.get("/{course_id}/materials")
-def get_course_materials(course_id: int, db: Session = Depends(get_db)):
-    from services.course_service import get_course_materials_by_id
+def get_course_materials_route(course_id: int, db: Session = Depends(get_db)):
     materials = get_course_materials_by_id(db, course_id)
     if not materials:
         return {"message": "No materials found for the course."}
     return {"materials": materials}
 
 @router.get("/{course_id}/members")
-def get_course_members(course_id: int, db: Session = Depends(get_db)):
-    from services.course_service import get_course_members
+def get_course_members_route(course_id: int, db: Session = Depends(get_db)):
     members = get_course_members(db, course_id)
     if not members:
         return {"message": "No members found for the course."}
@@ -44,13 +49,12 @@ class CourseContentCreateRequest(BaseModel):
     title: str
     description: str
     type: str  # e.g., 'announcement', 'material', 'assignment'
-    filepathAttachment: str = None  # URL to the content if applicable
-    score: int  = None # Score for quizzes or assessments
-    dueDate: str = None # Due date for assignments or quizzes in 'YYYY-MM-DD' format
+    filepath_attachment: Optional[str] = None  # URL to the content if applicable
+    score: Optional[int] = None # Score for quizzes or assessments
+    due_date: Optional[str] = None # Due date for assignments or quizzes in 'YYYY-MM-DD' format
 
 @router.post("/{course_id}/contents/")
-async def create_course_content(course_id: int, data: Annotated[CourseContentCreateRequest, Form()], db: Session = Depends(get_db)):
-    from services.course_service import create_course_content
+async def create_course_content_route(course_id: int, data: Annotated[CourseContentCreateRequest, Form()], db: Session = Depends(get_db)):
     print(f"Received data: {data}")
     content = create_course_content(db, course_id, data)
     return content 
@@ -58,23 +62,21 @@ async def create_course_content(course_id: int, data: Annotated[CourseContentCre
 class CourseCreateRequest(BaseModel):
     title: str
     description: str
-    fileattachment: str
-    startDate: str
-    endDate: str
+    syllabus_file_path: str
+    start_date: str
+    end_date: str
     status: str
-    instructorId: int
+    instructor_id: int
 
 @router.post("/create/")
-async def create_course(course_data: CourseCreateRequest, db: Session = Depends(get_db)):
-    from services.course_service import create_course
+async def create_course_route(course_data: CourseCreateRequest, db: Session = Depends(get_db)):
     course = create_course(db, course_data)
-    add_course_member(db, course.CourseID, course_data.instructorId)
+    add_course_member(db, course.course_id, course_data.instructor_id)
     return course
 
 @router.get("/content/")
-async def get_content_detail_by_id(courseId: int = Query(...), contentId: int = Query(...), db: Session = Depends(get_db)):
-    from services.course_service import get_content_detail_by_id
-    content = get_content_detail_by_id(db, courseId, contentId)
+async def get_content_detail_by_id_route(course_id: int = Query(..., alias="courseId"), content_id: int = Query(..., alias="contentId"), db: Session = Depends(get_db)):
+    content = get_content_detail_by_id(db, course_id, content_id)
     if content is None:
         raise HTTPException(status_code=404, detail="Content not found")
-    return content 
+    return content

@@ -1,42 +1,46 @@
 'use client'
 
-import { useState, FormEvent } from 'react'
+import { useState } from 'react'
 
-export default function MakeAnAnnouncementForm({courseId}: {courseId: string}) {
-    const [title, setTitle] = useState('')
-    const [content, setContent] = useState('')
+export default function UploadCourseContentForm({courseId}: {courseId: string}) {
+    const [title, settitle] = useState('');
+    const [content, setContent] = useState('');
+    const [file, setFile] = useState<File | null>(null);
 
     // TODO: Refactor this to use the action method of the form tag
-    async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
         const formData = new FormData();
-        formData.append('title', title);
-        formData.append('content', content);
         formData.append('courseId', courseId);
+        formData.append('title', title);
+        formData.append('description', content);
+        if (file) {
+            formData.append('fileattachment', file);
+        }
 
-        const response = await fetch('/api/upload/announcement', {
+        const response = await fetch('/api/upload/material', {
             method: 'POST',
             body: formData
-        })
+        });
 
         if (response.ok) {
-            alert('Announcement submitted successfully!');
-            // refresh page 
+            alert('Material submitted successfully!');
             window.location.reload();
         } else {
-            alert('Error submitting announcement.');
+            alert('Error submitting material.');
         }
     }
+
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-                <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
+                <label htmlFor="title" className="block text-sm font-medium text-gray-700">title</label>
                 <input
                     type="text"
                     id="title"
                     value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(e) => settitle(e.target.value)}
                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                     required
                 />
@@ -51,11 +55,20 @@ export default function MakeAnAnnouncementForm({courseId}: {courseId: string}) {
                     required
                 />
             </div>
+            <div>
+                <label htmlFor="file" className="block text-sm font-medium text-gray-700">Upload File</label>
+                <input
+                    type="file"
+                    id="file"
+                    onChange={(e) => setFile(e.target.files ? e.target.files[0] : null)}
+                    className="mt-1 block w-full"
+                />
+            </div>
             <button
                 type="submit"
                 className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
             >
-                Submit Announcement
+                Submit Material
             </button>
         </form>
     )

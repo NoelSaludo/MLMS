@@ -4,7 +4,7 @@ export async function getUser(email: string) {
     const response = await fetch(`${serverUrl}/user/${email}`, {
         method: "GET",
         headers: {
-            "Content-Type": "application/json",
+            "Content-type": "application/json",
         },
     });
 

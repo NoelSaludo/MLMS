@@ -1,5 +1,5 @@
 'use client'
-import Sidebar from "@/components/shared/sidebar"
+import Sidebar from "@/components/shared/Sidebar"
 import useSession from "@/hooks/useSession";
 
 import {SyntheticEvent} from "react";
@@ -30,7 +30,7 @@ export default function CreateCoursePage() {
                 <a href="/" className="text-blue-500 hover:text-blue-700">
                     Go Back
                 </a>
-                <h1>Create New Course</h1>
+                <h1 className="text-2xl font-bold mb-4">Create New Course</h1>
                 <form onSubmit={handleCourseCreationSubmit}>
                     <div className="mb-4">
                         <label htmlFor="title" className="block text-sm font-medium text-gray-700">
@@ -40,7 +40,7 @@ export default function CreateCoursePage() {
                             type="text"
                             id="title"
                             name="title"
-                            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
                             required
                         />
                     </div>
@@ -52,11 +52,11 @@ export default function CreateCoursePage() {
                             id="description"
                             name="description"
                             rows={4}
-                            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
                             required
                         />
                     </div>
-                    <div>
+                    <div className="mb-4">
                         <label htmlFor="file" className="block text-sm font-medium text-gray-700">
                             Upload Course Syllabus
                         </label>
@@ -68,7 +68,7 @@ export default function CreateCoursePage() {
                             required
                         />
                     </div>
-                    <div>
+                    <div className="mb-4">
                         <label htmlFor="startDate" className="block text-sm font-medium text-gray-700">
                             Start Date
                         </label>
@@ -76,11 +76,11 @@ export default function CreateCoursePage() {
                             type="date"
                             id="startDate"
                             name="startDate"
-                            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
                             required
                         />  
                     </div>
-                    <div>
+                    <div className="mb-4">
                         <label htmlFor="endDate" className="block text-sm font-medium text-gray-700">
                             End Date
                         </label>
@@ -88,13 +88,13 @@ export default function CreateCoursePage() {
                             type="date"
                             id="endDate"
                             name="endDate"
-                            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
                             required
                         />  
                     </div>
                     <button
                         type="submit"
-                        className="bg-blue-500 text-white px-4 py-2 rounded"
+                        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                     >
                         Create Course
                     </button>

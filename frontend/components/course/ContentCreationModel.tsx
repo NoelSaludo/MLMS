@@ -1,6 +1,6 @@
-import AssignAnAssignmentForm from "./assign_an_assignment_form"
-import MakeAnAnnouncementForm from "./make_an_announcement_form"
-import UploadCourseContentForm from "./upload_course_content_form"
+import AssignAnAssignmentForm from "./AssignAnAssignmentForm"
+import MakeAnAnnouncementForm from "./MakeAnAnnouncementForm"
+import UploadCourseContentForm from "./UploadCourseContentForm"
 
 export default function ContentCreationModal({
     onClose, type, courseId

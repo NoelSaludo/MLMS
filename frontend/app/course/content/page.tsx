@@ -3,19 +3,19 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import Sidebar from '@/components/shared/sidebar'
+import Sidebar from '@/components/shared/Sidebar'
 import { downloadFile } from '@/services/file_services'
 
 type CourseContent = {
-    ContentID: number
-    CourseID: number
-    Title: string
-    Description?: string | null
-    Type: 'announcement' | 'material' | 'assignment' | string
-    FilepathAttachment?: string | null
+    content_id: number
+    course_id: number
+    title: string
+    description?: string | null
+    type: 'announcement' | 'material' | 'assignment' | string
+    filepath_attachment?: string | null
     FileURL?: string | null
-    Score?: number | null
-    DueDate?: string | null
+    score?: number | null
+    due_date?: string | null
 }
 
 function formatContentType(type?: string) {
@@ -76,9 +76,9 @@ export default function CourseContentDetail() {
                 if (!data || !data.content) {
                     throw new Error('No content detail found')
                 }
-                const fileRes = await downloadFile(data.content.FilepathAttachment)
+                const fileRes = await downloadFile(data.content.filepath_attachment)
                 if (fileRes) {
-                    const downloadedFile = new File([fileRes], data.content.Title || 'downloaded_file', { type: fileRes.type })
+                    const downloadedFile = new File([fileRes], data.content.title || 'downloaded_file', { type: fileRes.type })
                     setFile(downloadedFile)
                 }
                 setContentDetail(data.content || null)
@@ -93,7 +93,7 @@ export default function CourseContentDetail() {
     }, [courseId, contentId])
 
     const backHref = courseId ? `/course/${courseId}` : '/'
-    const attachmentUrl = contentDetail?.FilepathAttachment || contentDetail?.FileURL
+    const attachmentUrl = contentDetail?.filepath_attachment || contentDetail?.FileURL
 
     if (loading) {
         return (
@@ -145,33 +145,33 @@ export default function CourseContentDetail() {
                 <section className="border border-gray-200 rounded bg-white p-6 shadow-sm">
                     <div className="flex flex-col gap-2 border-b border-gray-200 pb-4">
                         <span className="w-fit rounded bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700">
-                            {formatContentType(contentDetail.Type)}
+                            {formatContentType(contentDetail.type)}
                         </span>
                         <h1 className="text-3xl font-semibold text-gray-900">
-                            {contentDetail.Title}
+                            {contentDetail.title}
                         </h1>
                     </div>
 
                     <div className="mt-6">
-                        <h2 className="text-lg font-semibold text-gray-900">Description</h2>
+                        <h2 className="text-lg font-semibold text-gray-900">description</h2>
                         <p className="mt-2 whitespace-pre-line text-gray-700">
-                            {contentDetail.Description || 'No description available.'}
+                            {contentDetail.description || 'No description available.'}
                         </p>
                     </div>
 
                     <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-                        {contentDetail.Type === 'assignment' && (
+                        {contentDetail.type === 'assignment' && (
                             <>
-                                <DetailItem label="Due Date" value={formatDate(contentDetail.DueDate)} />
+                                <DetailItem label="Due Date" value={formatDate(contentDetail.due_date)} />
                                 <DetailItem
-                                    label="Score"
-                                    value={contentDetail.Score ?? 'No score provided.'}
+                                    label="score"
+                                    value={contentDetail.score ?? 'No score provided.'}
                                 />
                             </>
                         )}
                     </div>
 
-                    {(contentDetail.Type === 'material' || contentDetail.Type === 'assignment') && (
+                    {(contentDetail.type === 'material' || contentDetail.type === 'assignment') && (
                         <div className="mt-8 border-t border-gray-200 pt-6">
                             <h2 className="text-lg font-semibold text-gray-900">Attachment</h2>
                             {file ? (

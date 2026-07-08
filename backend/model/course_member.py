@@ -4,8 +4,8 @@ from sqlalchemy import Column, Integer
 
 
 class CourseMember(SQLModel, table=True):
-    __tablename__ = 'CourseMember'
+    __tablename__ = 'course_member'
 
-    MemberID: Optional[int] = Field(default=None, primary_key=True)
-    CourseID: int = Field(sa_column=Column(Integer, nullable=False))
-    UserID: int = Field(sa_column=Column(Integer, nullable=False))
+    member_id: Optional[int] = Field(default=None, primary_key=True)
+    course_id: int = Field(sa_column=Column(Integer, nullable=False))
+    user_id: int = Field(sa_column=Column(Integer, nullable=False))
