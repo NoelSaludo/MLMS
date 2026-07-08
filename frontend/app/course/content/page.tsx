@@ -28,7 +28,7 @@ export default function CourseContentDetail() {
                     throw new Error('No content detail found')
                 }
 
-                setContentDetail(data.content.content || null)
+                setContentDetail(data.content || null)
             } catch (err: any) {
                 setError(err.message)
             } finally {

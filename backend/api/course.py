@@ -77,4 +77,4 @@ async def get_content_detail_by_id(courseId: int = Query(...), contentId: int = 
     content = get_content_detail_by_id(db, courseId, contentId)
     if content is None:
         raise HTTPException(status_code=404, detail="Content not found")
-    return {"content": content}
+    return content 
