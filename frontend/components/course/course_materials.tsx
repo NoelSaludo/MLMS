@@ -37,8 +37,7 @@ export default function CourseMaterialView({ courseId }: { courseId: number }) {
                     content={material.Description
                         || 'No description available.'}
                     courseId={courseId}
-                    contentId={material.ContentID}
-                    type={(material.Type || 'material').toLowerCase()} />
+                    contentId={material.ContentID} />
             ))}
         </div>
     )

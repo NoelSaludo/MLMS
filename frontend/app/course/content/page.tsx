@@ -1,136 +1,86 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { downloadFile } from '@/services/file_services'
 
-type ContentResponse = {
-    contentId: number,
-    title: string,
-    description: string,
-    type: 'announcement' | 'material' | 'assignment',
-    fileattachment: string | null,
-    score: number | null,
-    duedate: string | null,
-}
+export default function CourseContentDetail() {
+    const [contentDetail, setContentDetail] = useState<any>(null)
+    const [loading, setLoading] = useState<boolean>(true)
+    const [error, setError] = useState<string | null>(null)
 
-export default function Page() {
     const searchParams = useSearchParams()
     const courseId = searchParams.get('courseId')
     const contentId = searchParams.get('contentId')
-    const contentType = searchParams.get('type')
-    const [content, setContent] = useState<ContentResponse | null>(null)
-    const [error, setError] = useState<string | null>(null)
-    const [downloadUrl, setDownloadUrl] = useState<string | null>(null)
 
     useEffect(() => {
-        if (!courseId) {
-            setError('Missing courseId query parameter')
-            return
-        }
-
-        const fetchContent = async () => {
+        const fetchContentDetail = async () => {
             try {
-                const params = new URLSearchParams()
-                if (courseId) {
-                    params.set('courseId', courseId)
-                }
-                if (contentId) {
-                    params.set('contentId', contentId)
-                }
-                if (contentType) {
-                    params.set('type', contentType)
-                }
-
-                const response = await fetch(`/api/content?${params.toString()}`)
+                const reqSP = new URLSearchParams()
+                reqSP.append('courseId', courseId || "")
+                reqSP.append('contentId', contentId || "")
+                const response = await fetch(`/api/content?${reqSP.toString()}`)
                 if (!response.ok) {
-                    throw new Error('Network response was not ok')
+                    throw new Error(`Error fetching content detail: ${response.statusText}`)
                 }
 
                 const data = await response.json()
-                setContent(data.content)
-            } catch (error) {
-                setError(error instanceof Error ? error.message : 'Failed to fetch content')
-                console.error('Error fetching content:', error)
+                if (!data || !data.content) {
+                    throw new Error('No content detail found')
+                }
+
+                setContentDetail(data.content.content || null)
+            } catch (err: any) {
+                setError(err.message)
+            } finally {
+                setLoading(false)
             }
         }
 
-        fetchContent()
-    }, [courseId, contentId, contentType])
+        fetchContentDetail()
+    }, [courseId, contentId])
 
-    useEffect(() => {
-        return () => {
-            if (downloadUrl) {
-                URL.revokeObjectURL(downloadUrl)
-            }
-        }
-    }, [downloadUrl])
+    if (loading) return <p>Loading content details...</p>
+    if (error) return <p>Error: {error}</p>
+    if (!contentDetail) return <p>No content details available.</p>
 
-    const canDownloadAttachment = useMemo(() => {
-        return Boolean(content?.fileattachment && (content.type === 'material' || content.type === 'assignment'))
-    }, [content])
+    console.log('Rendering content detail:', contentDetail)
 
-    const handleDownload = async () => {
-        if (!content?.fileattachment) {
-            return
-        }
-
-        const blob = await downloadFile(content.fileattachment)
-        const objectUrl = URL.createObjectURL(blob)
-        setDownloadUrl(objectUrl)
-
-        const anchor = document.createElement('a')
-        anchor.href = objectUrl
-        anchor.download = content.fileattachment.split('/').pop() || content.title
-        anchor.click()
-    }
-
-    if (error) {
-        return <div>{error}</div>
-    }
-
-    if (!content) {
-        return <div>Loading...</div>
-    }
-
-    if (content.type === 'announcement') {
+    if (contentDetail.Type === 'assignment') {
         return (
             <div>
-                <h1>{content.title}</h1>
-                <p>{content.description}</p>
+                <h1>{contentDetail.Title}</h1>
+                <p>{contentDetail.Description || 'No description available.'}</p>
+                <p>Due Date: {contentDetail.DueDate || 'No due date provided.'}</p>
+                {/* Render additional assignment-specific details here */}
             </div>
         )
     }
 
-    if (content.type === 'material') {
+    if (contentDetail.Type === 'material') {
         return (
             <div>
-                <h1>{content.title}</h1>
-                <p>{content.description}</p>
-                {canDownloadAttachment && (
-                    <button type="button" onClick={handleDownload}>
-                        Download Attachment
-                    </button>
-                )}
+                <h1>{contentDetail.Title}</h1>
+                <p>{contentDetail.Description || 'No description available.'}</p>
+                <a href={contentDetail.FileURL} target="_blank" rel="noopener noreferrer">
+                    Download Material
+                </a>
             </div>
         )
     }
 
-    if (content.type === 'assignment') {
+    if (contentDetail.Type === 'announcement') {
         return (
             <div>
-                <h1>{content.title}</h1>
-                <p>{content.description}</p>
-                <p>Score: {content.score ?? 'Not set'}</p>
-                <p>Due Date: {content.duedate ?? 'Not set'}</p>
-                {canDownloadAttachment && (
-                    <button type="button" onClick={handleDownload}>
-                        Download Attachment
-                    </button>
-                )}
+                <h1>{contentDetail.Title}</h1>
+                <p>{contentDetail.Description || 'No description available.'}</p>
             </div>
         )
     }
-
-    return <div>Unsupported content type</div>
+    
+    return (
+        <div>
+            <h1>{contentDetail.Title}</h1>
+            <p>{contentDetail.Description || 'No description available.'}</p>
+        </div>
+    )
 }

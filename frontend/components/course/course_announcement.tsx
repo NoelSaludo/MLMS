@@ -27,7 +27,6 @@ export default function CourseAnnouncement({ courseId }: { courseId: number }) {
                     content={announcement.Description || 'No description available.'}
                     courseId={courseId}
                     contentId={announcement.ContentID}
-                    type={(announcement.Type || 'announcement').toLowerCase()}
                 />
             ))}
         </div>

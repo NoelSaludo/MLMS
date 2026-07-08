@@ -3,15 +3,13 @@ export default function CourseContentCards({
     content,
     courseId,
     contentId,
-    type,
 }: {
     title: string;
     content: string;
     courseId: number;
     contentId: number;
-    type: 'announcement' | 'material' | 'assignment';
 }) { 
-    const href = `/course/content?courseId=${courseId}&contentId=${contentId}&type=${type}`
+    const href = `/course/content?courseId=${courseId}&contentId=${contentId}`
 
     return (
         <a href={href} className="block">

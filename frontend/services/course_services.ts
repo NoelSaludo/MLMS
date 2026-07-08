@@ -139,3 +139,23 @@ export async function findCourseById(courseId: number) {
     const data = await response.json();
     return data;
 }
+
+export async function getCourseContentById(courseId: number, contentId: number) {
+    const searchParams = new URLSearchParams();
+    searchParams.append('courseId', courseId.toString());
+    searchParams.append('contentId', contentId.toString());
+    
+    let url = `${serverURL}/course/content/?${searchParams.toString()}`;
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+
+    if (!response.ok) {
+        return { "Message": "Failed to fetch course content by id" }
+    }
+    const data = await response.json();
+    return data;
+}

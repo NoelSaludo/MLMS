@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Form, Query
+from fastapi import APIRouter, Depends, Form, HTTPException, Query
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from services.course_service import add_course_member
@@ -76,5 +76,5 @@ async def get_content_detail_by_id(courseId: int = Query(...), contentId: int = 
     from services.course_service import get_content_detail_by_id
     content = get_content_detail_by_id(db, courseId, contentId)
     if content is None:
-        return {"message": "Content not found."}
+        raise HTTPException(status_code=404, detail="Content not found")
     return {"content": content}
