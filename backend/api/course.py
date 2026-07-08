@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Form
+from fastapi import APIRouter, Depends, Form, Query
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from services.course_service import add_course_member
@@ -70,3 +70,11 @@ async def create_course(course_data: CourseCreateRequest, db: Session = Depends(
     course = create_course(db, course_data)
     add_course_member(db, course.CourseID, course_data.instructorId)
     return course
+
+@router.get("/content/")
+async def get_content_detail_by_id(courseId: int = Query(...), contentId: int = Query(...), db: Session = Depends(get_db)):
+    from services.course_service import get_content_detail_by_id
+    content = get_content_detail_by_id(db, courseId, contentId)
+    if content is None:
+        return {"message": "Content not found."}
+    return {"content": content}

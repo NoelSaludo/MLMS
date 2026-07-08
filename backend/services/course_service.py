@@ -78,3 +78,10 @@ def add_course_member(db: Session, course_id: int, user_id: int):
     db.commit()
     db.refresh(new_member)
     return new_member
+
+def get_content_detail_by_id(db: Session, course_id: int, content_id: int):
+    content = db.query(CourseContent).filter(
+        CourseContent.CourseID == course_id,
+        CourseContent.ContentID == content_id
+    ).first()
+    return content
