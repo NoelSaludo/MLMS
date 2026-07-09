@@ -1,9 +1,47 @@
-import LoginForm from "@/components/login/Login";
+'use client';
+
+import { apiClient } from "@/lib/api_client";
+import { useState } from "react";
+
 export default function Page() {
+    const [error, setError] = useState<string>("");
+
+    async function handleLoginSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        const formData = new FormData(event.currentTarget);
+
+        const response = await apiClient.post("/auth/login", {
+            email: formData.get("email"),
+            password: formData.get("password")
+        });
+
+        const accessToken = response.access_token;
+        if (accessToken) {
+            cookieStore.set("access_token", accessToken);
+            console.log("Login successful, access token stored in cookie.");
+            
+        } else {
+            console.error("Login failed, no access token received.");
+            setError("Login failed. Please check your credentials.");
+        }
+    }
+
     return <div className="grid grid-cols-2 justify-items-end min-h-screen items-stretch">
         <div className="flex flex-col items-center justify-center w-full max-w-md p-6">
             <h1>Login</h1>
-            <LoginForm />
+            <form onSubmit={handleLoginSubmit} className="w-full">
+                <div>
+                    <label htmlFor="email">email</label>
+                    <input type="email" id="email" name="email" required />
+                </div>
+                <div>
+                    <label htmlFor="password">Password</label>
+                    <input type="password" id="password" name="password" required />
+                </div>
+                {error && <p className="text-red-500">{error}</p>}
+                <button type="submit">Login</button>
+            </form>
         </div>
         <div className="flex h-full flex-col items-center justify-center w-full max-w-md bg-blue-500">
             <span className="text-3xl font-bold text-center">Welcome to the Login Page</span>
