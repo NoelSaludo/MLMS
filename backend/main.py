@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api import course, health, user, file
+from api import auth
 
 app = FastAPI()
 
@@ -16,3 +17,4 @@ app.include_router(health.router)
 app.include_router(user.router)
 app.include_router(course.router)
 app.include_router(file.router)
+app.include_router(auth.router)
