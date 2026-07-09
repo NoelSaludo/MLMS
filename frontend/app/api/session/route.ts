@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server'
-import { cookies } from 'next/headers'
-import { verifySession } from '@/lib/dal'
-
+import { verifySession } from '@/lib/session'
 
 export async function GET() {
   const session = await verifySession()

@@ -7,7 +7,6 @@ import CourseTitleCard from "@/components/course/CourseTitleCard";
 import CourseDashboard from "@/components/course/CourseDashboard";
 import CourseDropdownAction from "@/components/course/CourseDropdownAction";
 import ContentCreationModal from "@/components/course/ContentCreationModel";
-import { getCourseById } from "@/lib/dal";
 
 export default function CoursePage({
     params,

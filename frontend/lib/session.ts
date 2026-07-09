@@ -1,6 +1,18 @@
 import 'server-only'
 import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
+import { cache } from 'react'
+
+export const verifySession = cache(async () => {
+    const cookie = (await cookies()).get('session')?.value
+    const session = await decrypt(cookie)
+
+    if (!session?.email) {
+        return null
+    }
+
+    return { isAuth: true, id: session.id, email: session.email, role: session.role }
+})
 
 type SessionPayload = {
     id: string
@@ -26,7 +38,7 @@ export async function decrypt(session: string | undefined = '') {
       algorithms: ['HS256'],
     })
     return payload
-  } catch (error) {
+  } catch {
     console.log('Failed to verify session')
   }
 }

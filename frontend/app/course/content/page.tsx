@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import Sidebar from '@/components/shared/Sidebar'
-import { downloadFile } from '@/services/file_services'
 
 type CourseContent = {
     content_id: number
@@ -43,7 +42,7 @@ function DetailItem({ label, value }: { label: string; value: string | number })
     )
 }
 
-export default function CourseContentDetail() {
+function CourseContentDetailInner() {
     const [contentDetail, setContentDetail] = useState<CourseContent | null>(null)
     const [loading, setLoading] = useState<boolean>(true)
     const [error, setError] = useState<string | null>(null)
@@ -76,10 +75,13 @@ export default function CourseContentDetail() {
                 if (!data || !data.content) {
                     throw new Error('No content detail found')
                 }
-                const fileRes = await downloadFile(data.content.filepath_attachment)
-                if (fileRes) {
-                    const downloadedFile = new File([fileRes], data.content.title || 'downloaded_file', { type: fileRes.type })
-                    setFile(downloadedFile)
+                if (data.content.filepath_attachment) {
+                    const fileResponse = await fetch(`/api/download?file_path=${encodeURIComponent(data.content.filepath_attachment)}`)
+                    if (fileResponse.ok) {
+                        const fileRes = await fileResponse.blob()
+                        const downloadedFile = new File([fileRes], data.content.title || 'downloaded_file', { type: fileRes.type })
+                        setFile(downloadedFile)
+                    }
                 }
                 setContentDetail(data.content || null)
             } catch (err: unknown) {
@@ -190,5 +192,20 @@ export default function CourseContentDetail() {
                 </section>
             </main>
         </div>
+    )
+}
+
+export default function CourseContentDetail() {
+    return (
+        <Suspense fallback={
+            <div className="grid grid-cols-4 h-screen w-full overflow-hidden justify-center">
+                <Sidebar />
+                <div className="col-span-3 p-4 flex flex-col min-h-0">
+                    <p className="text-gray-600">Loading content details...</p>
+                </div>
+            </div>
+        }>
+            <CourseContentDetailInner />
+        </Suspense>
     )
 }
