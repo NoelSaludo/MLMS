@@ -1,8 +1,11 @@
+from datetime import timedelta
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Form
+from fastapi.security import OAuth2PasswordBearer
 from sqlmodel import Session
-from services.auth_service import create_access_token
+from model.session import SessionModel
+from services.auth_service import create_jwt, create_refresh_jwt, save_refresh_token
 from database.dependency import get_db
 from model.user import User
 import bcrypt
@@ -11,6 +14,8 @@ router = APIRouter(
     prefix="/auth",
     tags=["auth"]
 )
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 @router.post("/login")
 async def login(data: Annotated[dict, Form], db: Session = Depends(get_db)):
@@ -25,10 +30,10 @@ async def login(data: Annotated[dict, Form], db: Session = Depends(get_db)):
     if not user or not bcrypt.checkpw(password.encode("utf-8"), user.password.encode("utf-8")):
         raise HTTPException(status_code=401, detail="Invalid email or password")
 
-    cat = create_access_token({"sub": user.email, "id": user.user_id, "role": user.role})
+    jwt = create_jwt({"sub": user.email, "id": user.user_id, "role": user.role}, expires_delta=timedelta(minutes=5))
+    rt = create_refresh_jwt({"sub": user.email}, expires_delta=timedelta(days=7))
 
-    return {"access_token": cat, "token_type": "bearer"}
+    save_refresh_token(user.user_id, rt, db)
 
-@router.get("/logout")
-async def logout():
-    pass
+
+    return {"access_token": jwt, "refresh_token": rt}

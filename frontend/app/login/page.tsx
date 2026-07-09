@@ -17,8 +17,10 @@ export default function Page() {
         });
 
         const accessToken = response.access_token;
-        if (accessToken) {
+        const refreshToken = response.refresh_token;
+        if (accessToken && refreshToken) {
             cookieStore.set("access_token", accessToken);
+            cookieStore.set("refresh_token", refreshToken);
             console.log("Login successful, access token stored in cookie.");
             
         } else {

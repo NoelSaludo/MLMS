@@ -2,7 +2,8 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     DATABASE_URL: str
-    SECRET_KEY: str
+    JWT_SECRET: str
+    REFRESH_SECRET: str
     ALGORITHM: str
 
     class Config:
