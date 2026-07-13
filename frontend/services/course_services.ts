@@ -11,20 +11,21 @@ export type PostCourseData =
 }
 
 export async function getCourses(id?: any) {
-    let url = `${serverUrl}/user/${id}/courses`;
-    const response = await fetch(url, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
+    // let url = `${serverUrl}/user/${id}/courses`;
+    // const response = await fetch(url, {
+    //     method: "GET",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    // })
 
-    if (!response.ok) {
-        return { "Message": "Failed to fetch courses" }
-    }
+    // if (!response.ok) {
+    //     return { "Message": "Failed to fetch courses" }
+    // }
 
-    const data = await response.json();
-    return data;
+    // const data = await response.json();
+    // return data;
+    return null;
 }
 
 export async function getCourseAnnouncements(courseId: number) {

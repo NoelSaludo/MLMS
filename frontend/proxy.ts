@@ -17,7 +17,7 @@ export default async function proxy(request: NextRequest) {
             return NextResponse.redirect(fallbackURL)
         } else {
             // send a request to the backend to check if the refresh token is valid
-            const res = await fetch(`${process.env.BACKEND_URL}/auth/refresh`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/refresh`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${access_token}`,

@@ -1,9 +1,58 @@
 'use client'
 
-import useUserCourses from '@/hooks/useUserCourses'
+import { useEffect, useState } from 'react';
+import LoadingComponent from '../shared/LoadingPage';
+import ErrorComponent from '../shared/ErrorComponent';
 
-export default function CourseCatalogue({ role }: { role: any }) {
-    const { courses, loading, error, refresh } = useUserCourses()
+export default function CourseCatalogue({ userId, role }: { userId: string; role: string }) {
+    const [loading, setLoading] = useState(false);
+    const [courses, setCourses] = useState<{
+        course_id: number;
+        title?: string;
+        description?: string
+    }[]>([]);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        setLoading(true)
+        async function fetchUsersCourses() {
+            console.log("Fetching courses for user:", userId);
+            const url = new URL(`${process.env.NEXT_PUBLIC_BACKEND_URL}/user/${userId}/courses`);
+            const payload = await fetch(url.toString(), {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }).then(res => res.json()).then(data => {
+                console.log("Fetched courses data:", data);
+                if (!data.courses) {
+                    setError("No courses found for this user");
+                    return null;
+                }
+                return data.courses;
+            }).catch(err => {
+                console.error("Error fetching courses:", err);
+                setError("Failed to fetch courses");
+                return null;
+            });
+
+            if (!payload) {
+                setError("Failed to fetch courses");
+                setLoading(false);
+                return;
+            }
+
+            setCourses(payload);
+        }
+
+        fetchUsersCourses();
+        setLoading(false);
+    }, [])
+
+    
+    if (loading) return LoadingComponent();
+    if (error) return ErrorComponent({ error });
+    
     return (
         <div className="col-span-3 p-4">
             {role === 'Teacher' && (
@@ -23,18 +72,12 @@ export default function CourseCatalogue({ role }: { role: any }) {
             )}
 
             <div className="flex flex-wrap align-items justify-content gap-4 mt-4">
-                {loading && <div>Loading courses...</div>}
-
-                {error && <div className="text-red-600">{error}</div>}
-
-                {!loading && !error && courses && courses.length === 0 && (
-                    <div>No courses found.</div>
-                )}
-
-                {!loading && !error && courses && courses.map((c) => (
-                    <a href={`/course/${c.course_id}`} className="bg-gray-300 p-4 rounded w-1/4" key={c.course_id}>
-                        <h2>{c.title ?? `Course ${c.course_id}`}</h2>
-                        <p>{c.description ?? 'No description.'}</p>
+                {courses.length > 0 && courses.map((course) => (
+                    <a href={`/course/${course.course_id}`} key={course.course_id} className="w-full md:w-1/2 lg:w-1/3">
+                        <div className="rounded-lg border border-gray-300 p-4 shadow hover:shadow-lg transition-shadow duration-300">
+                            <h3 className="text-xl font-semibold">{course.title}</h3>
+                            <p className="mt-2 text-gray-600">{course.description}</p>
+                        </div>
                     </a>
                 ))}
             </div>
