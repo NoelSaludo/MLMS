@@ -1,10 +1,12 @@
 'use client';
 
 import { apiClient } from "@/lib/api_client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Page() {
     const [error, setError] = useState<string>("");
+    const router = useRouter();
 
     async function handleLoginSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -22,7 +24,7 @@ export default function Page() {
             cookieStore.set("access_token", accessToken);
             cookieStore.set("refresh_token", refreshToken);
             console.log("Login successful, access token stored in cookie.");
-            
+            router.push("/"); // Redirect to the home page after successful login
         } else {
             console.error("Login failed, no access token received.");
             setError("Login failed. Please check your credentials.");

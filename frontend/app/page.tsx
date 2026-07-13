@@ -1,18 +1,20 @@
 'use client'
 
-import CourseCatalogue from '@/components/main/CourseCatalogue'
-import Sidebar from '@/components/shared/Sidebar'
-import useSession from '@/hooks/useSession'
+import { useEffect, useState } from "react";
 
-export default function Home() {
-  const { session, loading: sessionLoading } = useSession()
+export default function Page() {
+  const [loading, setLoading] = useState(false);
+  const [courses, setCourses] = useState([]);
 
-  return (
-    <div className="grid grid-cols-4 h-screen w-full overflow-hidden justify-center">
-      {/* Sidebar */}
-      <Sidebar />
-      {/* Main Content */}
-      <CourseCatalogue  role={session?.role}/>
-    </div>
-  )
+  useEffect(()=> {
+    setLoading(true)
+    
+    async function fetchCourses() {
+      
+      
+    }
+    fetchCourses()
+  }, [])
+
+  return (<p>homepage</p>)
 }

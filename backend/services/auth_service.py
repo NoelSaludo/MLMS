@@ -31,3 +31,14 @@ def save_refresh_token(user_id: int, rt: str, db: Session = Depends(get_db)):
         # save the refresh token in the database
         db.add(SessionModel(user_id=user_id, refresh_token=rt))
         db.commit()
+
+def check_jwt_validity(token: str):
+    try:
+        payload = jwt.decode(token, settings.JWT_SECRET, algorithms=[settings.ALGORITHM])
+
+        if payload.get("exp") < datetime.now().timestamp():
+            return False, None
+
+        return True, payload
+    except jwt.PyJWTError:
+        return False, None
