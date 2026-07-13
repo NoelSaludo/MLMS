@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { isAccessTokenValid, isRefreshTokenValid, refreshTokens } from '@/services/auth_services';
 
 export default async function proxy(request: NextRequest) {
     const { pathname } = request.nextUrl;
@@ -17,18 +18,11 @@ export default async function proxy(request: NextRequest) {
             return NextResponse.redirect(fallbackURL)
         } else {
             // send a request to the backend to check if the refresh token is valid
-            const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/refresh`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${access_token}`,
-                },
-            }).then(res => res.json()).catch(err => {
-                console.error("Error checking refresh token:", err);
-                return null;
-            });
-
-            request.cookies.set("access_token", res.access_token)
-            request.cookies.set("refresh_token", res.refresh_token)
+            const payload = await refreshTokens(access_token as string);
+            if (payload) {
+                request.cookies.set("access_token", payload.new_access_token);
+                request.cookies.set("refresh_token", payload.new_refresh_token);
+            }
         }
     }
 
@@ -37,53 +31,4 @@ export default async function proxy(request: NextRequest) {
 
 export const config = {
     matcher: ['/', '/course/:path*']
-}
-
-function isAccessTokenValid(access_token: string) {
-    if (!access_token) {
-        return false
-    }
-
-    let payload = decode_jwt(access_token);
-    if (!payload) {
-        return false
-    }
-
-    console.log("Expiry Date", new Date(payload.exp * 1000))
-    console.log("isExpired?", isTokenExpired(payload.exp))
-    if (isTokenExpired(payload.exp)) {
-        return false
-    }
-}
-
-
-function isRefreshTokenValid(refresh_token: string) {
-    if (!refresh_token) {
-        return false
-    }
-
-    let payload = decode_jwt(refresh_token);
-    if (!payload) {
-        return false
-    }
-
-    console.log("expiry", payload.exp * 1000)
-    if (isTokenExpired(payload.exp)) {
-        return false
-    }
-
-    return true
-}
-
-function decode_jwt(token: string) {
-    try {
-        return JSON.parse(atob(token.split('.')[1]));
-    } catch (error) {
-        console.error("Error decoding token:", error);
-        return null;
-    }
-}
-
-function isTokenExpired(payloadExp: number) {
-    return Date.now() >= payloadExp * 1000;
 }
