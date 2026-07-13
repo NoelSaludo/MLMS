@@ -1,6 +1,7 @@
 'use client';
 
 import { apiClient } from "@/lib/api_client";
+import { loginUser } from "@/services/auth_services";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -12,23 +13,17 @@ export default function Page() {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
+        const email = formData.get("email") as string;
+        const password = formData.get("password") as string;
+        const data = await loginUser(email, password);
 
-        const response = await apiClient.post("/auth/login", {
-            email: formData.get("email"),
-            password: formData.get("password")
-        });
+        const accessToken = data?.access_token;
+        const refreshToken = data?.refresh_token;
 
-        const accessToken = response.access_token;
-        const refreshToken = response.refresh_token;
-        if (accessToken && refreshToken) {
-            cookieStore.set("access_token", accessToken);
-            cookieStore.set("refresh_token", refreshToken);
-            console.log("Login successful, access token stored in cookie.");
-            router.push("/"); // Redirect to the home page after successful login
-        } else {
-            console.error("Login failed, no access token received.");
-            setError("Login failed. Please check your credentials.");
-        }
+        cookieStore.set("access_token", accessToken || "");
+        cookieStore.set("refresh_token", refreshToken || "");
+
+        router.push("/"); // Redirect to the home page after successful login
     }
 
     return <div className="grid grid-cols-2 justify-items-end min-h-screen items-stretch">
