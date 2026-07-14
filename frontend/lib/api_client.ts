@@ -1,10 +1,18 @@
-const API_BASE_URL = process.env.BACKEND_URL || "http://localhost:8000";
-export const apiClient = {
-    async getToken() {
-        const accessToken = await cookieStore.get("access_token");
-        return accessToken?.value || null;
-    },
-    async request(method: string, endpoint: string, data?: any) {
+const API_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+
+
+export namespace apiClient {
+    function getToken() {
+        const Cookies = require("js-cookie");
+        const accessToken = Cookies.get("access_token");
+
+        if (!accessToken) {
+            console.error("Access token not found in cookies.");
+            return null;
+        }
+        return accessToken;
+    }
+    async function request(method: string, endpoint: string, data?: any) {
         const url = `${API_BASE_URL}${endpoint}`;
         const headers: Record<string, string> = {};
 
@@ -12,7 +20,7 @@ export const apiClient = {
             headers["Content-Type"] = "application/json";
         }
 
-        const accessToken = await this.getToken();
+        const accessToken = getToken();
         if (accessToken) {
             headers["Authorization"] = `Bearer ${accessToken}`;
         }
@@ -31,10 +39,10 @@ export const apiClient = {
             return { message: "Request failed", status: response.status, statusText: response.statusText };
         }
         return response.json();
-    },
+    }
 
-    async get(endpoint: string) { return await this.request("GET", endpoint); },
-    async post(endpoint: string, data: any) { return await this.request("POST", endpoint, data); },
-    async put(endpoint: string, data: any) { return await this.request("PUT", endpoint, data); },
-    async delete(endpoint: string) { return await this.request("DELETE", endpoint); }
+    export async function get(endpoint: string) { return await request("GET", endpoint); }
+    export async function post(endpoint: string, data: any) { return await request("POST", endpoint, data); }
+    export async function put(endpoint: string, data: any) { return await request("PUT", endpoint, data); }
+    export async function del(endpoint: string) { return await request("DELETE", endpoint); }
 }

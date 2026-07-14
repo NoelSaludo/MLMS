@@ -1,32 +1,31 @@
-import { apiClient } from "@/lib/api_client";
+import { apiClient } from "@/lib/api_client";   
+
 export async function loginUser(email: string, password: string): Promise<{ access_token: string, refresh_token: string } | null> {
     try {
-        const response = await apiClient.post("/auth/login", {
+        const data = await apiClient.post("/auth/login", {
             email,
             password
         });
 
-        if (!response || !response.data || !response.data.access_token || !response.data.refresh_token) {
-            throw new Error("Invalid response from login API");
+        if (!data || !data.access_token || !data.refresh_token) {
+            console.log("Login failed: Missing access or refresh token in the response.");
+            return null;
         }
 
         return {
-            access_token: response.data.access_token,
-            refresh_token: response.data.refresh_token
+            access_token: data.access_token,
+            refresh_token: data.refresh_token
         };
     } catch (error) {
         console.error("Error during login:", error);
         return null;
+    } finally {
+        console.log("User login attempt completed.");
     }
 }
 
 export async function refreshTokens(access_token: string): Promise<{ new_access_token: string, new_refresh_token: string } | null> {
-    return await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/refresh`, {
-        method: 'GET',
-        headers: {
-            'Authorization': `Bearer ${access_token}`,
-        },
-    }).then(res => res.json()).then(data => {
+    return await apiClient.get("/auth/refresh").then(res => res.data).then(data => {
         return {
             new_access_token: data.access_token, new_refresh_token: data.refresh_token
         }

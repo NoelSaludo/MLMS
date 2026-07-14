@@ -1,6 +1,5 @@
 'use client';
 
-import { apiClient } from "@/lib/api_client";
 import { loginUser } from "@/services/auth_services";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -8,6 +7,7 @@ import { useState } from "react";
 export default function Page() {
     const [error, setError] = useState<string>("");
     const router = useRouter();
+    const Cookies = require("js-cookie");
 
     async function handleLoginSubmit(event: React.SyntheticEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -15,13 +15,18 @@ export default function Page() {
         const formData = new FormData(event.currentTarget);
         const email = formData.get("email") as string;
         const password = formData.get("password") as string;
+
         const data = await loginUser(email, password);
+        if (!data) {
+            setError("Email or password is incorrect.");
+            return;
+        }
 
-        const accessToken = data?.access_token;
-        const refreshToken = data?.refresh_token;
+        const accessToken = data.access_token;
+        const refreshToken = data.refresh_token;
 
-        cookieStore.set("access_token", accessToken || "");
-        cookieStore.set("refresh_token", refreshToken || "");
+        Cookies.set("access_token", accessToken);
+        Cookies.set("refresh_token", refreshToken);
 
         router.push("/"); // Redirect to the home page after successful login
     }
