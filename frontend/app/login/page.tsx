@@ -17,7 +17,7 @@ export default function Page() {
         const password = formData.get("password") as string;
 
         const data = await loginUser(email, password);
-        if (!data) {
+        if (!data || !data.access_token || !data.refresh_token) {
             setError("Email or password is incorrect.");
             return;
         }

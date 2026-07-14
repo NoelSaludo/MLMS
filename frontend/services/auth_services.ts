@@ -26,6 +26,10 @@ export async function loginUser(email: string, password: string): Promise<{ acce
 
 export async function refreshTokens(access_token: string): Promise<{ new_access_token: string, new_refresh_token: string } | null> {
     return await apiClient.get("/auth/refresh").then(res => res.data).then(data => {
+        if (!data || !data.access_token || !data.refresh_token) {
+            console.log("Refresh token failed: Missing access or refresh token in the response.");
+            return null;
+        }
         return {
             new_access_token: data.access_token, new_refresh_token: data.refresh_token
         }

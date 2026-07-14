@@ -7,7 +7,7 @@ export namespace apiClient {
         const accessToken = Cookies.get("access_token");
 
         if (!accessToken) {
-            console.error("Access token not found in cookies.");
+            console.log("Access token not found in cookies.");
             return null;
         }
         return accessToken;
