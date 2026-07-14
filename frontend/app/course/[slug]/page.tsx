@@ -1,6 +1,7 @@
 'use client'
 
 import ContentCreationModal from "@/components/course/ContentCreationModel";
+import CourseDashboard from "@/components/course/CourseDashboard";
 import CourseDropdownAction from "@/components/course/CourseDropdownAction";
 import Sidebar from "@/components/shared/Sidebar";
 import { useState, useEffect, use } from "react";
@@ -48,6 +49,11 @@ export default function CoursePage({ params }: { params: Promise<{ slug: string 
                         )}
                     </div>
                 </div>
+                <div>
+                    <h1 className="text-2xl font-bold mb-4">Course Page for {slug}</h1>
+                    <p>Course content will be displayed here.</p>
+                </div>
+                <CourseDashboard courseId={parseInt(slug, 10)} />
             </div>
         </div>
     )

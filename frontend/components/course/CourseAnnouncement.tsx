@@ -2,9 +2,10 @@
 
 import useCourseContents from '@/hooks/useCourseAnnouncements'
 import CourseContentCards from './CourseContentCard'
+import useFetchCourseContents from '@/hooks/useFetchCourseContents';
 
 export default function CourseAnnouncement({ courseId }: { courseId: number }) {
-    const { announcements: contents, loading, error } = useCourseContents(courseId)
+    const { contents, loading, error } = useFetchCourseContents(courseId);
 
     if (loading) {
         return <div>Loading announcements...</div>
@@ -20,13 +21,13 @@ export default function CourseAnnouncement({ courseId }: { courseId: number }) {
     
     return (
         <div className="grid grid-cols-1 gap-4 mt-4 overflow-y-auto max-h-[calc(100vh-300px)]">
-            {contents.map((announcement) => (
+            {contents.map((content) => (
                 <CourseContentCards
-                    key={announcement.content_id}
-                    title={announcement.title}
-                    content={announcement.description || 'No description available.'}
+                    key={content.content_id}
+                    title={content.title}
+                    content={content.description || 'No description available.'}
                     courseId={courseId}
-                    contentId={announcement.content_id}
+                    contentId={content.content_id}
                 />
             ))}
         </div>
