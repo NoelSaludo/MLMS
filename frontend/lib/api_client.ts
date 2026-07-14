@@ -63,16 +63,4 @@ export namespace apiClient {
      * @returns Promise resolving to the response data or an error object
      */
     export async function post(endpoint: string, data: any) { return await request("POST", endpoint, data); }
-    /**
-     * PUT request to the backend API.
-     * @param endpoint backend api route endpoint to make a request to
-     * @returns Promise resolving to the response data or an error object
-     */
-    export async function put(endpoint: string, data: any) { return await request("PUT", endpoint, data); }
-    /**
-     * DELETE request to the backend API.
-     * @param endpoint backend api route endpoint to make a request to
-     * @returns Promise resolving to the response data or an error object
-     */
-    export async function del(endpoint: string) { return await request("DELETE", endpoint); }
 }

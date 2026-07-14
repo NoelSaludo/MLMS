@@ -1,6 +1,5 @@
 'use client'
 
-import useCourseContents from '@/hooks/useCourseAnnouncements'
 import CourseContentCards from './CourseContentCard'
 import useFetchCourseContents from '@/hooks/useFetchCourseContents';
 

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { apiClient } from '@/lib/api_client';
 
 export function useDownloadFile(filePath: string) {
     const [file, setFile] = useState<Blob | null>(null);
