@@ -35,8 +35,13 @@ export namespace apiClient {
             headers,
         };
 
+        const isFormData = data instanceof FormData;
+        if (isFormData) {
+            delete headers["Content-Type"];
+        }
+
         if (data) {
-            options.body = data instanceof FormData ? data : JSON.stringify(data);
+            options.body = isFormData ? data : JSON.stringify(data);
         }
 
         const response = await fetch(url, options);

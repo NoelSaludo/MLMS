@@ -1,6 +1,6 @@
 import AssignAnAssignmentForm from "./AssignAnAssignmentForm"
 import MakeAnAnnouncementForm from "./MakeAnAnnouncementForm"
-import UploadCourseContentForm from "./UploadCourseContentForm"
+import UploadACourseMaterialForm from "./UploadCourseContentForm"
 
 export default function ContentCreationModal({
     onClose, type, courseId
@@ -19,7 +19,7 @@ export default function ContentCreationModal({
                     <MakeAnAnnouncementForm courseId={courseId} />
                 )}
                 {type === 'material' && (
-                    <UploadCourseContentForm courseId={courseId} />
+                    <UploadACourseMaterialForm courseId={courseId} />
                 )}
                 {type === 'assignment' && (
                     <AssignAnAssignmentForm courseId={courseId} />

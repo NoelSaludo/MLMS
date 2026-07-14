@@ -4,10 +4,9 @@ import { apiClient } from '@/lib/api_client';
 import { useState, SyntheticEvent } from 'react'
 import { useRouter } from 'next/navigation'
 
-export default function MakeAnAnnouncementForm({courseId}: {courseId: string}) {
+export default function MakeAnAnnouncementForm({ courseId }: { courseId: string }) {
     const [title, settitle] = useState('')
     const [content, setContent] = useState('')
-    const router = useRouter()
 
     async function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -16,17 +15,23 @@ export default function MakeAnAnnouncementForm({courseId}: {courseId: string}) {
         formData.append('title', title);
         formData.append('content', content);
         formData.append('courseId', courseId);
-        
-        const data = await apiClient.post(`/course/${courseId}/announcement`, formData);
-        if (!data || !data.status || data.status !== "success") {
-            console.log("Failed to make an announcement.");
-            return;
-        }
 
-        settitle('');
-        setContent('');
-        alert("Announcement made successfully!");
-        window.location.reload();
+        try {
+            const data = await apiClient.post(`/course/${courseId}/announcement`, formData);
+            if (!data || !data.status || data.status !== "success") {
+                console.log("Failed to make an announcement.");
+                return;
+            }
+
+            settitle('');
+            setContent('');
+            alert("Announcement made successfully!");
+            window.location.reload();
+
+        } catch (error) {
+            console.error("Error making announcement:", error);
+            alert("An error occurred while making the announcement. Please try again.");
+        }
     }
     return (
         <form onSubmit={handleSubmit} className="space-y-4">

@@ -1,34 +1,47 @@
 'use client'
 
-import { useState } from 'react'
+import { apiClient } from '@/lib/api_client';
+import { useState, SyntheticEvent } from 'react'
 
-export default function UploadCourseContentForm({courseId}: {courseId: string}) {
+export default function UploadACourseMaterialForm({ courseId }: { courseId: string }) {
     const [title, settitle] = useState('');
     const [content, setContent] = useState('');
     const [file, setFile] = useState<File | null>(null);
 
-    // TODO: Refactor this to use the action method of the form tag
-    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        const formData = new FormData();
-        formData.append('courseId', courseId);
-        formData.append('title', title);
-        formData.append('description', content);
-        if (file) {
-            formData.append('fileattachment', file);
-        }
+        if (courseId) {
+            const formData = new FormData();
+            formData.append('course_id', courseId);
+            formData.append('title', title);
+            formData.append('description', content);
+            if (file) {
+                const fileData = new FormData();
+                fileData.append('file', file);
+                fileData.append('course_title', courseId); // Assuming courseId is used as the title for the file upload
+                const filePath = await apiClient.post('/upload/', fileData);
+                formData.append('filepath_attachment', filePath);
+            }
 
-        const response = await fetch('/api/upload/material', {
-            method: 'POST',
-            body: formData
-        });
+            try {
+                const data = await apiClient.post(`/course/${courseId}/materials`, formData);
+                if (!data || data.status !== "success") {
+                    console.log("Failed to upload course material.");
+                    return;
+                }
 
-        if (response.ok) {
-            alert('Material submitted successfully!');
-            window.location.reload();
-        } else {
-            alert('Error submitting material.');
+                // Reset the form fields after successful submission
+                settitle('');
+                setContent('');
+                setFile(null);
+                alert("Course material uploaded successfully!");
+                window.location.reload();
+
+            } catch (error) {
+                console.error("Error uploading course material:", error);
+                alert("An error occurred while uploading the course material. Please try again.");
+            }
         }
     }
 
