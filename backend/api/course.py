@@ -38,6 +38,17 @@ def get_course_materials_route(course_id: int, db: Session = Depends(get_db)):
         return {"message": "No materials found for the course."}
     return {"materials": materials}
 
+@router.post("/{course_id}/announcement")
+def make_announcement(course_id: int, title: str = Form(...), content: str = Form(...), db: Session = Depends(get_db)):
+    announcement_data = {"title": title,
+        "description": content,
+        "type": "announcement",
+        "filepath_attachment": None,
+        "score": None,
+        "due_date": None}
+    create_course_content(db, course_id, announcement_data)
+    return {"message": "Announcement created successfully.", "status": "success"}
+
 @router.get("/{course_id}/members")
 def get_course_members_route(course_id: int, db: Session = Depends(get_db)):
     members = get_course_members(db, course_id)

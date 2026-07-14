@@ -1,32 +1,32 @@
 'use client'
 
-import { useState, FormEvent } from 'react'
+import { apiClient } from '@/lib/api_client';
+import { useState, SyntheticEvent } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function MakeAnAnnouncementForm({courseId}: {courseId: string}) {
     const [title, settitle] = useState('')
     const [content, setContent] = useState('')
+    const router = useRouter()
 
-    // TODO: Refactor this to use the action method of the form tag
-    async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    async function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
         event.preventDefault();
 
         const formData = new FormData();
         formData.append('title', title);
         formData.append('content', content);
         formData.append('courseId', courseId);
-
-        const response = await fetch('/api/upload/announcement', {
-            method: 'POST',
-            body: formData
-        })
-
-        if (response.ok) {
-            alert('Announcement submitted successfully!');
-            // refresh page 
-            window.location.reload();
-        } else {
-            alert('Error submitting announcement.');
+        
+        const data = await apiClient.post(`/course/${courseId}/announcement`, formData);
+        if (!data || !data.status || data.status !== "success") {
+            console.log("Failed to make an announcement.");
+            return;
         }
+
+        settitle('');
+        setContent('');
+        alert("Announcement made successfully!");
+        window.location.reload();
     }
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
