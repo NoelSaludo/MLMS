@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, SubmitEvent as SyntheticEvent } from 'react'
+import { apiClient } from '@/lib/api_client'
 
 export default function AssignAnAssignmentForm({courseId}: {courseId: string}) {
     const [assignmenttitle, setAssignmenttitle] = useState('')
@@ -10,31 +11,42 @@ export default function AssignAnAssignmentForm({courseId}: {courseId: string}) {
     const [dueDate, setdue_date] = useState<string>('')
 
     // TODO: Refactor this to use the action method of the form tag
-    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    async function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
         event.preventDefault()
 
         const formData = new FormData()
-        formData.append('courseId', courseId)
+        formData.append('course_id', courseId)
         formData.append('title', assignmenttitle)
         formData.append('description', assignmentdescription)
         if (file) {
-            formData.append('fileattachment', file)
+            const fileData = new FormData()
+            fileData.append('file', file)
+            fileData.append('course_title', courseId) // Assuming courseId is used as the title for the file upload
+            const filePath = await apiClient.post('/upload/', fileData)
+            formData.append('filepath_attachment', filePath)
         }
         if (score !== null) {
             formData.append('score', score.toString())
         }
-        formData.append('duedate', dueDate)
+        formData.append('due_date', dueDate)
 
-        const response = await fetch('/api/upload/assignment', {
-            method: 'POST',
-            body: formData
-        })
-
-        if (response.ok) {
-            alert('Assignment submitted successfully!')
+        try {
+            const data = await apiClient.post(`/course/${courseId}/assignment`, formData)
+            if (!data || !data.status || data.status !== "success") {
+                console.log("Failed to assign an assignment.")
+                return
+            }
+            
+            setAssignmenttitle('')
+            setAssignmentdescription('')
+            setFile(null)
+            setscore(null)
+            setdue_date('')
+            alert("Assignment assigned successfully!")
             window.location.reload()
-        } else {
-            alert('Error submitting assignment.')
+        } catch (error) {
+            console.error("Error assigning assignment:", error)
+            alert("An error occurred while assigning the assignment. Please try again.")
         }
     }
 

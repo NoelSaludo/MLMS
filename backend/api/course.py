@@ -77,6 +77,27 @@ def make_announcement(course_id: int, title: str = Form(...), content: str = For
 
     return {"message": "Announcement created successfully.", "status": "success"}
 
+@router.post("/{course_id}/assignment")
+def assign_assignment(course_id: int,
+                      title: Annotated[str, Form(...)],
+                      description: Annotated[str, Form(...)],
+                      filepath_attachment: Annotated[str, Form(...)],
+                      score: Annotated[int, Form(...)],
+                      due_date: Annotated[str, Form(...)],
+                      db: Session = Depends(get_db)):
+    try:
+        assignment_data = {"title": title,
+            "description": description,
+            "type": "assignment",
+            "filepath_attachment": filepath_attachment,
+            "score": score,
+            "due_date": due_date}
+        create_course_content(db, course_id, assignment_data)
+
+        return {"message": "Assignment created successfully.", "status": "success"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"An error occurred while creating the assignment: {str(e)}")
+
 @router.get("/{course_id}/members")
 def get_course_members_route(course_id: int, db: Session = Depends(get_db)):
     members = get_course_members(db, course_id)
