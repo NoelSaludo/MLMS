@@ -5,7 +5,6 @@ import { apiClient } from '@/lib/api_client';
 
 export function useDownloadFile(filePath: string) {
     const [file, setFile] = useState<Blob | null>(null);
-    const [type, setType] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<Error | null>(null);
 
@@ -34,7 +33,6 @@ export function useDownloadFile(filePath: string) {
                 }
                 const blob = new Blob([fileData], { type: 'application/octet-stream' });
                 setFile(blob);
-                setType(blob.type);
             } catch (error) {
                 console.error("Error downloading file:", error);
                 setFile(null);
@@ -46,5 +44,5 @@ export function useDownloadFile(filePath: string) {
 
         downloadFile();
     }, [filePath]);
-    return { file, type, loading, error };
+    return { file, loading, error };
 }

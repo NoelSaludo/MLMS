@@ -1,6 +1,6 @@
 import {useDownloadFile} from "@/hooks/useDownloadFile";
-export default function DownloadableLinkComponent({filepath, filename}: {filepath: string, filename?: string}) {
-    const { file, type, loading, error } = useDownloadFile(filepath);
+export function DownloadableLinkComponent({filepath, filename}: {filepath: string, filename?: string}) {
+    const { file, loading, error } = useDownloadFile(filepath);
 
     if (loading) {
         return <p>Loading...</p>;
