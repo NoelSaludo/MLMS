@@ -1,28 +1,52 @@
 'use client'
 import Sidebar from "@/components/shared/Sidebar"
-import useSession from "@/hooks/useSession";
-
-import {SyntheticEvent} from "react";
+import { apiClient } from "@/lib/api_client";
+import { SyntheticEvent } from "react";
+import { useRouter } from "next/navigation";
+import { uploadFile } from "@/services/file_services";
+import { getUserIdFromToken } from "@/lib/auth_v2";
 
 export default function CreateCoursePage() {
-    useSession();    
+    const router = useRouter();
 
     async function handleCourseCreationSubmit(event: SyntheticEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        const formData = new FormData(event.currentTarget);
-        const response = await fetch('/api/courses/create', {
-            method: 'POST',
-            body: formData 
-        });
+        try {
+            const formData = new FormData(event.currentTarget);
+            const Cookies = await require('js-cookie');
+            const authToken = Cookies.get('access_token');
+            if (!authToken) {
+                throw new Error("User is not authenticated");
+            }
 
-        if (response.ok) {
-            alert('Course created successfully!');
-            window.location.href = '/';
-        } else {
-            alert('Error creating course.');
+            const userId = getUserIdFromToken(authToken);
+            if (!userId) {
+                throw new Error("User ID not found in token");
+            }
+            formData.set("instructor_id", userId.toString());
+
+            const filepath = await uploadFile(formData.get("file") as File, "syllabus");
+            formData.delete("file"); // Remove the file from formData since we are sending the path instead
+            if (!filepath) {
+                throw new Error("File upload failed");
+            }
+
+            formData.set("syllabus_file_path", filepath);
+            formData.set("status", "active"); // Set the status to active
+            
+            const data = await apiClient.post("/course/create", formData);
+            if (data && data.course_id) {
+                window.alert("Course created successfully!");
+                router.push(`/course/${data.course_id}`);
+            }
+
+        } catch (error) {
+            console.error("Error creating course:", error);
+            window.alert("Error creating course. Please try again.");
         }
     }
+
     return (
         <div className="grid grid-cols-4 h-screen w-full overflow-hidden justify-center">
             <Sidebar />
@@ -63,7 +87,7 @@ export default function CreateCoursePage() {
                         <input
                             type="file"
                             id="file"
-                            name="fileattachment"
+                            name="file"
                             className="mt-1 block w-full"
                             required
                         />
@@ -75,10 +99,10 @@ export default function CreateCoursePage() {
                         <input
                             type="date"
                             id="startDate"
-                            name="startDate"
+                            name="start_date"
                             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
                             required
-                        />  
+                        />
                     </div>
                     <div className="mb-4">
                         <label htmlFor="endDate" className="block text-sm font-medium text-gray-700">
@@ -87,10 +111,10 @@ export default function CreateCoursePage() {
                         <input
                             type="date"
                             id="endDate"
-                            name="endDate"
+                            name="end_date"
                             className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2"
                             required
-                        />  
+                        />
                     </div>
                     <button
                         type="submit"

@@ -136,11 +136,11 @@ class CourseCreateRequest(BaseModel):
     status: str
     instructor_id: int
 
-@router.post("/create/")
-async def create_course_route(course_data: CourseCreateRequest, db: Session = Depends(get_db)):
+@router.post("/create")
+async def create_course_route(course_data: CourseCreateRequest = Form(...), db: Session = Depends(get_db)):
     course = create_course(db, course_data)
     add_course_member(db, course.course_id, course_data.instructor_id)
-    return course
+    return {"message": "Course created successfully.", "course_id": course.course_id}
 
 @router.get("/content/")
 async def get_content_detail_by_id_route(course_id: int = Query(..., alias="courseId"), content_id: int = Query(..., alias="contentId"), db: Session = Depends(get_db)):

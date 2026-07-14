@@ -13,7 +13,7 @@ export async function uploadFile(file: File, courseTitle: string) {
             throw new Error("Invalid file path received from the server.");
         }
 
-        return filePath;
+        return filePath.file_path;
     } catch (error) {
         console.error("Error uploading file to the server:", error);
         throw error;

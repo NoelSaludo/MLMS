@@ -9,3 +9,11 @@ export function extractPayloadFromToken(token: string){
     }
     return null;
 }
+
+export function getUserIdFromToken(token: string): number | null {
+    const payload = extractPayloadFromToken(token);
+    if (payload && payload.id) {
+        return payload.id;
+    }
+    return null;
+}
