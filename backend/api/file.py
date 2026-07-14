@@ -11,7 +11,7 @@ async def upload_file(file: UploadFile = File(...), course_title: str = Form(...
     return await save_file(file, file.filename, course_title)
 
 
-@router.get("/download/")
+@router.get("/download")
 async def download_file(file_path: str = Query(...)):
     normalized_path = os.path.normpath(file_path)
     uploads_root = os.path.abspath("uploads")

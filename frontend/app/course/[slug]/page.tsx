@@ -12,8 +12,6 @@ export default function CoursePage({ params }: { params: Promise<{ slug: string 
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [contentToCreate, setContentToCreate] = useState<'announcement' | 'material' | 'assignment'>('announcement');
-    const [courseData, setCourseData] = useState<any>(null);
-    const [role, setRole] = useState<string | null>(null);
 
     useEffect(() => {
 

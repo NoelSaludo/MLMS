@@ -35,6 +35,13 @@ def get_course_contents_route(course_id: int, db: Session = Depends(get_db)):
 
     return {"contents": contents}
 
+@router.get("/{course_id}/content/{content_id}")
+def get_course_content_detail_route(course_id: int, content_id: int, db: Session = Depends(get_db)):
+    content_detail = get_content_detail_by_id(db, course_id, content_id)
+    if content_detail is None:
+        return {"message": "Content not found."}
+    return {"content": content_detail}
+
 @router.get("/{course_id}/materials")
 def get_course_materials_route(course_id: int, db: Session = Depends(get_db)):
     materials = get_course_materials_by_id(db, course_id)
