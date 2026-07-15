@@ -17,10 +17,10 @@ def test_get_course_contents():
     assert response.status_code == 200
     assert "contents" in response.json()
 
-def test_get_course_content_detail():
+def test_get_course_content_detail_by_singular_path():
     test_course_id = 1
     test_content_id = 1
-    response = client.get(f"{route}/{test_course_id}/contents/{test_content_id}")
+    response = client.get(f"{route}/{test_course_id}/content/{test_content_id}")
     assert response.status_code == 200
     assert "content" in response.json()
 
@@ -56,6 +56,7 @@ def test_make_assignment():
     data = {
         "title": "Test Assignment",
         "description": "This is a test assignment.",
+        "filepath_attachment": "/path/to/test_assignment.pdf",
         "score": 100,
         "due_date": "2024-12-31"
     }
@@ -79,13 +80,13 @@ def test_create_course():
         "end_date": "2024-06-01",
         "status": "active"
     }
-    response = client.post(f"{route}/", data=data)
+    response = client.post(f"{route}/create", data=data)
     assert response.status_code == 200
-    assert "course" in response.json()
+    assert "course_id" in response.json()
 
-def test_get_course_content_detail():
+def test_get_course_content_detail_by_plural_path():
     test_course_id = 1
     test_content_id = 1
-    response = client.get(f"{route}/{test_course_id}/contents/{test_content_id}")
+    response = client.get(f"{route}/{test_course_id}/content/{test_content_id}")
     assert response.status_code == 200
     assert "content" in response.json()

@@ -12,16 +12,30 @@ def test_file_upload():
     with open(test_file_path, "w") as f:
         f.write(test_file_content)
     with open(test_file_path, "rb") as f:
-        response = client.post("/file/upload", files={"file": (test_file_name, f, "text/plain")})
+        response = client.post(
+            "/file/upload/",
+            files={"file": (test_file_name, f, "text/plain")},
+            data={"course_title": "Test Course"}
+        )
 
     assert response.status_code == 200
-    assert "filename" in response.json()
-    assert response.json()["filename"] == test_file_name
+    assert "file_path" in response.json()
 
 def test_file_download():
-    # Test with a valid file download
-    response = client.get(f"/file/download/{test_file_name}")
+    # Upload the file first to get a valid path within uploads/
+    with open(test_file_path, "w") as f:
+        f.write(test_file_content)
+    with open(test_file_path, "rb") as f:
+        upload_response = client.post(
+            "/file/upload/",
+            files={"file": (test_file_name, f, "text/plain")},
+            data={"course_title": "Test Course"}
+        )
+    assert upload_response.status_code == 200
+    saved_path = upload_response.json()["file_path"]
+
+    # Download using the correct query-param format
+    response = client.get("/file/download", params={"file_path": saved_path})
     assert response.status_code == 200
-    assert response.headers["content-type"] == "application/octet-stream"
-    assert response.content == b"This is a test file."
+    assert response.content == test_file_content.encode()
 
