@@ -1,12 +1,8 @@
-import { apiClient } from "@/lib/api_client";   
+import { apiClient } from "@/lib/api_client";
 
-export async function loginUser(email: string, password: string): Promise<{ access_token: string, refresh_token: string } | null> {
+export async function loginUser({ userData }: { userData: FormData }): Promise<{ access_token: string, refresh_token: string } | null> {
     try {
-        const data = await apiClient.post("/auth/login", {
-            email,
-            password
-        });
-
+        const data = await apiClient.post("/auth/login", userData);
         if (!data || !data.access_token || !data.refresh_token) {
             console.log("Login failed: Missing access or refresh token in the response.");
             return null;

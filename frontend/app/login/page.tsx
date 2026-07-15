@@ -13,10 +13,7 @@ export default function Page() {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
-        const email = formData.get("email") as string;
-        const password = formData.get("password") as string;
-
-        const data = await loginUser(email, password);
+        const data = await loginUser({userData: formData});
         if (!data || !data.access_token || !data.refresh_token) {
             setError("Email or password is incorrect.");
             return;

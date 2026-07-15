@@ -18,10 +18,7 @@ router = APIRouter(
 security = HTTPBearer()
 
 @router.post("/login")
-async def login(data: Annotated[dict, Form], db: Session = Depends(get_db)):
-    email = data.get("email")
-    password = data.get("password")
-
+async def login(email:Annotated[str, Form(...)], password: Annotated[str, Form(...)], db: Session = Depends(get_db)):
     if not email or not password:
         raise HTTPException(status_code=400, detail="Email and password are required")
 
